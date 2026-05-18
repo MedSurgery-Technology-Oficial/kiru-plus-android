@@ -1,0 +1,17 @@
+# KIRU+ Android — local configuration
+# Copia este archivo a `local.properties` y rellena con tus valores reales.
+# El archivo `local.properties` está en `.gitignore`. NUNCA commitearlo.
+
+# Ruta al SDK de Android instalado (Android Studio lo configura automáticamente)
+sdk.dir=/Users/CHANGE-ME/Library/Android/sdk
+
+# Supabase (mismo proyecto que comparte el repo iOS kiru-plus-main)
+SUPABASE_URL=https://tttxmupjteqpljtfgmgo.supabase.co
+SUPABASE_ANON_KEY=sb_publishable_REPLACE_WITH_REAL_PUBLISHABLE_KEY
+
+# RevenueCat (clave Android — distinta de la appl_xxx de iOS)
+# Obténerla en RevenueCat Dashboard → Project → API keys → Android
+REVENUECAT_API_KEY=goog_REPLACE_WITH_REAL_KEY
+
+# Sentry crash reporting (mismo DSN que iOS o uno dedicado a Android)
+SENTRY_DSN=https://REPLACE@sentry.io/PROJECT_ID

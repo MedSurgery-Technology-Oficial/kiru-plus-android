@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive icon foreground (E0 placeholder).
+  Letra "K+" estilizada centrada en el área segura de 108dp×108dp.
+  Refinar con arte de marca en E1.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Letra K -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,30 L46,30 L46,52 L62,30 L72,30 L57,50 L74,78 L64,78 L51,57 L46,63 L46,78 L38,78 Z" />
+
+    <!-- Símbolo + -->
+    <path
+        android:fillColor="#FF7A45"
+        android:pathData="M76,38 L82,38 L82,46 L90,46 L90,52 L82,52 L82,60 L76,60 L76,52 L68,52 L68,46 L76,46 Z" />
+</vector>

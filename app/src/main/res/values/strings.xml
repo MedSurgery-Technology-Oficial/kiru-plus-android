@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- English fallback -->
+    <string name="app_name" translatable="false">KIRU+</string>
+
+    <!-- Onboarding / Splash -->
+    <string name="splash_loading">Loading…</string>
+
+    <!-- Medical Disclaimer (5 sections - matches iOS exact copy) -->
+    <string name="disclaimer_title">MEDICAL DISCLAIMER</string>
+    <string name="disclaimer_section_1_title">1. Purpose</string>
+    <string name="disclaimer_section_1_body">Educational tool for medical students, residents, and certified surgeons (CMCG certification). Based on ATLS, AAST, Tokyo Guidelines, and the New Treatise 2025.</string>
+    <string name="disclaimer_section_2_title">2. Critical notice</string>
+    <string name="disclaimer_section_2_body">KIRU+ DOES NOT constitute medical advice, diagnosis, or treatment FOR ANY PERSON WITHOUT A MEDICAL LICENSE. IT MUST NOT BE USED by the general public.</string>
+    <string name="disclaimer_section_3_title">3. Limitations</string>
+    <string name="disclaimer_section_3_body">MedSurgery is not responsible for malpractice, breaches of \"lex artis\", or harm to patients.</string>
+    <string name="disclaimer_section_4_title">4. Appropriate use</string>
+    <string name="disclaimer_section_4_body">Study, residency preparation, case simulation. NOT for direct clinical use.</string>
+    <string name="disclaimer_section_5_title">5. Confirmations</string>
+    <string name="disclaimer_section_5_body">I confirm I am a healthcare professional or student; I understand this is educational; I will not use it as a substitute for clinical judgment; I will not share content with the general public; I accept the privacy policy and terms of use.</string>
+    <string name="disclaimer_accept_checkbox">I have read and accept the medical disclaimer</string>
+    <string name="disclaimer_continue">Continue</string>
+    <string name="disclaimer_short_banner">Educational use only. Not medical advice.</string>
+
+    <!-- Auth -->
+    <string name="auth_email">Email</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_login">Sign in</string>
+    <string name="auth_register">Create account</string>
+    <string name="auth_forgot">Forgot password?</string>
+    <string name="auth_logout">Sign out</string>
+    <string name="auth_delete_account">Delete my account</string>
+    <string name="auth_login_error_generic">Could not sign in. Please try again.</string>
+
+    <!-- Tabs -->
+    <string name="tab_home">Home</string>
+    <string name="tab_academy">Academy</string>
+    <string name="tab_logbook">Logbook</string>
+    <string name="tab_store">Store</string>
+    <string name="tab_profile">Profile</string>
+
+    <!-- Legal -->
+    <string name="legal_privacy_policy">Privacy policy</string>
+    <string name="legal_terms">Terms of use</string>
+    <string name="legal_subscriptions">Subscription policy</string>
+
+    <!-- Account deletion (Google Play required) -->
+    <string name="delete_account_title">Delete account</string>
+    <string name="delete_account_body">Your account and personal data will be permanently deleted within 48 hours. You can cancel within that period.</string>
+    <string name="delete_account_confirm">Confirm deletion</string>
+    <string name="delete_account_cancel">Cancel</string>
+
+    <!-- Generic UI -->
+    <string name="action_back">Back</string>
+    <string name="action_retry">Retry</string>
+    <string name="state_loading">Loading…</string>
+    <string name="state_offline">No internet connection</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Español (idioma default de la app) -->
+
+    <!-- Onboarding / Splash -->
+    <string name="splash_loading">Cargando…</string>
+
+    <!-- Descargo médico (5 secciones, texto exacto del iOS) -->
+    <string name="disclaimer_title">DESCARGO DE RESPONSABILIDAD MÉDICA</string>
+    <string name="disclaimer_section_1_title">1. Propósito</string>
+    <string name="disclaimer_section_1_body">Herramienta educativa para estudiantes, residentes y cirujanos certificados (CMCG). Basada en ATLS, AAST, Guías de Tokio y el Nuevo Tratado 2025.</string>
+    <string name="disclaimer_section_2_title">2. Aviso crítico</string>
+    <string name="disclaimer_section_2_body">KIRU+ NO constituye consejo médico, diagnóstico ni tratamiento PARA CUALQUIER PERSONA QUE NO CUENTE CON CÉDULA DE MÉDICO. NO DEBE SER USADA por el público en general.</string>
+    <string name="disclaimer_section_3_title">3. Limitaciones</string>
+    <string name="disclaimer_section_3_body">MedSurgery NO es responsable por mala praxis, violaciones de la \"lex artis\" o daño a pacientes.</string>
+    <string name="disclaimer_section_4_title">4. Uso apropiado</string>
+    <string name="disclaimer_section_4_body">Estudio, preparación de residencia, simulación de casos. NO para uso clínico directo.</string>
+    <string name="disclaimer_section_5_title">5. Confirmaciones</string>
+    <string name="disclaimer_section_5_body">Confirmo que soy profesional o estudiante de la salud; entiendo que esto es educativo; no lo usaré como sustituto del juicio clínico; no compartiré contenido con el público general; acepto la política de privacidad y los términos de uso.</string>
+    <string name="disclaimer_accept_checkbox">He leído y acepto el descargo médico</string>
+    <string name="disclaimer_continue">Continuar</string>
+    <string name="disclaimer_short_banner">Uso educativo. No es consejo médico.</string>
+
+    <!-- Auth -->
+    <string name="auth_email">Correo electrónico</string>
+    <string name="auth_password">Contraseña</string>
+    <string name="auth_login">Iniciar sesión</string>
+    <string name="auth_register">Crear cuenta</string>
+    <string name="auth_forgot">¿Olvidaste tu contraseña?</string>
+    <string name="auth_logout">Cerrar sesión</string>
+    <string name="auth_delete_account">Eliminar mi cuenta</string>
+    <string name="auth_login_error_generic">No se pudo iniciar sesión. Inténtalo de nuevo.</string>
+
+    <!-- Tabs -->
+    <string name="tab_home">Inicio</string>
+    <string name="tab_academy">Academia</string>
+    <string name="tab_logbook">Bitácora</string>
+    <string name="tab_store">Tienda</string>
+    <string name="tab_profile">Perfil</string>
+
+    <!-- Legal -->
+    <string name="legal_privacy_policy">Política de privacidad</string>
+    <string name="legal_terms">Términos de uso</string>
+    <string name="legal_subscriptions">Política de suscripciones</string>
+
+    <!-- Eliminación de cuenta (requerido Google Play) -->
+    <string name="delete_account_title">Eliminar cuenta</string>
+    <string name="delete_account_body">Tu cuenta y datos personales se eliminarán permanentemente en 48 horas. Puedes cancelar dentro de ese plazo.</string>
+    <string name="delete_account_confirm">Confirmar eliminación</string>
+    <string name="delete_account_cancel">Cancelar</string>
+
+    <!-- UI genérica -->
+    <string name="action_back">Atrás</string>
+    <string name="action_retry">Reintentar</string>
+    <string name="state_loading">Cargando…</string>
+    <string name="state_offline">Sin conexión a internet</string>
+    <string name="error_generic">Algo salió mal. Inténtalo de nuevo.</string>
+</resources>

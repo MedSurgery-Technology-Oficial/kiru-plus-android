@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- KIRU+ brand palette (espejo de Core/DesignSystem/KiruColor.swift). -->
+    <!-- Estos valores son placeholders representativos; refinar contra tokens iOS en E1. -->
+
+    <color name="kiru_primary">#1A8FE3</color>
+    <color name="kiru_primary_dark">#0F6FBA</color>
+    <color name="kiru_accent">#FF7A45</color>
+
+    <color name="kiru_background_light">#FFFFFF</color>
+    <color name="kiru_background_dark">#0A1217</color>
+    <color name="kiru_surface_light">#F4F6F8</color>
+    <color name="kiru_surface_dark">#121C23</color>
+
+    <color name="kiru_text_primary_light">#0A1217</color>
+    <color name="kiru_text_primary_dark">#F4F6F8</color>
+    <color name="kiru_text_secondary_light">#5A6470</color>
+    <color name="kiru_text_secondary_dark">#A8B0BA</color>
+
+    <color name="kiru_danger">#E04848</color>
+    <color name="kiru_warning">#F2B141</color>
+    <color name="kiru_success">#2BBE6A</color>
+
+    <color name="splash_background">#0A1217</color>
+</resources>
