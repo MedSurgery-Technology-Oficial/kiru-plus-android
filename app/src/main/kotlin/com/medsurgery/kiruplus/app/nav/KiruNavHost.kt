@@ -7,7 +7,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.medsurgery.kiruplus.BuildConfig
 import com.medsurgery.kiruplus.core.ui.WebViewScreen
+import com.medsurgery.kiruplus.feature.auth.AccountDeletionScreen
+import com.medsurgery.kiruplus.feature.auth.ForgotPasswordScreen
 import com.medsurgery.kiruplus.feature.auth.LoginScreen
+import com.medsurgery.kiruplus.feature.auth.RegisterScreen
 import com.medsurgery.kiruplus.feature.home.HomeScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
 import com.medsurgery.kiruplus.feature.onboarding.SplashScreen
@@ -131,6 +134,29 @@ fun KiruNavHost(navController: NavHostController) {
             )
         }
 
+        composable<KiruRoute.Register> {
+            RegisterScreen(
+                onBackToLogin = { navController.popBackStack() },
+            )
+        }
+
+        composable<KiruRoute.ForgotPassword> {
+            ForgotPasswordScreen(
+                onBack = { navController.popBackStack() },
+            )
+        }
+
+        composable<KiruRoute.AccountDeletion> {
+            AccountDeletionScreen(
+                onBack = { navController.popBackStack() },
+                onCompleted = {
+                    navController.navigate(KiruRoute.Login) {
+                        popUpTo(KiruRoute.Home) { inclusive = true }
+                    }
+                },
+            )
+        }
+
         composable<KiruRoute.WebView> { entry ->
             val args = entry.toRoute<KiruRoute.WebView>()
             WebViewScreen(
@@ -140,6 +166,6 @@ fun KiruNavHost(navController: NavHostController) {
             )
         }
 
-        // TODO E3+: Register, ForgotPassword, Settings, Paywall, Store, AccountDeletion
+        // TODO E5+: Settings, Paywall, Store
     }
 }

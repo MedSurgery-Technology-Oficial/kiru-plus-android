@@ -2,6 +2,7 @@ package com.medsurgery.kiruplus.data.repository
 
 import com.medsurgery.kiruplus.core.auth.AuthRepository
 import com.medsurgery.kiruplus.core.auth.SessionState
+import com.medsurgery.kiruplus.core.auth.toAuthError
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,11 +19,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Implementación de AuthRepository sobre supabase-kt v3.
+ * AuthRepository sobre supabase-kt v3.
  *
- * E0: el SDK está integrado, las llamadas son reales contra el proyecto
- * `tttxmupjteqpljtfgmgo.supabase.co`. Se afinará en E3 con manejo fino de
- * errores (rate limit, credenciales inválidas, email no confirmado).
+ * Errores se mapean a `AuthError` para que la UI muestre mensajes localizados
+ * (ver core/auth/AuthError.kt). Endpoint Supabase: `tttxmupjteqpljtfgmgo.supabase.co`.
  */
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
@@ -45,39 +45,45 @@ class AuthRepositoryImpl @Inject constructor(
         }
 
     override suspend fun signIn(email: String, password: String): Result<Unit> =
-        runCatching {
+        runAuth("signIn $email") {
             supabase.auth.signInWith(Email) {
                 this.email = email
                 this.password = password
             }
-        }.onFailure { Timber.w(it, "signIn failed for $email") }
+        }
 
     override suspend fun signUp(email: String, password: String): Result<Unit> =
-        runCatching {
+        runAuth("signUp $email") {
             supabase.auth.signUpWith(Email) {
                 this.email = email
                 this.password = password
             }
             Unit
-        }.onFailure { Timber.w(it, "signUp failed for $email") }
+        }
 
     override suspend fun signOut(): Result<Unit> =
-        runCatching {
-            supabase.auth.signOut()
-        }.onFailure { Timber.w(it, "signOut failed") }
+        runAuth("signOut") { supabase.auth.signOut() }
 
     override suspend fun resetPassword(email: String): Result<Unit> =
-        runCatching {
+        runAuth("resetPassword $email") {
             supabase.auth.resetPasswordForEmail(email)
-        }.onFailure { Timber.w(it, "resetPassword failed for $email") }
+        }
 
     override suspend fun requestAccountDeletion(): Result<Unit> =
-        runCatching {
-            // Edge Function `process_account_deletions` ya existente
-            // (48h grace period + GDPR Art. 17).
+        runAuth("requestAccountDeletion") {
             supabase.functions.invoke("process_account_deletions")
             Unit
-        }.onFailure { Timber.w(it, "requestAccountDeletion failed") }
+        }
+
+    private inline fun runAuth(label: String, block: () -> Unit): Result<Unit> =
+        try {
+            block()
+            Result.success(Unit)
+        } catch (t: Throwable) {
+            val mapped = t.toAuthError()
+            Timber.w(t, "%s failed → %s", label, mapped::class.simpleName)
+            Result.failure(mapped)
+        }
 }
 
 @Module

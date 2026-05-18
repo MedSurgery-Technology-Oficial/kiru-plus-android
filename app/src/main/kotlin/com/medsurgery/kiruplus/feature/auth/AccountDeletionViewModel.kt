@@ -15,43 +15,40 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class AccountDeletionViewModel @Inject constructor(
     private val authRepository: AuthRepository,
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(LoginUiState())
-    val state: StateFlow<LoginUiState> = _state.asStateFlow()
+    private val _state = MutableStateFlow(AccountDeletionUiState())
+    val state: StateFlow<AccountDeletionUiState> = _state.asStateFlow()
 
-    fun onEmailChange(email: String) {
-        _state.update { it.copy(email = email, errorRes = null) }
+    fun onAcknowledgeChange(acknowledged: Boolean) {
+        _state.update { it.copy(acknowledged = acknowledged, errorRes = null) }
     }
 
-    fun onPasswordChange(password: String) {
-        _state.update { it.copy(password = password, errorRes = null) }
-    }
-
-    fun submit(onSuccess: () -> Unit) {
-        val current = _state.value
-        if (current.email.isBlank() || current.password.isBlank()) return
+    fun submit() {
+        if (!_state.value.acknowledged) return
         _state.update { it.copy(isSubmitting = true, errorRes = null) }
 
         viewModelScope.launch {
-            authRepository.signIn(current.email.trim(), current.password)
+            authRepository.requestAccountDeletion()
                 .onSuccess {
-                    _state.update { it.copy(isSubmitting = false) }
-                    onSuccess()
+                    // Tras solicitar deletion, cerramos sesión local;
+                    // el Edge Function se encarga del soft-delete + 48h grace.
+                    authRepository.signOut()
+                    _state.update { it.copy(isSubmitting = false, submitted = true) }
                 }
                 .onFailure { e ->
-                    val res = (e as? AuthError)?.messageRes ?: R.string.auth_login_error_generic
+                    val res = (e as? AuthError)?.messageRes ?: R.string.error_generic
                     _state.update { it.copy(isSubmitting = false, errorRes = res) }
                 }
         }
     }
 }
 
-data class LoginUiState(
-    val email: String = "",
-    val password: String = "",
+data class AccountDeletionUiState(
+    val acknowledged: Boolean = false,
     val isSubmitting: Boolean = false,
+    val submitted: Boolean = false,
     @StringRes val errorRes: Int? = null,
 )

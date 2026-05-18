@@ -6,42 +6,52 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.medsurgery.kiruplus.R
 
-/**
- * Login con email + password.
- * Espejo iOS de `SupabaseAuthService.signIn(...)`.
- * E3 añadirá: validación de email, Google Sign-In, biométrico.
- */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(
-    onAuthenticated: () -> Unit,
-    onForgotPassword: () -> Unit,
-    onRegister: () -> Unit,
-    onPrivacyPolicy: () -> Unit,
-    onTerms: () -> Unit,
-    viewModel: LoginViewModel = hiltViewModel(),
+fun ForgotPasswordScreen(
+    onBack: () -> Unit,
+    viewModel: ForgotPasswordViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    Scaffold { padding ->
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.auth_forgot_title)) },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.action_back),
+                        )
+                    }
+                },
+            )
+        },
+    ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -51,9 +61,9 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                text = stringResource(R.string.app_name),
-                style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.primary,
+                text = stringResource(R.string.auth_forgot_subtitle),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             OutlinedTextField(
@@ -64,19 +74,7 @@ fun LoginScreen(
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 32.dp),
-            )
-
-            OutlinedTextField(
-                value = state.password,
-                onValueChange = viewModel::onPasswordChange,
-                label = { Text(stringResource(R.string.auth_password)) },
-                singleLine = true,
-                visualTransformation = PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp),
+                    .padding(top = 24.dp),
             )
 
             state.errorRes?.let { res ->
@@ -90,9 +88,20 @@ fun LoginScreen(
                 )
             }
 
+            if (state.sent) {
+                Text(
+                    text = stringResource(R.string.auth_forgot_success),
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp),
+                )
+            }
+
             Button(
-                onClick = { viewModel.submit(onAuthenticated) },
-                enabled = !state.isSubmitting && state.email.isNotBlank() && state.password.isNotBlank(),
+                onClick = viewModel::submit,
+                enabled = !state.isSubmitting && state.email.isNotBlank() && !state.sent,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp),
@@ -100,26 +109,7 @@ fun LoginScreen(
                 if (state.isSubmitting) {
                     CircularProgressIndicator(strokeWidth = 2.dp)
                 } else {
-                    Text(stringResource(R.string.auth_login))
-                }
-            }
-
-            TextButton(onClick = onForgotPassword, modifier = Modifier.padding(top = 8.dp)) {
-                Text(stringResource(R.string.auth_forgot))
-            }
-            TextButton(onClick = onRegister) {
-                Text(stringResource(R.string.auth_register))
-            }
-
-            Column(
-                modifier = Modifier.padding(top = 24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                TextButton(onClick = onPrivacyPolicy) {
-                    Text(stringResource(R.string.legal_privacy_policy))
-                }
-                TextButton(onClick = onTerms) {
-                    Text(stringResource(R.string.legal_terms))
+                    Text(stringResource(R.string.auth_forgot_submit))
                 }
             }
         }

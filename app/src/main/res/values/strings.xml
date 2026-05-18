@@ -25,12 +25,31 @@
     <!-- Auth -->
     <string name="auth_email">Email</string>
     <string name="auth_password">Password</string>
+    <string name="auth_password_confirm">Confirm password</string>
     <string name="auth_login">Sign in</string>
     <string name="auth_register">Create account</string>
+    <string name="auth_register_submit">Sign up</string>
+    <string name="auth_register_title">Create your account</string>
+    <string name="auth_register_subtitle">Healthcare professionals and students only.</string>
+    <string name="auth_register_check_email">We sent a confirmation link to your email. Please verify before signing in.</string>
     <string name="auth_forgot">Forgot password?</string>
+    <string name="auth_forgot_title">Reset your password</string>
+    <string name="auth_forgot_subtitle">Enter your email and we will send you a recovery link.</string>
+    <string name="auth_forgot_submit">Send recovery link</string>
+    <string name="auth_forgot_success">If the email exists, you will receive a recovery link.</string>
     <string name="auth_logout">Sign out</string>
     <string name="auth_delete_account">Delete my account</string>
     <string name="auth_login_error_generic">Could not sign in. Please try again.</string>
+
+    <!-- Auth errors (mapped from Supabase) -->
+    <string name="auth_error_invalid_credentials">Invalid email or password.</string>
+    <string name="auth_error_email_in_use">This email is already registered.</string>
+    <string name="auth_error_email_not_confirmed">Please confirm your email before signing in.</string>
+    <string name="auth_error_rate_limited">Too many attempts. Try again in a few minutes.</string>
+    <string name="auth_error_weak_password">Password must be at least 8 characters and include uppercase, lowercase, a number and a symbol.</string>
+    <string name="auth_error_invalid_email">Invalid email address.</string>
+    <string name="auth_error_passwords_dont_match">Passwords do not match.</string>
+    <string name="auth_error_network">No internet connection.</string>
 
     <!-- Tabs -->
     <string name="tab_home">Home</string>
@@ -47,8 +66,12 @@
     <!-- Account deletion (Google Play required) -->
     <string name="delete_account_title">Delete account</string>
     <string name="delete_account_body">Your account and personal data will be permanently deleted within 48 hours. You can cancel within that period.</string>
+    <string name="delete_account_warning">This action is irreversible. All your progress, surgical logbook, and active subscriptions will be removed.</string>
+    <string name="delete_account_legal">Right to be forgotten — GDPR Art. 17. We comply with this request through a 48-hour grace period in case it is reverted.</string>
+    <string name="delete_account_acknowledge">I understand my data will be permanently deleted.</string>
     <string name="delete_account_confirm">Confirm deletion</string>
     <string name="delete_account_cancel">Cancel</string>
+    <string name="delete_account_success">Deletion request submitted. Your account will be removed within 48 hours.</string>
 
     <!-- Generic UI -->
     <string name="action_back">Back</string>

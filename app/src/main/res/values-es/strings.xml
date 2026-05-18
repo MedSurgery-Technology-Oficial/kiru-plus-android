@@ -24,12 +24,31 @@
     <!-- Auth -->
     <string name="auth_email">Correo electrónico</string>
     <string name="auth_password">Contraseña</string>
+    <string name="auth_password_confirm">Confirma tu contraseña</string>
     <string name="auth_login">Iniciar sesión</string>
     <string name="auth_register">Crear cuenta</string>
+    <string name="auth_register_submit">Registrarme</string>
+    <string name="auth_register_title">Crea tu cuenta</string>
+    <string name="auth_register_subtitle">Solo profesionales y estudiantes del área de la salud.</string>
+    <string name="auth_register_check_email">Te enviamos un enlace de confirmación. Verifica tu correo antes de iniciar sesión.</string>
     <string name="auth_forgot">¿Olvidaste tu contraseña?</string>
+    <string name="auth_forgot_title">Recupera tu contraseña</string>
+    <string name="auth_forgot_subtitle">Ingresa tu correo y te enviaremos un enlace de recuperación.</string>
+    <string name="auth_forgot_submit">Enviar enlace</string>
+    <string name="auth_forgot_success">Si el correo existe, recibirás un enlace de recuperación.</string>
     <string name="auth_logout">Cerrar sesión</string>
     <string name="auth_delete_account">Eliminar mi cuenta</string>
     <string name="auth_login_error_generic">No se pudo iniciar sesión. Inténtalo de nuevo.</string>
+
+    <!-- Errores de Auth (mapeados desde Supabase) -->
+    <string name="auth_error_invalid_credentials">Correo o contraseña inválidos.</string>
+    <string name="auth_error_email_in_use">Este correo ya está registrado.</string>
+    <string name="auth_error_email_not_confirmed">Confirma tu correo antes de iniciar sesión.</string>
+    <string name="auth_error_rate_limited">Demasiados intentos. Vuelve a intentarlo en unos minutos.</string>
+    <string name="auth_error_weak_password">La contraseña debe tener al menos 8 caracteres e incluir mayúsculas, minúsculas, un número y un símbolo.</string>
+    <string name="auth_error_invalid_email">Correo electrónico inválido.</string>
+    <string name="auth_error_passwords_dont_match">Las contraseñas no coinciden.</string>
+    <string name="auth_error_network">Sin conexión a internet.</string>
 
     <!-- Tabs -->
     <string name="tab_home">Inicio</string>
@@ -46,8 +65,12 @@
     <!-- Eliminación de cuenta (requerido Google Play) -->
     <string name="delete_account_title">Eliminar cuenta</string>
     <string name="delete_account_body">Tu cuenta y datos personales se eliminarán permanentemente en 48 horas. Puedes cancelar dentro de ese plazo.</string>
+    <string name="delete_account_warning">Esta acción es irreversible. Se eliminará todo tu progreso, bitácora quirúrgica y suscripciones activas.</string>
+    <string name="delete_account_legal">Derecho al olvido — RGPD Art. 17. Cumplimos esta solicitud mediante un periodo de gracia de 48 horas por si se revierte.</string>
+    <string name="delete_account_acknowledge">Entiendo que mis datos serán eliminados permanentemente.</string>
     <string name="delete_account_confirm">Confirmar eliminación</string>
     <string name="delete_account_cancel">Cancelar</string>
+    <string name="delete_account_success">Solicitud enviada. Tu cuenta se eliminará en un máximo de 48 horas.</string>
 
     <!-- UI genérica -->
     <string name="action_back">Atrás</string>
