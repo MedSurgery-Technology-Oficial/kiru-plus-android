@@ -1,5 +1,6 @@
 package com.medsurgery.kiruplus.feature.onboarding
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.medsurgery.kiruplus.R
@@ -42,18 +45,21 @@ fun SplashScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(
-                text = stringResource(R.string.app_name),
-                style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.primary,
+            Image(
+                painter = painterResource(R.drawable.kiru_logo),
+                contentDescription = stringResource(R.string.app_name),
+                modifier = Modifier.size(160.dp),
+                contentScale = ContentScale.Fit,
             )
             CircularProgressIndicator(
-                modifier = Modifier.padding(top = 24.dp).size(32.dp),
+                modifier = Modifier.padding(top = 32.dp).size(32.dp),
+                color = MaterialTheme.colorScheme.primary,
             )
             Text(
                 text = stringResource(R.string.splash_loading),
                 modifier = Modifier.padding(top = 16.dp),
                 style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground,
             )
         }
     }

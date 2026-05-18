@@ -2,21 +2,23 @@ package com.medsurgery.kiruplus.core.designsystem
 
 import androidx.compose.ui.graphics.Color
 
-// Espejo de Core/DesignSystem/KiruColor.swift — valores placeholders refinables en E1
-internal val KiruBlue = Color(0xFF1A8FE3)
-internal val KiruBlueDark = Color(0xFF0F6FBA)
-internal val KiruAccent = Color(0xFFFF7A45)
+/**
+ * KIRU+ Brand Palette — espejo de `Core/DesignSystem/KiruDesignTokens.swift` (iOS).
+ * Brand Manual: estos valores son la única fuente de verdad para color.
+ * No usar hex genéricos ni Tailwind en código de UI.
+ */
+internal val KiruNavyBlue = Color(0xFF0F172A)
+internal val KiruTeal = Color(0xFF0D9488)
+internal val KiruBlack = Color(0xFF191919)
+internal val KiruWhite = Color(0xFFF8FAFC)
+internal val KiruCyanBlue = Color(0xFF00BFFF)
+internal val KiruSlateGray = Color(0xFF1E293B)
+internal val KiruGold = Color(0xFFDAA520)
+internal val KiruGreen = Color(0xFF04CE03)
+internal val KiruRed = Color(0xFFD2042D)
+internal val KiruLightBlue = Color(0xFF1A1A5E)
 
-internal val BackgroundLight = Color(0xFFFFFFFF)
-internal val BackgroundDark = Color(0xFF0A1217)
-internal val SurfaceLight = Color(0xFFF4F6F8)
-internal val SurfaceDark = Color(0xFF121C23)
-
-internal val TextPrimaryLight = Color(0xFF0A1217)
-internal val TextPrimaryDark = Color(0xFFF4F6F8)
-internal val TextSecondaryLight = Color(0xFF5A6470)
-internal val TextSecondaryDark = Color(0xFFA8B0BA)
-
-internal val Danger = Color(0xFFE04848)
-internal val Warning = Color(0xFFF2B141)
-internal val Success = Color(0xFF2BBE6A)
+// Surfaces neutras para light mode (off-white, suaves, no puro blanco glare).
+internal val LightSurface = Color(0xFFF8FAFC)        // = KiruWhite
+internal val LightSurfaceVariant = Color(0xFFE2E8F0) // slate-200
+internal val LightOnSurfaceVariant = Color(0xFF475569) // slate-600

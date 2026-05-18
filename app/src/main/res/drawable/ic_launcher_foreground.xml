@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Adaptive icon foreground (E0 placeholder).
-  Letra "K+" estilizada centrada en el área segura de 108dp×108dp.
-  Refinar con arte de marca en E1.
+  Adaptive icon foreground (E1).
+  Letra "K+" estilizada centrada en el área segura (66dp × 66dp dentro del 108dp).
+  Colores del Brand Manual KIRU+ (KiruDesignTokens.swift):
+    - K en KiruWhite (#F8FAFC)
+    - "+" en KiruCyanBlue (#00BFFF)
+  El background del adaptive-icon vive en mipmap-anydpi-v26/ic_launcher.xml y usa kiru_navy_blue.
+
+  Follow-up: reemplazar por raster del logo oficial (LogoKIRU 1024) cuando se decida tratamiento
+  para safe-zone (necesita padding center si el PNG llena el frame completo).
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
@@ -12,11 +18,11 @@
 
     <!-- Letra K -->
     <path
-        android:fillColor="#FFFFFF"
+        android:fillColor="#F8FAFC"
         android:pathData="M38,30 L46,30 L46,52 L62,30 L72,30 L57,50 L74,78 L64,78 L51,57 L46,63 L46,78 L38,78 Z" />
 
     <!-- Símbolo + -->
     <path
-        android:fillColor="#FF7A45"
+        android:fillColor="#00BFFF"
         android:pathData="M76,38 L82,38 L82,46 L90,46 L90,52 L82,52 L82,60 L76,60 L76,52 L68,52 L68,46 L76,46 Z" />
 </vector>

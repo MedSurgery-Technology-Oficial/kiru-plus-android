@@ -6,32 +6,58 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
+/**
+ * Material 3 mapping desde el Brand Manual KIRU+.
+ *
+ * Light: fondo claro (convención Android), primary navy para legibilidad.
+ * Dark: fondo navy (brand-first como iOS), primary cyan para contraste.
+ *
+ * Semantic mapping (espejo de KiruDesignTokens.Semantic en iOS):
+ * - primary       = Navy (light) / Cyan (dark)
+ * - secondary     = Teal
+ * - tertiary      = Gold (Premium/Pro highlights)
+ * - background    = White-ish (light) / Navy (dark)
+ * - surface       = Slate-50/200 (light) / Black-191919 (dark)
+ * - error         = Red
+ */
 private val LightColors = lightColorScheme(
-    primary = KiruBlue,
-    onPrimary = BackgroundLight,
-    secondary = KiruAccent,
-    onSecondary = BackgroundLight,
-    background = BackgroundLight,
-    onBackground = TextPrimaryLight,
-    surface = SurfaceLight,
-    onSurface = TextPrimaryLight,
-    surfaceVariant = SurfaceLight,
-    onSurfaceVariant = TextSecondaryLight,
-    error = Danger,
+    primary = KiruNavyBlue,
+    onPrimary = KiruWhite,
+    primaryContainer = KiruCyanBlue,
+    onPrimaryContainer = KiruNavyBlue,
+    secondary = KiruTeal,
+    onSecondary = KiruWhite,
+    tertiary = KiruGold,
+    onTertiary = KiruBlack,
+    background = LightSurface,
+    onBackground = KiruNavyBlue,
+    surface = LightSurface,
+    onSurface = KiruNavyBlue,
+    surfaceVariant = LightSurfaceVariant,
+    onSurfaceVariant = LightOnSurfaceVariant,
+    error = KiruRed,
+    onError = KiruWhite,
+    outline = LightOnSurfaceVariant,
 )
 
 private val DarkColors = darkColorScheme(
-    primary = KiruBlue,
-    onPrimary = BackgroundDark,
-    secondary = KiruAccent,
-    onSecondary = BackgroundDark,
-    background = BackgroundDark,
-    onBackground = TextPrimaryDark,
-    surface = SurfaceDark,
-    onSurface = TextPrimaryDark,
-    surfaceVariant = SurfaceDark,
-    onSurfaceVariant = TextSecondaryDark,
-    error = Danger,
+    primary = KiruCyanBlue,
+    onPrimary = KiruNavyBlue,
+    primaryContainer = KiruNavyBlue,
+    onPrimaryContainer = KiruCyanBlue,
+    secondary = KiruTeal,
+    onSecondary = KiruWhite,
+    tertiary = KiruGold,
+    onTertiary = KiruBlack,
+    background = KiruNavyBlue,
+    onBackground = KiruWhite,
+    surface = KiruBlack,
+    onSurface = KiruWhite,
+    surfaceVariant = KiruSlateGray,
+    onSurfaceVariant = KiruWhite,
+    error = KiruRed,
+    onError = KiruWhite,
+    outline = KiruSlateGray,
 )
 
 @Composable

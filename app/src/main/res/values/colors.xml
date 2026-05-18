@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- KIRU+ brand palette (espejo de Core/DesignSystem/KiruColor.swift). -->
-    <!-- Estos valores son placeholders representativos; refinar contra tokens iOS en E1. -->
+    <!-- KIRU+ Brand Palette — espejo de Core/DesignSystem/KiruDesignTokens.swift -->
+    <!-- Brand Manual: única fuente de verdad para hex de marca. -->
 
-    <color name="kiru_primary">#1A8FE3</color>
-    <color name="kiru_primary_dark">#0F6FBA</color>
-    <color name="kiru_accent">#FF7A45</color>
+    <color name="kiru_navy_blue">#0F172A</color>
+    <color name="kiru_teal">#0D9488</color>
+    <color name="kiru_black">#191919</color>
+    <color name="kiru_white">#F8FAFC</color>
+    <color name="kiru_cyan_blue">#00BFFF</color>
+    <color name="kiru_slate_gray">#1E293B</color>
+    <color name="kiru_gold">#DAA520</color>
+    <color name="kiru_green">#04CE03</color>
+    <color name="kiru_red">#D2042D</color>
+    <color name="kiru_light_blue">#1A1A5E</color>
 
-    <color name="kiru_background_light">#FFFFFF</color>
-    <color name="kiru_background_dark">#0A1217</color>
-    <color name="kiru_surface_light">#F4F6F8</color>
-    <color name="kiru_surface_dark">#121C23</color>
+    <!-- Aliases legacy mantenidos por compatibilidad con código que referenciaba placeholders. -->
+    <color name="kiru_primary">@color/kiru_navy_blue</color>
+    <color name="kiru_primary_dark">@color/kiru_navy_blue</color>
+    <color name="kiru_accent">@color/kiru_cyan_blue</color>
 
-    <color name="kiru_text_primary_light">#0A1217</color>
-    <color name="kiru_text_primary_dark">#F4F6F8</color>
-    <color name="kiru_text_secondary_light">#5A6470</color>
-    <color name="kiru_text_secondary_dark">#A8B0BA</color>
-
-    <color name="kiru_danger">#E04848</color>
-    <color name="kiru_warning">#F2B141</color>
-    <color name="kiru_success">#2BBE6A</color>
-
-    <color name="splash_background">#0A1217</color>
+    <!-- Splash window background: navy del Brand Manual. -->
+    <color name="splash_background">@color/kiru_navy_blue</color>
 </resources>
