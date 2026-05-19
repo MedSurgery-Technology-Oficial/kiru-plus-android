@@ -81,6 +81,14 @@
     <string name="state_offline">No internet connection</string>
     <string name="error_generic">Something went wrong. Please try again.</string>
 
+    <!-- WebView -->
+    <string name="webview_error_title">Couldn\'t load page</string>
+    <string name="webview_error_body">Check your connection and try again.</string>
+    <string name="webview_offline_banner">Offline. Connect to the internet to view this page.</string>
+
+    <!-- Disclaimer extras -->
+    <string name="disclaimer_scroll_hint">Scroll to read all sections before continuing.</string>
+
     <!-- Home -->
     <string name="home_welcome_title">Welcome to KIRU+</string>
     <string name="home_welcome_body">Your surgical education companion. CMCG-aligned.</string>

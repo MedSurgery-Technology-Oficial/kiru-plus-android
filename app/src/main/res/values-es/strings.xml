@@ -80,6 +80,14 @@
     <string name="state_offline">Sin conexión a internet</string>
     <string name="error_generic">Algo salió mal. Inténtalo de nuevo.</string>
 
+    <!-- WebView -->
+    <string name="webview_error_title">No se pudo cargar la página</string>
+    <string name="webview_error_body">Revisa tu conexión e inténtalo de nuevo.</string>
+    <string name="webview_offline_banner">Sin conexión. Conéctate a internet para ver esta página.</string>
+
+    <!-- Extras del Disclaimer -->
+    <string name="disclaimer_scroll_hint">Desplázate hasta el final para continuar.</string>
+
     <!-- Home -->
     <string name="home_welcome_title">Bienvenido a KIRU+</string>
     <string name="home_welcome_body">Tu compañero de educación quirúrgica. Alineado a CMCG.</string>
