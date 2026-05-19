@@ -12,6 +12,7 @@ import com.medsurgery.kiruplus.feature.auth.ForgotPasswordScreen
 import com.medsurgery.kiruplus.feature.auth.LoginScreen
 import com.medsurgery.kiruplus.feature.auth.RegisterScreen
 import com.medsurgery.kiruplus.feature.academy.ContentDetailScreen
+import com.medsurgery.kiruplus.feature.quiz.QuizPlayerScreen
 import com.medsurgery.kiruplus.feature.kapibaya.KapibayaChatScreen
 import com.medsurgery.kiruplus.feature.logbook.NewSurgicalLogScreen
 import com.medsurgery.kiruplus.feature.main.MainScreen
@@ -138,6 +139,9 @@ fun KiruNavHost(navController: NavHostController) {
                 onOpenLesson = { contentId ->
                     navController.navigate(KiruRoute.LessonDetail(contentId))
                 },
+                onOpenQuiz = { specialty ->
+                    navController.navigate(KiruRoute.QuizPlayer(specialty))
+                },
                 onOpenNewSurgicalLog = { navController.navigate(KiruRoute.NewSurgicalLog) },
                 onOpenKapibaya = { navController.navigate(KiruRoute.KapibayaChat) },
             )
@@ -237,6 +241,10 @@ fun KiruNavHost(navController: NavHostController) {
 
         composable<KiruRoute.LessonDetail> {
             ContentDetailScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable<KiruRoute.QuizPlayer> {
+            QuizPlayerScreen(onBack = { navController.popBackStack() })
         }
 
         composable<KiruRoute.WebView> { entry ->

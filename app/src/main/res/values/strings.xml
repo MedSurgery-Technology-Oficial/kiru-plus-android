@@ -167,6 +167,20 @@
     <string name="academy_error_load">Couldn\'t load lessons. Please try again.</string>
     <string name="academy_empty">No lessons available yet.</string>
     <string name="academy_not_found">Lesson not found.</string>
+    <string name="academy_tab_lessons">Lessons</string>
+    <string name="academy_tab_quiz">Quizzes</string>
+
+    <!-- Quiz -->
+    <string name="quiz_error_load">Couldn\'t load quiz. Please try again.</string>
+    <string name="quiz_empty">No questions available for this topic.</string>
+    <string name="quiz_progress">Question %1$d of %2$d</string>
+    <string name="quiz_next">Next</string>
+    <string name="quiz_finish">See results</string>
+    <string name="quiz_explanation_label">Explanation</string>
+    <string name="quiz_score_title">Quiz complete!</string>
+    <string name="quiz_score_pct">%1$d%%</string>
+    <string name="quiz_restart">Try again</string>
+    <string name="quiz_question_count">%1$d questions</string>
 
     <!-- Pearls -->
     <string name="pearls_title">Clinical pearls</string>

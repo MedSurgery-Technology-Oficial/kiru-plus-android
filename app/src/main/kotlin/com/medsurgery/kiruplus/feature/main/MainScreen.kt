@@ -41,6 +41,7 @@ fun MainScreen(
     onOpenProductDetail: (String) -> Unit,
     onOpenPearls: () -> Unit,
     onOpenLesson: (String) -> Unit,
+    onOpenQuiz: (String) -> Unit,
     onOpenNewSurgicalLog: () -> Unit,
     onOpenKapibaya: () -> Unit,
 ) {
@@ -78,7 +79,7 @@ fun MainScreen(
                     onOpenPearls = onOpenPearls,
                     onOpenKapibaya = onOpenKapibaya,
                 )
-                MainTab.Academy -> AcademyScreen(onOpenLesson = onOpenLesson)
+                MainTab.Academy -> AcademyScreen(onOpenLesson = onOpenLesson, onOpenQuiz = onOpenQuiz)
                 MainTab.Logbook -> LogbookScreen(onAddLog = onOpenNewSurgicalLog)
                 MainTab.Store -> StoreScreen(onOpenProduct = onOpenProductDetail)
                 MainTab.Profile -> ProfileScreen(
