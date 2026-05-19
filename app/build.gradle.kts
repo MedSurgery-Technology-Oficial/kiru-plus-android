@@ -56,17 +56,17 @@ android {
         buildConfigField(
             "String",
             "PRIVACY_POLICY_URL",
-            "\"https://www.medsurgery.academy/politica-de-privacidad-kiru-pro\"",
+            "\"https://www.medsurgery.academy/politica-de-privacidad-kiru-app\"",
         )
         buildConfigField(
             "String",
             "TERMS_URL",
-            "\"https://www.medsurgery.academy/terminos-de-uso-y-licencia-kiru-pro\"",
+            "\"https://www.medsurgery.academy/terminos-y-condiciones-kiru-app\"",
         )
         buildConfigField(
             "String",
             "SUBSCRIPTIONS_POLICY_URL",
-            "\"https://www.medsurgery.academy/politica-de-suscripciones-kiru-pro\"",
+            "\"https://www.medsurgery.academy/politica-de-suscripciones-kiru-app\"",
         )
 
         resourceConfigurations += setOf("en", "es")

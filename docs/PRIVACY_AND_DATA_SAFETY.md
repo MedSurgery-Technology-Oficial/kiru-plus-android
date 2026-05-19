@@ -96,9 +96,9 @@ sujeta a confirmación).
 ### ⚠️ BLOQUEANTE — URLs legales no existen en producción (2026-05-18)
 Confirmado por curl HEAD: las 3 URLs configuradas en `BuildConfig` (Android)
 y en `KIRUPlusApp-Info.plist` (iOS) responden **HTTP 404**:
-- `https://www.medsurgery.academy/politica-de-privacidad-kiru-pro` → 404
-- `https://www.medsurgery.academy/terminos-de-uso-y-licencia-kiru-pro` → 404
-- `https://www.medsurgery.academy/politica-de-suscripciones-kiru-pro` → 404
+- `https://www.medsurgery.academy/politica-de-privacidad-kiru-app` → 404
+- `https://www.medsurgery.academy/terminos-y-condiciones-kiru-app` → 404
+- `https://www.medsurgery.academy/politica-de-suscripciones-kiru-app` → 404
 
 Probadas también 20 variaciones de slugs (con/sin `www`, `/kiru/...`,
 `/legal/...`, ES/EN, etc.) — ninguna devuelve 200. El dominio raíz

@@ -64,7 +64,7 @@ Estado: ☐ pendiente · ◐ en progreso · ☑ hecho · ⚠️ riesgo · n/a no
 | Subscription products definidos en Play Console | ☐ | `kiruplus_monthly`, `kiruplus_annual`, `elite_monthly`, `elite_annual` (espejo de iOS) |
 | Pricing por país | ☐ | Replicar tier pricing de iOS |
 | Subscription details correctos (período, free trial, intro pricing) | ☐ | Espejo de iOS |
-| Política de cancelación visible | ☐ | URL: medsurgery.academy/politica-de-suscripciones-kiru-pro (igual que iOS) |
+| Política de cancelación visible | ☐ | URL: medsurgery.academy/politica-de-suscripciones-kiru-app (igual que iOS) |
 | Restore purchases | ☐ | Cubierto por RevenueCat SDK |
 | Webhook RevenueCat → `revenuecat_webhook` Edge Function | ☐ | Ya existe (verifica fuente única de verdad en `iap_entitlements`) |
 
@@ -136,7 +136,7 @@ Estado: ☐ pendiente · ◐ en progreso · ☑ hecho · ⚠️ riesgo · n/a no
 
 | Item | Estado | Notas |
 |------|--------|-------|
-| URL pública política privacidad | ☐ | https://www.medsurgery.academy/politica-de-privacidad-kiru-pro (reusada) |
+| URL pública política privacidad | ☐ | https://www.medsurgery.academy/politica-de-privacidad-kiru-app (reusada) |
 | Detalle de SDKs de terceros en política | ☐ | Sentry, MUX, RevenueCat, Stripe, Supabase, Resend, LogRocket (si se incluye) |
 | Sección específica para datos médicos | ☐ | Cédula profesional, validación, NO PHI de pacientes |
 | Sección AI/LLM | ⚠️ | Dr. Kapibaya respuestas son educativas, no diagnóstico; usuario consiente al continuar |
