@@ -154,10 +154,39 @@ fun SettingsScreen(
                     title = stringResource(R.string.settings_support),
                     onClick = {
                         val intent = Intent(Intent.ACTION_SENDTO).apply {
-                            data = Uri.parse("mailto:contacto@medsurgery.academy")
-                            putExtra(Intent.EXTRA_SUBJECT, "KIRU+ Android Support")
+                            data = Uri.parse("mailto:customer_service@medsurgery.academy")
+                            putExtra(Intent.EXTRA_SUBJECT, "KIRU+ Support")
                         }
                         context.startActivity(Intent.createChooser(intent, null))
+                    },
+                )
+                HorizontalDivider()
+                TextRow(
+                    title = stringResource(R.string.settings_support_store),
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_SENDTO).apply {
+                            data = Uri.parse("mailto:customer_service@medsurgery.store")
+                            putExtra(Intent.EXTRA_SUBJECT, "MedSurgery Store Support")
+                        }
+                        context.startActivity(Intent.createChooser(intent, null))
+                    },
+                )
+                HorizontalDivider()
+                TextRow(
+                    title = stringResource(R.string.settings_support_website),
+                    onClick = {
+                        context.startActivity(
+                            Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.SUPPORT_WEBSITE_URL))
+                        )
+                    },
+                )
+                HorizontalDivider()
+                TextRow(
+                    title = stringResource(R.string.settings_website),
+                    onClick = {
+                        context.startActivity(
+                            Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.WEBSITE_URL))
+                        )
                     },
                 )
                 HorizontalDivider()

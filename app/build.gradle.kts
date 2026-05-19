@@ -68,6 +68,16 @@ android {
             "SUBSCRIPTIONS_POLICY_URL",
             "\"https://www.medsurgery.academy/politica-de-suscripciones-kiru-app\"",
         )
+        buildConfigField(
+            "String",
+            "SUPPORT_WEBSITE_URL",
+            "\"https://medsurgery.academy/kiru\"",
+        )
+        buildConfigField(
+            "String",
+            "WEBSITE_URL",
+            "\"https://medsurgery.academy\"",
+        )
 
         resourceConfigurations += setOf("en", "es")
     }
