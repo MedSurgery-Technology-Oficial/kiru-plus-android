@@ -135,6 +135,25 @@
     <string name="settings_signout">Sign out</string>
     <string name="settings_version">Version %1$s · Build %2$d</string>
 
+    <!-- Logbook -->
+    <string name="logbook_error_load">Couldn\'t load surgical logs. Please try again.</string>
+    <string name="logbook_error_procedures">Couldn\'t load the procedures catalog.</string>
+    <string name="logbook_error_pick_procedure">Pick a procedure to save the log.</string>
+    <string name="logbook_error_save">Couldn\'t save the log. Please try again.</string>
+    <string name="logbook_empty_title">No surgical logs yet</string>
+    <string name="logbook_empty_body">Tap the + button to record your first procedure.</string>
+    <string name="logbook_unknown_procedure">Unknown procedure</string>
+    <string name="logbook_add">Add surgical log</string>
+    <string name="logbook_new_title">New surgical log</string>
+    <string name="logbook_field_procedure">Procedure</string>
+    <string name="logbook_field_date">Date</string>
+    <string name="logbook_field_complexity">Complexity (optional)</string>
+    <string name="logbook_field_outcome">Outcome (optional)</string>
+    <string name="logbook_field_notes">Notes (optional)</string>
+    <string name="logbook_save">Save log</string>
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
+
     <!-- Academy -->
     <string name="academy_error_load">Couldn\'t load lessons. Please try again.</string>
     <string name="academy_empty">No lessons available yet.</string>

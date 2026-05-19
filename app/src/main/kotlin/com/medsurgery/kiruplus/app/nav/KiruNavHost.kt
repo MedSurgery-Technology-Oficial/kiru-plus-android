@@ -12,6 +12,7 @@ import com.medsurgery.kiruplus.feature.auth.ForgotPasswordScreen
 import com.medsurgery.kiruplus.feature.auth.LoginScreen
 import com.medsurgery.kiruplus.feature.auth.RegisterScreen
 import com.medsurgery.kiruplus.feature.academy.ContentDetailScreen
+import com.medsurgery.kiruplus.feature.logbook.NewSurgicalLogScreen
 import com.medsurgery.kiruplus.feature.main.MainScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
 import com.medsurgery.kiruplus.feature.onboarding.SplashScreen
@@ -136,6 +137,14 @@ fun KiruNavHost(navController: NavHostController) {
                 onOpenLesson = { contentId ->
                     navController.navigate(KiruRoute.LessonDetail(contentId))
                 },
+                onOpenNewSurgicalLog = { navController.navigate(KiruRoute.NewSurgicalLog) },
+            )
+        }
+
+        composable<KiruRoute.NewSurgicalLog> {
+            NewSurgicalLogScreen(
+                onBack = { navController.popBackStack() },
+                onSaved = { navController.popBackStack() },
             )
         }
 

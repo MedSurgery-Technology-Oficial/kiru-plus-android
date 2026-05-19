@@ -31,6 +31,8 @@ sealed interface KiruRoute {
 
     @Serializable data class LessonDetail(val contentId: String) : KiruRoute
 
+    @Serializable data object NewSurgicalLog : KiruRoute
+
     @Serializable data object AccountDeletion : KiruRoute
     @Serializable data object DataExport : KiruRoute
 

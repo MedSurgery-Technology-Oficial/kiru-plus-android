@@ -1,0 +1,67 @@
+package com.medsurgery.kiruplus.feature.logbook
+
+import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.medsurgery.kiruplus.R
+import com.medsurgery.kiruplus.domain.logbook.LogbookRepository
+import com.medsurgery.kiruplus.domain.logbook.Procedure
+import com.medsurgery.kiruplus.domain.logbook.SurgicalLog
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class LogbookViewModel @Inject constructor(
+    private val repository: LogbookRepository,
+) : ViewModel() {
+
+    private val _state = MutableStateFlow(LogbookUiState())
+    val state: StateFlow<LogbookUiState> = _state.asStateFlow()
+
+    init {
+        load()
+    }
+
+    fun load() {
+        _state.update { it.copy(isLoading = true, errorRes = null) }
+        viewModelScope.launch {
+            // Fetch logs + procedures lookup in parallel-ish (sequential await acceptable).
+            val logsResult = repository.fetchLogs()
+            val proceduresResult = repository.fetchProcedures()
+
+            val procedures = proceduresResult.getOrDefault(emptyList())
+            val lookup = procedures.associateBy { it.id }
+
+            logsResult
+                .onSuccess { logs ->
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            logs = logs,
+                            procedureLookup = lookup,
+                        )
+                    }
+                }
+                .onFailure {
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            errorRes = R.string.logbook_error_load,
+                        )
+                    }
+                }
+        }
+    }
+}
+
+data class LogbookUiState(
+    val isLoading: Boolean = true,
+    val logs: List<SurgicalLog> = emptyList(),
+    val procedureLookup: Map<String, Procedure> = emptyMap(),
+    @StringRes val errorRes: Int? = null,
+)
