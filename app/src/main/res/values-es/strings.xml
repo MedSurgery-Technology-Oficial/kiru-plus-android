@@ -56,6 +56,7 @@
     <string name="tab_logbook">Bitácora</string>
     <string name="tab_store">Tienda</string>
     <string name="tab_profile">Perfil</string>
+    <string name="tab_placeholder_coming_soon">Próximamente</string>
 
     <!-- Legal -->
     <string name="legal_privacy_policy">Política de privacidad</string>

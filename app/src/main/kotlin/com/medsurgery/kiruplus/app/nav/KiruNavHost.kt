@@ -11,10 +11,9 @@ import com.medsurgery.kiruplus.feature.auth.AccountDeletionScreen
 import com.medsurgery.kiruplus.feature.auth.ForgotPasswordScreen
 import com.medsurgery.kiruplus.feature.auth.LoginScreen
 import com.medsurgery.kiruplus.feature.auth.RegisterScreen
-import com.medsurgery.kiruplus.feature.home.HomeScreen
+import com.medsurgery.kiruplus.feature.main.MainScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
 import com.medsurgery.kiruplus.feature.onboarding.SplashScreen
-import com.medsurgery.kiruplus.feature.profile.ProfileScreen
 import com.medsurgery.kiruplus.feature.settings.SettingsScreen
 
 @Composable
@@ -97,19 +96,11 @@ fun KiruNavHost(navController: NavHostController) {
         }
 
         composable<KiruRoute.Home> {
-            HomeScreen(
-                onOpenProfile = { navController.navigate(KiruRoute.Profile) },
+            MainScreen(
                 onOpenSettings = { navController.navigate(KiruRoute.Settings) },
                 onOpenPaywall = { navController.navigate(KiruRoute.Paywall) },
-                onOpenStore = { navController.navigate(KiruRoute.Store) },
-            )
-        }
-
-        composable<KiruRoute.Profile> {
-            ProfileScreen(
-                onBack = { navController.popBackStack() },
-                onDeleteAccount = { navController.navigate(KiruRoute.AccountDeletion) },
-                onPrivacyPolicy = {
+                onOpenAccountDeletion = { navController.navigate(KiruRoute.AccountDeletion) },
+                onOpenPrivacyPolicy = {
                     navController.navigate(
                         KiruRoute.WebView(
                             title = "Privacidad",
@@ -117,7 +108,7 @@ fun KiruNavHost(navController: NavHostController) {
                         ),
                     )
                 },
-                onTerms = {
+                onOpenTerms = {
                     navController.navigate(
                         KiruRoute.WebView(
                             title = "Términos",
@@ -125,7 +116,7 @@ fun KiruNavHost(navController: NavHostController) {
                         ),
                     )
                 },
-                onSubscriptions = {
+                onOpenSubscriptions = {
                     navController.navigate(
                         KiruRoute.WebView(
                             title = "Suscripciones",

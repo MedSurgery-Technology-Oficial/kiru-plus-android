@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -29,29 +28,22 @@ import androidx.compose.ui.unit.dp
 import com.medsurgery.kiruplus.R
 
 /**
- * Home dashboard — versión E5: welcome card + 4 quick actions placeholder + nav buttons.
- * El dashboard rico (Hero, Arena, Pearls, K-Tools real) llega en E6+.
+ * Home tab content (E5.1).
+ * MainScreen ya provee el NavigationBar; aquí sólo va el contenido del tab Home:
+ * welcome card + quick actions. Profile dejó de ser un icon del TopBar (ahora es tab).
+ * Settings sigue accesible desde el TopBar action.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    onOpenProfile: () -> Unit,
     onOpenSettings: () -> Unit,
-    onOpenPaywall: () -> Unit,
     onOpenStore: () -> Unit,
+    onOpenPaywall: () -> Unit,
 ) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text(stringResource(R.string.app_name)) },
-                navigationIcon = {
-                    IconButton(onClick = onOpenProfile) {
-                        Icon(
-                            imageVector = Icons.Filled.AccountCircle,
-                            contentDescription = stringResource(R.string.tab_profile),
-                        )
-                    }
-                },
                 actions = {
                     IconButton(onClick = onOpenSettings) {
                         Icon(
@@ -81,10 +73,10 @@ fun HomeScreen(
             }
             item {
                 QuickActionsGrid(
-                    onAcademyClick = onOpenStore, // routes placeholder hasta E2+
+                    onAcademyClick = onOpenStore,
                     onLogbookClick = onOpenStore,
                     onStoreClick = onOpenStore,
-                    onKToolsClick = onOpenPaywall, // Premium gate hint
+                    onKToolsClick = onOpenPaywall,
                 )
             }
         }
