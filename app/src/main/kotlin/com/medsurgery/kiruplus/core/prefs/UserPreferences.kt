@@ -11,6 +11,11 @@ data class UserPreferences(
     val language: AppLanguage = AppLanguage.System,
     val theme: AppTheme = AppTheme.System,
     val hapticsEnabled: Boolean = true,
+    /**
+     * Crash reporting opt-in. Si `false`, Sentry NO se inicializa al startup
+     * aunque `BuildConfig.SENTRY_DSN` esté presente. Default false (privacy-first).
+     */
+    val sentryEnabled: Boolean = false,
 )
 
 enum class AppLanguage(val tag: String) {
@@ -38,4 +43,16 @@ interface UserPreferencesRepository {
     suspend fun setLanguage(language: AppLanguage)
     suspend fun setTheme(theme: AppTheme)
     suspend fun setHapticsEnabled(enabled: Boolean)
+    suspend fun setSentryEnabled(enabled: Boolean)
+}
+
+/**
+ * Keys de DataStore. Públicas para que `KiruApp.onCreate()` pueda leer la
+ * pref de `sentryEnabled` antes de que Hilt esté listo — sin duplicar strings.
+ */
+object UserPreferencesKeys {
+    const val LANGUAGE = "language"
+    const val THEME = "theme"
+    const val HAPTICS = "haptics_enabled"
+    const val SENTRY_ENABLED = "sentry_enabled"
 }

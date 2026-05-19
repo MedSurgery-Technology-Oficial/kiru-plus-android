@@ -116,6 +116,14 @@ fun SettingsScreen(
                 )
             }
 
+            // PRIVACY
+            SettingsSection(title = stringResource(R.string.settings_section_privacy)) {
+                SentryRow(
+                    enabled = prefs.sentryEnabled,
+                    onToggle = viewModel::setSentryEnabled,
+                )
+            }
+
             // ACCOUNT
             SettingsSection(title = stringResource(R.string.settings_section_account)) {
                 TextRow(
@@ -274,6 +282,29 @@ private fun HapticsRow(enabled: Boolean, onToggle: (Boolean) -> Unit) {
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.weight(1f),
         )
+        Switch(checked = enabled, onCheckedChange = onToggle)
+    }
+}
+
+@Composable
+private fun SentryRow(enabled: Boolean, onToggle: (Boolean) -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = stringResource(R.string.settings_sentry_crash_reporting),
+                style = MaterialTheme.typography.bodyLarge,
+            )
+            Text(
+                text = stringResource(R.string.settings_sentry_hint),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
         Switch(checked = enabled, onCheckedChange = onToggle)
     }
 }

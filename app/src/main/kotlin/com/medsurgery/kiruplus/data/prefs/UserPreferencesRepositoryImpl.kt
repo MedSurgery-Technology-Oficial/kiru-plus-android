@@ -6,11 +6,12 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import com.medsurgery.kiruplus.core.prefs.AppLanguage
 import com.medsurgery.kiruplus.core.prefs.AppTheme
 import com.medsurgery.kiruplus.core.prefs.UserPreferences
+import com.medsurgery.kiruplus.core.prefs.UserPreferencesKeys
 import com.medsurgery.kiruplus.core.prefs.UserPreferencesRepository
+import com.medsurgery.kiruplus.core.prefs.kiruDataStore
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -22,19 +23,16 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
-private val Context.prefsDataStore: DataStore<Preferences> by preferencesDataStore(
-    name = "kiru_user_prefs",
-)
-
 @Singleton
 class UserPreferencesRepositoryImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>,
 ) : UserPreferencesRepository {
 
     private object Keys {
-        val Language = stringPreferencesKey("language")
-        val Theme = stringPreferencesKey("theme")
-        val Haptics = booleanPreferencesKey("haptics_enabled")
+        val Language = stringPreferencesKey(UserPreferencesKeys.LANGUAGE)
+        val Theme = stringPreferencesKey(UserPreferencesKeys.THEME)
+        val Haptics = booleanPreferencesKey(UserPreferencesKeys.HAPTICS)
+        val SentryEnabled = booleanPreferencesKey(UserPreferencesKeys.SENTRY_ENABLED)
     }
 
     override val preferences: Flow<UserPreferences> = dataStore.data.map { prefs ->
@@ -42,6 +40,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
             language = AppLanguage.fromTag(prefs[Keys.Language]),
             theme = AppTheme.fromName(prefs[Keys.Theme]),
             hapticsEnabled = prefs[Keys.Haptics] ?: true,
+            sentryEnabled = prefs[Keys.SentryEnabled] ?: false,
         )
     }
 
@@ -56,6 +55,10 @@ class UserPreferencesRepositoryImpl @Inject constructor(
     override suspend fun setHapticsEnabled(enabled: Boolean) {
         dataStore.edit { it[Keys.Haptics] = enabled }
     }
+
+    override suspend fun setSentryEnabled(enabled: Boolean) {
+        dataStore.edit { it[Keys.SentryEnabled] = enabled }
+    }
 }
 
 @Module
@@ -65,7 +68,7 @@ object UserPreferencesModule {
     @Singleton
     fun provideUserPreferencesDataStore(
         @ApplicationContext context: Context,
-    ): DataStore<Preferences> = context.prefsDataStore
+    ): DataStore<Preferences> = context.kiruDataStore
 }
 
 @Module

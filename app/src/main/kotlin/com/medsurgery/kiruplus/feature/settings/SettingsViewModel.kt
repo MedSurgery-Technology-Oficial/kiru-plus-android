@@ -58,6 +58,12 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    fun setSentryEnabled(enabled: Boolean) {
+        viewModelScope.launch {
+            prefsRepository.setSentryEnabled(enabled)
+        }
+    }
+
     fun signOut(onComplete: () -> Unit) {
         viewModelScope.launch {
             authRepository.signOut()

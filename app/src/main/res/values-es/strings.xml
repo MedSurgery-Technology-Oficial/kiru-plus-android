@@ -117,7 +117,10 @@
     <string name="settings_section_general">General</string>
     <string name="settings_section_account">Cuenta</string>
     <string name="settings_section_legal">Legal</string>
+    <string name="settings_section_privacy">Privacidad</string>
     <string name="settings_section_about">Acerca de</string>
+    <string name="settings_sentry_crash_reporting">Reporte anónimo de crashes</string>
+    <string name="settings_sentry_hint">Ayúdanos a corregir errores más rápido. Los crashes anónimos se envían a Sentry. Sin datos personales. Se aplica al próximo inicio.</string>
     <string name="settings_language">Idioma</string>
     <string name="settings_language_system">Seguir al sistema</string>
     <string name="settings_language_es">Español</string>

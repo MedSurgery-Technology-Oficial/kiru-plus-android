@@ -31,6 +31,7 @@ class SettingsViewModelTest {
         coEvery { setLanguage(any()) } just Runs
         coEvery { setTheme(any()) } just Runs
         coEvery { setHapticsEnabled(any()) } just Runs
+        coEvery { setSentryEnabled(any()) } just Runs
     }
 
     private val authRepo: AuthRepository = mockk(relaxed = true) {
@@ -64,6 +65,14 @@ class SettingsViewModelTest {
         viewModel.setHapticsEnabled(false)
 
         coVerify(exactly = 1) { prefsRepo.setHapticsEnabled(false) }
+    }
+
+    @Test
+    fun `setSentryEnabled persists in DataStore (opt-in flag)`() = runTest {
+        val viewModel = vm()
+        viewModel.setSentryEnabled(true)
+
+        coVerify(exactly = 1) { prefsRepo.setSentryEnabled(true) }
     }
 
     @Test

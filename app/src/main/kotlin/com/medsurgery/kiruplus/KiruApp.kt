@@ -1,8 +1,13 @@
 package com.medsurgery.kiruplus
 
 import android.app.Application
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import com.medsurgery.kiruplus.core.prefs.UserPreferencesKeys
+import com.medsurgery.kiruplus.core.prefs.kiruDataStore
 import dagger.hilt.android.HiltAndroidApp
 import io.sentry.android.core.SentryAndroid
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 
 @HiltAndroidApp
@@ -11,7 +16,7 @@ class KiruApp : Application() {
     override fun onCreate() {
         super.onCreate()
         installLogging()
-        installCrashReporting()
+        installCrashReportingIfOptedIn()
     }
 
     private fun installLogging() {
@@ -20,12 +25,32 @@ class KiruApp : Application() {
         }
     }
 
-    private fun installCrashReporting() {
+    /**
+     * Sentry sólo se inicializa cuando se cumplen ambas condiciones:
+     *  1) `BuildConfig.SENTRY_DSN` no está vacío.
+     *  2) El usuario hizo opt-in en Settings (DataStore flag `sentry_enabled`).
+     *
+     * Lee el flag con `runBlocking` porque la inicialización del SDK debe ocurrir
+     * al startup, antes de cualquier crash. El bloqueo es de ~5-10 ms en cold
+     * start; aceptable para un toggle de privacidad. Si el usuario lo activa
+     * en runtime, el cambio se aplica al próximo launch.
+     */
+    private fun installCrashReportingIfOptedIn() {
         val dsn = BuildConfig.SENTRY_DSN
         if (dsn.isBlank()) {
-            Timber.w("Sentry DSN missing; crash reporting disabled.")
+            Timber.w("Sentry DSN missing; crash reporting unavailable in this build.")
             return
         }
+
+        val optedIn = runBlocking {
+            kiruDataStore.data
+                .first()[booleanPreferencesKey(UserPreferencesKeys.SENTRY_ENABLED)] ?: false
+        }
+        if (!optedIn) {
+            Timber.i("Sentry opt-in OFF — crash reporting disabled for this session.")
+            return
+        }
+
         SentryAndroid.init(this) { options ->
             options.dsn = dsn
             options.isDebug = BuildConfig.DEBUG
