@@ -1,15 +1,16 @@
 package com.medsurgery.kiruplus.domain.kapibaya
 
+import kotlinx.coroutines.flow.Flow
+
 interface KapibayaRepository {
     /**
-     * Envía un mensaje al Edge Function `ask_kapibaya`. La inserción del turn
-     * (user + assistant) en `kapibaya_conversation_turns` la hace el EF con
-     * service_role — el cliente sólo recibe el texto de la respuesta.
-     *
-     * @return el texto del assistant, o el error mapeado.
+     * Streams partial text chunks from `ask_kapibaya_stream` via SSE.
+     * Completes normally on `event: done`, throws on `event: error`.
+     * The Edge Function (service_role) persists turns in Supabase — the
+     * client only receives the text stream.
      */
-    suspend fun sendMessage(
+    fun sendMessageStream(
         conversationId: String,
         message: String,
-    ): Result<String>
+    ): Flow<String>
 }

@@ -1,5 +1,6 @@
 package com.medsurgery.kiruplus.data.kapibaya
 
+import com.medsurgery.kiruplus.BuildConfig
 import com.medsurgery.kiruplus.domain.kapibaya.KapibayaRepository
 import dagger.Binds
 import dagger.Module
@@ -7,15 +8,19 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.auth
-import io.github.jan.supabase.functions.functions
-import io.ktor.client.call.body
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.put
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,47 +28,70 @@ import javax.inject.Singleton
 @Singleton
 class KapibayaRepositoryImpl @Inject constructor(
     private val supabase: SupabaseClient,
+    private val okHttpClient: OkHttpClient,
 ) : KapibayaRepository {
 
-    override suspend fun sendMessage(
-        conversationId: String,
-        message: String,
-    ): Result<String> = runCatching {
-        withContext(Dispatchers.IO) {
-            val uid = supabase.auth.currentUserOrNull()?.id
-                ?: error("No active session — login required to chat with Dr. Kapibaya.")
+    override fun sendMessageStream(conversationId: String, message: String): Flow<String> = flow {
+        val uid = supabase.auth.currentUserOrNull()?.id
+            ?: error("No active session — login required to chat with Dr. Kapibaya.")
 
-            val payload = buildJsonObject {
-                put("message", message)
-                put("conversationId", conversationId)
-                put("userId", uid)
-            }
+        val bodyJson = buildJsonObject {
+            put("message", message)
+            put("conversationId", conversationId)
+            put("userId", uid)
+        }.toString()
 
-            val response = supabase.functions.invoke(
-                function = EF_NAME,
-                body = payload,
-            )
+        val request = Request.Builder()
+            .url("${BuildConfig.SUPABASE_URL}/functions/v1/ask_kapibaya_stream")
+            .post(bodyJson.toRequestBody("application/json".toMediaType()))
+            .addHeader("apikey", BuildConfig.SUPABASE_ANON_KEY)
+            .addHeader("Accept", "text/event-stream")
+            .build()
 
-            val raw: String = response.body()
-            // El EF responde JSON; el contenido del assistant suele venir en
-            // `response`, `text` o `assistantMessage`. Probamos los más comunes.
-            val parsed = runCatching { Json.parseToJsonElement(raw).let { it as JsonObject } }.getOrNull()
-            if (parsed != null) {
-                listOf("response", "text", "assistantMessage", "message", "answer")
-                    .firstNotNullOfOrNull { key -> parsed[key]?.jsonPrimitive?.contentOrNull() }
-                    ?: raw // fallback a raw si no encontramos campo conocido
-            } else {
-                raw // si no es JSON, asumimos texto plano
+        okHttpClient.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) error("HTTP ${response.code}")
+            val source = response.body?.source() ?: error("Empty response body")
+
+            var currentEvent = ""
+            val dataBuffer = StringBuilder()
+
+            while (!source.exhausted()) {
+                val line = source.readUtf8Line() ?: break
+                when {
+                    line.startsWith("event:") -> {
+                        currentEvent = line.removePrefix("event:").trim()
+                        dataBuffer.clear()
+                    }
+                    line.startsWith("data:") -> {
+                        dataBuffer.append(line.removePrefix("data:").trim())
+                    }
+                    line.isEmpty() && currentEvent.isNotEmpty() -> {
+                        val data = dataBuffer.toString()
+                        when (currentEvent) {
+                            "chunk" -> {
+                                val obj = runCatching {
+                                    Json.parseToJsonElement(data) as? JsonObject
+                                }.getOrNull()
+                                val chunk = obj?.get("content")?.jsonPrimitive?.content
+                                if (!chunk.isNullOrBlank()) emit(chunk)
+                            }
+                            "done" -> return@flow
+                            "error" -> {
+                                val obj = runCatching {
+                                    Json.parseToJsonElement(data) as? JsonObject
+                                }.getOrNull()
+                                val errMsg = obj?.get("error")?.jsonPrimitive?.content ?: "Stream error"
+                                Timber.w("Kapibaya stream error: %s", errMsg)
+                                error(errMsg)
+                            }
+                        }
+                        currentEvent = ""
+                        dataBuffer.clear()
+                    }
+                }
             }
         }
-    }.onFailure { Timber.w(it, "sendMessage failed") }
-
-    private fun kotlinx.serialization.json.JsonPrimitive.contentOrNull(): String? =
-        runCatching { content }.getOrNull()
-
-    private companion object {
-        const val EF_NAME = "ask_kapibaya"
-    }
+    }.flowOn(Dispatchers.IO)
 }
 
 @Module

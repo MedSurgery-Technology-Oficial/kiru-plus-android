@@ -48,10 +48,9 @@ fun KapibayaChatScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val listState = rememberLazyListState()
 
-    LaunchedEffect(state.turns.size) {
-        if (state.turns.isNotEmpty()) {
-            listState.animateScrollToItem(state.turns.lastIndex)
-        }
+    LaunchedEffect(state.turns.size, state.streamingContent) {
+        val total = state.turns.size + if (state.isSending) 1 else 0
+        if (total > 0) listState.animateScrollToItem(total - 1)
     }
 
     Scaffold(
@@ -105,8 +104,11 @@ fun KapibayaChatScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     items(state.turns, key = { it.id }) { turn -> TurnBubble(turn) }
-                    if (state.isSending) {
-                        item { TypingBubble() }
+                    when {
+                        state.streamingContent?.isNotBlank() == true ->
+                            item(key = "streaming") { StreamingBubble(state.streamingContent!!) }
+                        state.isSending ->
+                            item(key = "typing") { TypingBubble() }
                     }
                 }
             }
@@ -147,6 +149,24 @@ private fun TurnBubble(turn: KapibayaTurn) {
                 text = turn.content,
                 style = MaterialTheme.typography.bodyMedium,
                 color = fg,
+                modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+            )
+        }
+    }
+}
+
+@Composable
+private fun StreamingBubble(text: String) {
+    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start) {
+        Surface(
+            shape = RoundedCornerShape(16.dp),
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            modifier = Modifier.widthIn(max = 320.dp),
+        ) {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
             )
         }
