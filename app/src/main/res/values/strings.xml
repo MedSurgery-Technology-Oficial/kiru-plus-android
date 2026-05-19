@@ -195,6 +195,11 @@
     <string name="profile_empty">No profile yet.</string>
     <string name="profile_role_specialty">%1$s · %2$s</string>
 
+    <!-- K-Tools -->
+    <string name="ktools_title">K-Tools</string>
+    <string name="ktools_result">Resultado</string>
+    <string name="ktools_disclaimer">⚠️ Herramienta de apoyo clínico-educativo. No sustituye el juicio del médico tratante. Los resultados deben interpretarse en contexto clínico completo.</string>
+
     <!-- Data export (GDPR Art. 15 / LFPDPPP Art. 23) -->
     <string name="data_export_title">Export my data</string>
     <string name="data_export_menu">Export my data (GDPR)</string>

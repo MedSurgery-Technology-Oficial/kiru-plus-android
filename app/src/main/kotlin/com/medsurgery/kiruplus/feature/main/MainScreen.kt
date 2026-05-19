@@ -44,6 +44,7 @@ fun MainScreen(
     onOpenQuiz: (String) -> Unit,
     onOpenNewSurgicalLog: () -> Unit,
     onOpenKapibaya: () -> Unit,
+    onOpenKTools: () -> Unit,
 ) {
     var current by rememberSaveable { mutableStateOf(MainTab.Home) }
 
@@ -78,6 +79,7 @@ fun MainScreen(
                     onOpenStore = { current = MainTab.Store },
                     onOpenPearls = onOpenPearls,
                     onOpenKapibaya = onOpenKapibaya,
+                    onOpenKTools = onOpenKTools,
                 )
                 MainTab.Academy -> AcademyScreen(onOpenLesson = onOpenLesson, onOpenQuiz = onOpenQuiz)
                 MainTab.Logbook -> LogbookScreen(onAddLog = onOpenNewSurgicalLog)

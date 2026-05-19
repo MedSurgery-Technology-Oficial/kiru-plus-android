@@ -14,6 +14,8 @@ import com.medsurgery.kiruplus.feature.auth.RegisterScreen
 import com.medsurgery.kiruplus.feature.academy.ContentDetailScreen
 import com.medsurgery.kiruplus.feature.quiz.QuizPlayerScreen
 import com.medsurgery.kiruplus.feature.kapibaya.KapibayaChatScreen
+import com.medsurgery.kiruplus.feature.ktools.CalculatorScreen
+import com.medsurgery.kiruplus.feature.ktools.KToolsMenuScreen
 import com.medsurgery.kiruplus.feature.logbook.NewSurgicalLogScreen
 import com.medsurgery.kiruplus.feature.main.MainScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
@@ -144,6 +146,7 @@ fun KiruNavHost(navController: NavHostController) {
                 },
                 onOpenNewSurgicalLog = { navController.navigate(KiruRoute.NewSurgicalLog) },
                 onOpenKapibaya = { navController.navigate(KiruRoute.KapibayaChat) },
+                onOpenKTools   = { navController.navigate(KiruRoute.KTools) },
             )
         }
 
@@ -156,6 +159,18 @@ fun KiruNavHost(navController: NavHostController) {
 
         composable<KiruRoute.KapibayaChat> {
             KapibayaChatScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable<KiruRoute.KTools> {
+            KToolsMenuScreen(
+                onBack = { navController.popBackStack() },
+                onOpenCalculator = { id -> navController.navigate(KiruRoute.KToolsCalculator(id)) },
+            )
+        }
+
+        composable<KiruRoute.KToolsCalculator> { entry ->
+            val args = entry.toRoute<KiruRoute.KToolsCalculator>()
+            CalculatorScreen(calculatorId = args.id, onBack = { navController.popBackStack() })
         }
 
         composable<KiruRoute.ProductDetail> {

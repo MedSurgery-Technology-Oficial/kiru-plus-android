@@ -41,6 +41,7 @@ fun HomeScreen(
     onOpenPaywall: () -> Unit,
     onOpenPearls: () -> Unit,
     onOpenKapibaya: () -> Unit,
+    onOpenKTools: () -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -78,7 +79,7 @@ fun HomeScreen(
                     onAcademyClick = onOpenPearls,
                     onLogbookClick = onOpenStore,
                     onStoreClick = onOpenStore,
-                    onKToolsClick = onOpenKapibaya,
+                    onKToolsClick = onOpenKTools,
                 )
             }
         }

@@ -37,6 +37,9 @@ sealed interface KiruRoute {
 
     @Serializable data class QuizPlayer(val specialty: String) : KiruRoute
 
+    @Serializable data object KTools : KiruRoute
+    @Serializable data class KToolsCalculator(val id: String) : KiruRoute
+
     @Serializable data object AccountDeletion : KiruRoute
     @Serializable data object DataExport : KiruRoute
 
