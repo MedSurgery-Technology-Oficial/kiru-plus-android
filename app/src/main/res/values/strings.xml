@@ -65,6 +65,8 @@
     <string name="store_error_load">Couldn\'t load the catalog. Please try again.</string>
     <string name="store_buy">Buy</string>
     <string name="store_out_of_stock">Out of stock</string>
+    <string name="store_stock_count">%1$d in stock</string>
+    <string name="store_product_not_found">Product not found.</string>
 
     <!-- Legal -->
     <string name="legal_privacy_policy">Privacy policy</string>

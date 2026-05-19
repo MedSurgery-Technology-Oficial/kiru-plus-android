@@ -64,6 +64,8 @@
     <string name="store_error_load">No se pudo cargar el catálogo. Inténtalo de nuevo.</string>
     <string name="store_buy">Comprar</string>
     <string name="store_out_of_stock">Agotado</string>
+    <string name="store_stock_count">%1$d en stock</string>
+    <string name="store_product_not_found">Producto no encontrado.</string>
 
     <!-- Legal -->
     <string name="legal_privacy_policy">Política de privacidad</string>

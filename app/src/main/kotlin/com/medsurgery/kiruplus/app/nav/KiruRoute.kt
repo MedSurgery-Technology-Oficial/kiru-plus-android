@@ -23,6 +23,9 @@ sealed interface KiruRoute {
     @Serializable data object Paywall : KiruRoute
     @Serializable data object Store : KiruRoute
 
+    @Serializable
+    data class ProductDetail(val productId: String) : KiruRoute
+
     @Serializable data object AccountDeletion : KiruRoute
 
     @Serializable

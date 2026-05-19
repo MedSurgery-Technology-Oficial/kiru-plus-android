@@ -38,6 +38,7 @@ fun MainScreen(
     onOpenPrivacyPolicy: () -> Unit,
     onOpenTerms: () -> Unit,
     onOpenSubscriptions: () -> Unit,
+    onOpenProductDetail: (String) -> Unit,
 ) {
     var current by rememberSaveable { mutableStateOf(MainTab.Home) }
 
@@ -73,7 +74,7 @@ fun MainScreen(
                 )
                 MainTab.Academy -> AcademyScreen()
                 MainTab.Logbook -> LogbookScreen()
-                MainTab.Store -> StoreScreen()
+                MainTab.Store -> StoreScreen(onOpenProduct = onOpenProductDetail)
                 MainTab.Profile -> ProfileScreen(
                     onDeleteAccount = onOpenAccountDeletion,
                     onPrivacyPolicy = onOpenPrivacyPolicy,

@@ -32,6 +32,16 @@ class StoreRepositoryImpl @Inject constructor(
             }
         }.onFailure { Timber.w(it, "fetchVisibleProducts failed") }
 
+    override suspend fun fetchProduct(id: String): Result<StoreProduct?> =
+        runCatching {
+            withContext(Dispatchers.IO) {
+                supabase.from(TABLE)
+                    .select { filter { eq("id", id) } }
+                    .decodeList<StoreProduct>()
+                    .firstOrNull()
+            }
+        }.onFailure { Timber.w(it, "fetchProduct %s failed", id) }
+
     private companion object {
         const val TABLE = "store_products"
     }

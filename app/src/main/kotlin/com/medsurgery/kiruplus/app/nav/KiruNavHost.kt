@@ -15,6 +15,7 @@ import com.medsurgery.kiruplus.feature.main.MainScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
 import com.medsurgery.kiruplus.feature.onboarding.SplashScreen
 import com.medsurgery.kiruplus.feature.settings.SettingsScreen
+import com.medsurgery.kiruplus.feature.store.ProductDetailScreen
 
 @Composable
 fun KiruNavHost(navController: NavHostController) {
@@ -124,7 +125,14 @@ fun KiruNavHost(navController: NavHostController) {
                         ),
                     )
                 },
+                onOpenProductDetail = { productId ->
+                    navController.navigate(KiruRoute.ProductDetail(productId))
+                },
             )
+        }
+
+        composable<KiruRoute.ProductDetail> {
+            ProductDetailScreen(onBack = { navController.popBackStack() })
         }
 
         composable<KiruRoute.Register> {

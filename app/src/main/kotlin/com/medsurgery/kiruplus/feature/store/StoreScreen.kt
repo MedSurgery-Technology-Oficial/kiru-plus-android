@@ -43,7 +43,10 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StoreScreen(viewModel: StoreViewModel = hiltViewModel()) {
+fun StoreScreen(
+    onOpenProduct: (String) -> Unit = {},
+    viewModel: StoreViewModel = hiltViewModel(),
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
@@ -64,6 +67,7 @@ fun StoreScreen(viewModel: StoreViewModel = hiltViewModel()) {
                 state.products.isEmpty() -> StoreEmpty()
                 else -> StoreList(
                     products = state.products,
+                    onClickProduct = { product -> onOpenProduct(product.id) },
                     onBuy = { product ->
                         val url = product.permalink
                         if (!url.isNullOrBlank()) {
@@ -123,6 +127,7 @@ private fun StoreEmpty() {
 @Composable
 private fun StoreList(
     products: List<StoreProduct>,
+    onClickProduct: (StoreProduct) -> Unit,
     onBuy: (StoreProduct) -> Unit,
 ) {
     LazyColumn(
@@ -131,16 +136,25 @@ private fun StoreList(
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         items(products, key = { it.id }) { product ->
-            ProductCard(product = product, onBuy = { onBuy(product) })
+            ProductCard(
+                product = product,
+                onClick = { onClickProduct(product) },
+                onBuy = { onBuy(product) },
+            )
         }
     }
 }
 
 @Composable
-private fun ProductCard(product: StoreProduct, onBuy: () -> Unit) {
+private fun ProductCard(
+    product: StoreProduct,
+    onClick: () -> Unit,
+    onBuy: () -> Unit,
+) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
+        onClick = onClick,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
         ),
