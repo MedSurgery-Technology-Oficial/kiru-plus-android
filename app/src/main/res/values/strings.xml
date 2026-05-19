@@ -153,6 +153,8 @@
     <string name="logbook_empty_body">Tap the + button to record your first procedure.</string>
     <string name="logbook_unknown_procedure">Unknown procedure</string>
     <string name="logbook_add">Add surgical log</string>
+    <string name="logbook_delete">Delete surgical log</string>
+    <string name="logbook_error_delete">Couldn\'t delete the log. Please try again.</string>
     <string name="logbook_new_title">New surgical log</string>
     <string name="logbook_field_procedure">Procedure</string>
     <string name="logbook_field_date">Date</string>

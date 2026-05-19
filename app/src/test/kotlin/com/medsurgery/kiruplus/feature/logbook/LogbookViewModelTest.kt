@@ -7,6 +7,7 @@ import com.medsurgery.kiruplus.domain.logbook.Procedure
 import com.medsurgery.kiruplus.domain.logbook.SurgicalLog
 import io.mockk.coEvery
 import io.mockk.mockk
+import io.mockk.coVerify
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -74,5 +75,35 @@ class LogbookViewModelTest {
         assertTrue(viewModel.state.value.procedureLookup.isEmpty())
         // No error surfaced — the list still renders with "Unknown procedure" labels
         assertNull(viewModel.state.value.errorRes)
+    }
+
+    @Test
+    fun `deleteLog removes entry optimistically`() = runTest {
+        val repo: LogbookRepository = mockk()
+        coEvery { repo.fetchLogs() } returns Result.success(listOf(log))
+        coEvery { repo.fetchProcedures() } returns Result.success(listOf(procedure))
+        coEvery { repo.deleteLog(log.id) } returns Result.success(Unit)
+
+        val viewModel = LogbookViewModel(repo)
+        viewModel.deleteLog(log.id)
+
+        assertTrue(viewModel.state.value.logs.isEmpty())
+        assertNull(viewModel.state.value.deleteErrorRes)
+        coVerify { repo.deleteLog(log.id) }
+    }
+
+    @Test
+    fun `deleteLog failure reverts list and surfaces deleteErrorRes`() = runTest {
+        val repo: LogbookRepository = mockk()
+        coEvery { repo.fetchLogs() } returns Result.success(listOf(log))
+        coEvery { repo.fetchProcedures() } returns Result.success(listOf(procedure))
+        coEvery { repo.deleteLog(log.id) } returns Result.failure(RuntimeException("network"))
+
+        val viewModel = LogbookViewModel(repo)
+        viewModel.deleteLog(log.id)
+
+        // List reverted
+        assertEquals(listOf(log), viewModel.state.value.logs)
+        assertEquals(R.string.logbook_error_delete, viewModel.state.value.deleteErrorRes)
     }
 }

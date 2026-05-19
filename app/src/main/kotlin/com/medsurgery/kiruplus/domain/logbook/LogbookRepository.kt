@@ -11,6 +11,9 @@ interface LogbookRepository {
 
     /** Inserta un nuevo log. `user_id` se infiere del JWT (validado por RLS). */
     suspend fun createLog(input: NewLogInput): Result<Unit>
+
+    /** Elimina el log del usuario actual por ID. RLS lo valida. */
+    suspend fun deleteLog(id: String): Result<Unit>
 }
 
 /**

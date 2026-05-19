@@ -1,5 +1,8 @@
 package com.medsurgery.kiruplus.feature.logbook
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,6 +15,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -20,14 +24,22 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
+import androidx.compose.material3.SwipeToDismissBox
+import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -44,6 +56,15 @@ fun LogbookScreen(
     viewModel: LogbookViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val deleteErrorMsg = state.deleteErrorRes?.let { stringResource(it) }
+
+    LaunchedEffect(deleteErrorMsg) {
+        if (deleteErrorMsg != null) {
+            snackbarHostState.showSnackbar(deleteErrorMsg)
+            viewModel.clearDeleteError()
+        }
+    }
 
     Scaffold(
         topBar = { TopAppBar(title = { Text(stringResource(R.string.tab_logbook)) }) },
@@ -59,6 +80,7 @@ fun LogbookScreen(
                 )
             }
         },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
     ) { padding ->
         Box(modifier = Modifier.fillMaxSize().padding(padding)) {
             when {
@@ -66,6 +88,7 @@ fun LogbookScreen(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center,
                 ) { CircularProgressIndicator() }
+
                 state.errorRes != null -> Box(
                     modifier = Modifier.fillMaxSize().padding(24.dp),
                     contentAlignment = Alignment.Center,
@@ -84,6 +107,7 @@ fun LogbookScreen(
                         }
                     }
                 }
+
                 state.logs.isEmpty() -> Box(
                     modifier = Modifier.fillMaxSize().padding(24.dp),
                     contentAlignment = Alignment.Center,
@@ -101,21 +125,69 @@ fun LogbookScreen(
                         )
                     }
                 }
-                else -> LogsList(state.logs, state.procedureLookup)
+
+                else -> LogsList(
+                    logs = state.logs,
+                    procedureLookup = state.procedureLookup,
+                    onDelete = viewModel::deleteLog,
+                )
             }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun LogsList(logs: List<SurgicalLog>, lookup: Map<String, Procedure>) {
+private fun LogsList(
+    logs: List<SurgicalLog>,
+    procedureLookup: Map<String, Procedure>,
+    onDelete: (String) -> Unit,
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
-        contentPadding = PaddingValues(top = 16.dp, bottom = 96.dp), // bottom space for FAB
+        contentPadding = PaddingValues(top = 16.dp, bottom = 96.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         items(logs, key = { it.id }) { log ->
-            LogCard(log = log, procedure = lookup[log.procedureId])
+            val dismissState = rememberSwipeToDismissBoxState(
+                confirmValueChange = { value ->
+                    if (value == SwipeToDismissBoxValue.EndToStart) {
+                        onDelete(log.id)
+                        true
+                    } else false
+                },
+            )
+
+            SwipeToDismissBox(
+                state = dismissState,
+                enableDismissFromStartToEnd = false,
+                backgroundContent = {
+                    val bgColor by animateColorAsState(
+                        targetValue = if (dismissState.targetValue == SwipeToDismissBoxValue.EndToStart) {
+                            MaterialTheme.colorScheme.errorContainer
+                        } else {
+                            Color.Transparent
+                        },
+                        animationSpec = tween(200),
+                        label = "swipe_bg",
+                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(bgColor, RoundedCornerShape(16.dp))
+                            .padding(end = 20.dp),
+                        contentAlignment = Alignment.CenterEnd,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Delete,
+                            contentDescription = stringResource(R.string.logbook_delete),
+                            tint = MaterialTheme.colorScheme.onErrorContainer,
+                        )
+                    }
+                },
+            ) {
+                LogCard(log = log, procedure = procedureLookup[log.procedureId])
+            }
         }
     }
 }

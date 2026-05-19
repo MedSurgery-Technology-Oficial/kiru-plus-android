@@ -43,6 +43,16 @@ class LogbookRepositoryImpl @Inject constructor(
             }
         }.onFailure { Timber.w(it, "fetchProcedures failed") }
 
+    override suspend fun deleteLog(id: String): Result<Unit> =
+        runCatching {
+            withContext(Dispatchers.IO) {
+                supabase.from(LOGS).delete {
+                    filter { eq("id", id) }
+                }
+                Unit
+            }
+        }.onFailure { Timber.w(it, "deleteLog %s failed", id) }
+
     override suspend fun createLog(input: NewLogInput): Result<Unit> =
         runCatching {
             withContext(Dispatchers.IO) {

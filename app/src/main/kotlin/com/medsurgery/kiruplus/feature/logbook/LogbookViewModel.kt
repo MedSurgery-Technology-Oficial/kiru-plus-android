@@ -30,7 +30,6 @@ class LogbookViewModel @Inject constructor(
     fun load() {
         _state.update { it.copy(isLoading = true, errorRes = null) }
         viewModelScope.launch {
-            // Fetch logs + procedures lookup in parallel-ish (sequential await acceptable).
             val logsResult = repository.fetchLogs()
             val proceduresResult = repository.fetchProcedures()
 
@@ -57,6 +56,23 @@ class LogbookViewModel @Inject constructor(
                 }
         }
     }
+
+    fun deleteLog(id: String) {
+        val snapshot = _state.value.logs
+        // Optimistic remove
+        _state.update { it.copy(logs = it.logs.filter { log -> log.id != id }, deleteErrorRes = null) }
+        viewModelScope.launch {
+            repository.deleteLog(id)
+                .onFailure {
+                    // Revert
+                    _state.update { it.copy(logs = snapshot, deleteErrorRes = R.string.logbook_error_delete) }
+                }
+        }
+    }
+
+    fun clearDeleteError() {
+        _state.update { it.copy(deleteErrorRes = null) }
+    }
 }
 
 data class LogbookUiState(
@@ -64,4 +80,5 @@ data class LogbookUiState(
     val logs: List<SurgicalLog> = emptyList(),
     val procedureLookup: Map<String, Procedure> = emptyMap(),
     @StringRes val errorRes: Int? = null,
+    @StringRes val deleteErrorRes: Int? = null,
 )
