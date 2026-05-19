@@ -1,12 +1,12 @@
 package com.medsurgery.kiruplus.feature.auth
 
-import android.util.Patterns
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.medsurgery.kiruplus.R
 import com.medsurgery.kiruplus.core.auth.AuthError
 import com.medsurgery.kiruplus.core.auth.AuthRepository
+import com.medsurgery.kiruplus.core.util.EmailValidator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,7 +29,7 @@ class ForgotPasswordViewModel @Inject constructor(
 
     fun submit() {
         val email = _state.value.email.trim()
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!EmailValidator.isValid(email)) {
             _state.update { it.copy(errorRes = R.string.auth_error_invalid_email) }
             return
         }
