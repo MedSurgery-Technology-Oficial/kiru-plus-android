@@ -59,6 +59,13 @@
     <string name="tab_profile">Profile</string>
     <string name="tab_placeholder_coming_soon">Coming soon</string>
 
+    <!-- Store -->
+    <string name="store_loading">Loading catalog…</string>
+    <string name="store_empty">No products available right now.</string>
+    <string name="store_error_load">Couldn\'t load the catalog. Please try again.</string>
+    <string name="store_buy">Buy</string>
+    <string name="store_out_of_stock">Out of stock</string>
+
     <!-- Legal -->
     <string name="legal_privacy_policy">Privacy policy</string>
     <string name="legal_terms">Terms of use</string>
