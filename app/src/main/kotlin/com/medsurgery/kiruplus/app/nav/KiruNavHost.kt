@@ -14,6 +14,8 @@ import com.medsurgery.kiruplus.feature.auth.RegisterScreen
 import com.medsurgery.kiruplus.feature.main.MainScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
 import com.medsurgery.kiruplus.feature.onboarding.SplashScreen
+import com.medsurgery.kiruplus.feature.pearls.PearlDetailScreen
+import com.medsurgery.kiruplus.feature.pearls.PearlsScreen
 import com.medsurgery.kiruplus.feature.settings.DataExportScreen
 import com.medsurgery.kiruplus.feature.settings.SettingsScreen
 import com.medsurgery.kiruplus.feature.store.ProductDetailScreen
@@ -129,6 +131,7 @@ fun KiruNavHost(navController: NavHostController) {
                 onOpenProductDetail = { productId ->
                     navController.navigate(KiruRoute.ProductDetail(productId))
                 },
+                onOpenPearls = { navController.navigate(KiruRoute.Pearls) },
             )
         }
 
@@ -198,6 +201,19 @@ fun KiruNavHost(navController: NavHostController) {
 
         composable<KiruRoute.DataExport> {
             DataExportScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable<KiruRoute.Pearls> {
+            PearlsScreen(
+                onBack = { navController.popBackStack() },
+                onOpenPearl = { pearlId ->
+                    navController.navigate(KiruRoute.PearlDetail(pearlId))
+                },
+            )
+        }
+
+        composable<KiruRoute.PearlDetail> {
+            PearlDetailScreen(onBack = { navController.popBackStack() })
         }
 
         composable<KiruRoute.WebView> { entry ->

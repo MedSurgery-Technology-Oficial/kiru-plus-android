@@ -39,6 +39,7 @@ fun HomeScreen(
     onOpenSettings: () -> Unit,
     onOpenStore: () -> Unit,
     onOpenPaywall: () -> Unit,
+    onOpenPearls: () -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -73,7 +74,7 @@ fun HomeScreen(
             }
             item {
                 QuickActionsGrid(
-                    onAcademyClick = onOpenStore,
+                    onAcademyClick = onOpenPearls,
                     onLogbookClick = onOpenStore,
                     onStoreClick = onOpenStore,
                     onKToolsClick = onOpenPaywall,

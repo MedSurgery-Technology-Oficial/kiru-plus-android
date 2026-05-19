@@ -135,6 +135,12 @@
     <string name="settings_signout">Sign out</string>
     <string name="settings_version">Version %1$s · Build %2$d</string>
 
+    <!-- Pearls -->
+    <string name="pearls_title">Clinical pearls</string>
+    <string name="pearls_error_load">Couldn\'t load pearls. Please try again.</string>
+    <string name="pearls_empty">No pearls available yet.</string>
+    <string name="pearls_not_found">Pearl not found.</string>
+
     <!-- Profile -->
     <string name="profile_error_load">Couldn\'t load your profile.</string>
     <string name="profile_empty">No profile yet.</string>
