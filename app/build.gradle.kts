@@ -73,8 +73,12 @@ android {
     }
 
     signingConfigs {
-        // Release signing se configura en CI vía env vars o keystore externo.
-        // No commitear keystores ni passwords.
+        create("release") {
+            storeFile     = file(localProperty("KEYSTORE_PATH", "../kiru-plus-release.jks"))
+            storePassword = localProperty("KEYSTORE_PASSWORD")
+            keyAlias      = localProperty("KEY_ALIAS", "kiru-plus")
+            keyPassword   = localProperty("KEY_PASSWORD")
+        }
     }
 
     buildTypes {
@@ -90,6 +94,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
