@@ -40,6 +40,7 @@ fun MainScreen(
     onOpenSubscriptions: () -> Unit,
     onOpenProductDetail: (String) -> Unit,
     onOpenPearls: () -> Unit,
+    onOpenLesson: (String) -> Unit,
 ) {
     var current by rememberSaveable { mutableStateOf(MainTab.Home) }
 
@@ -74,7 +75,7 @@ fun MainScreen(
                     onOpenStore = { current = MainTab.Store },
                     onOpenPearls = onOpenPearls,
                 )
-                MainTab.Academy -> AcademyScreen()
+                MainTab.Academy -> AcademyScreen(onOpenLesson = onOpenLesson)
                 MainTab.Logbook -> LogbookScreen()
                 MainTab.Store -> StoreScreen(onOpenProduct = onOpenProductDetail)
                 MainTab.Profile -> ProfileScreen(

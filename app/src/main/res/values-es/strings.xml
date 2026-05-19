@@ -134,6 +134,11 @@
     <string name="settings_signout">Cerrar sesión</string>
     <string name="settings_version">Versión %1$s · Build %2$d</string>
 
+    <!-- Academia -->
+    <string name="academy_error_load">No se pudieron cargar las lecciones. Inténtalo de nuevo.</string>
+    <string name="academy_empty">Aún no hay lecciones disponibles.</string>
+    <string name="academy_not_found">Lección no encontrada.</string>
+
     <!-- Perlas clínicas -->
     <string name="pearls_title">Perlas clínicas</string>
     <string name="pearls_error_load">No se pudieron cargar las perlas. Inténtalo de nuevo.</string>
