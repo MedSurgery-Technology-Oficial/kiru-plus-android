@@ -134,6 +134,15 @@
     <string name="settings_signout">Cerrar sesión</string>
     <string name="settings_version">Versión %1$s · Build %2$d</string>
 
+    <!-- Dr. Kapibaya chat -->
+    <string name="kapibaya_title">Dr. Kapibaya</string>
+    <string name="kapibaya_welcome_title">Pregunta al Dr. Kapibaya</string>
+    <string name="kapibaya_welcome_body">Tutor de educación quirúrgica. Pregúntale lo que sea sobre cirugía, ATLS, Guías de Tokio o decisiones clínicas.</string>
+    <string name="kapibaya_input_placeholder">Escribe tu pregunta…</string>
+    <string name="kapibaya_send">Enviar</string>
+    <string name="kapibaya_thinking">Dr. Kapibaya está pensando…</string>
+    <string name="kapibaya_error_send">No se pudo enviar tu mensaje. Inténtalo de nuevo.</string>
+
     <!-- Bitácora quirúrgica -->
     <string name="logbook_error_load">No se pudieron cargar tus registros quirúrgicos. Inténtalo de nuevo.</string>
     <string name="logbook_error_procedures">No se pudo cargar el catálogo de procedimientos.</string>

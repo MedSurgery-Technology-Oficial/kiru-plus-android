@@ -33,6 +33,8 @@ sealed interface KiruRoute {
 
     @Serializable data object NewSurgicalLog : KiruRoute
 
+    @Serializable data object KapibayaChat : KiruRoute
+
     @Serializable data object AccountDeletion : KiruRoute
     @Serializable data object DataExport : KiruRoute
 

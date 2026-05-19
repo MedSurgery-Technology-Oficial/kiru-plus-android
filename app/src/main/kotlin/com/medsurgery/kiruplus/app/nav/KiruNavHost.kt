@@ -12,6 +12,7 @@ import com.medsurgery.kiruplus.feature.auth.ForgotPasswordScreen
 import com.medsurgery.kiruplus.feature.auth.LoginScreen
 import com.medsurgery.kiruplus.feature.auth.RegisterScreen
 import com.medsurgery.kiruplus.feature.academy.ContentDetailScreen
+import com.medsurgery.kiruplus.feature.kapibaya.KapibayaChatScreen
 import com.medsurgery.kiruplus.feature.logbook.NewSurgicalLogScreen
 import com.medsurgery.kiruplus.feature.main.MainScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
@@ -138,6 +139,7 @@ fun KiruNavHost(navController: NavHostController) {
                     navController.navigate(KiruRoute.LessonDetail(contentId))
                 },
                 onOpenNewSurgicalLog = { navController.navigate(KiruRoute.NewSurgicalLog) },
+                onOpenKapibaya = { navController.navigate(KiruRoute.KapibayaChat) },
             )
         }
 
@@ -146,6 +148,10 @@ fun KiruNavHost(navController: NavHostController) {
                 onBack = { navController.popBackStack() },
                 onSaved = { navController.popBackStack() },
             )
+        }
+
+        composable<KiruRoute.KapibayaChat> {
+            KapibayaChatScreen(onBack = { navController.popBackStack() })
         }
 
         composable<KiruRoute.ProductDetail> {

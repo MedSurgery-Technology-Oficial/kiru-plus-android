@@ -42,6 +42,7 @@ fun MainScreen(
     onOpenPearls: () -> Unit,
     onOpenLesson: (String) -> Unit,
     onOpenNewSurgicalLog: () -> Unit,
+    onOpenKapibaya: () -> Unit,
 ) {
     var current by rememberSaveable { mutableStateOf(MainTab.Home) }
 
@@ -75,6 +76,7 @@ fun MainScreen(
                     onOpenPaywall = onOpenPaywall,
                     onOpenStore = { current = MainTab.Store },
                     onOpenPearls = onOpenPearls,
+                    onOpenKapibaya = onOpenKapibaya,
                 )
                 MainTab.Academy -> AcademyScreen(onOpenLesson = onOpenLesson)
                 MainTab.Logbook -> LogbookScreen(onAddLog = onOpenNewSurgicalLog)
