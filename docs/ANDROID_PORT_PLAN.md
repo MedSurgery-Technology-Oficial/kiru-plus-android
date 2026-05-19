@@ -1,6 +1,16 @@
 # KIRU+ Android Port — Plan Maestro
 
-> **Estado:** Draft 1 · 2026-05-17 · Build iOS de referencia: 17 (en App Review)
+> **Estado original:** Draft 1 · 2026-05-17 · Build iOS de referencia: 17 (en App Review)
+> **Update 2026-05-18:** v0.1.0 base implementada (**11 commits**, **47 unit tests** PASS). iOS Build 17 **rechazado** → Build 18 pushed con fixes. URLs legales corregidas y alineadas iOS+Android.
+>
+> **Documentos vivos (consultar antes que este Plan Maestro):**
+> - [`IOS_PARITY_MATRIX.md`](./IOS_PARITY_MATRIX.md) — estado actualizado feature por feature (single source of truth de progreso).
+> - [`ROADMAP_V2.md`](./ROADMAP_V2.md) — plan forward priorizado (Sprints A→H con estimaciones).
+> - [`GOOGLE_PLAY_CHECKLIST.md`](./GOOGLE_PLAY_CHECKLIST.md) — checklist Play Console pre-submit.
+> - [`PRIVACY_AND_DATA_SAFETY.md`](./PRIVACY_AND_DATA_SAFETY.md) — Data Safety form draft (con BLOQUEANTE follow-up resuelto).
+>
+> Las secciones 1-N originales de este Plan Maestro permanecen como **referencia histórica** del diseño inicial. Para el estado actual y siguientes pasos, ir a los docs vivos arriba.
+>
 > **Autor técnico:** Arquitectura móvil KIRU+
 > **Objetivo:** Portar la app iOS KIRU+ a Android conservando paridad funcional, reutilizando 100% del backend (Supabase + Render + Node + Python ML), y minimizando riesgo en Google Play Console.
 
