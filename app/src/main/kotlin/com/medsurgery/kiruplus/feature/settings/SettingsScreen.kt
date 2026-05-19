@@ -50,6 +50,7 @@ fun SettingsScreen(
     onBack: () -> Unit,
     onSignedOut: () -> Unit,
     onDeleteAccount: () -> Unit,
+    onDataExport: () -> Unit,
     onPrivacyPolicy: () -> Unit,
     onTerms: () -> Unit,
     onSubscriptions: () -> Unit,
@@ -129,6 +130,11 @@ fun SettingsScreen(
                 TextRow(
                     title = stringResource(R.string.settings_signout),
                     onClick = { viewModel.signOut(onSignedOut) },
+                )
+                HorizontalDivider()
+                TextRow(
+                    title = stringResource(R.string.data_export_menu),
+                    onClick = onDataExport,
                 )
                 HorizontalDivider()
                 TextRow(

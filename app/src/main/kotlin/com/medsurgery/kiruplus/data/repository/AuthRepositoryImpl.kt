@@ -75,6 +75,12 @@ class AuthRepositoryImpl @Inject constructor(
             Unit
         }
 
+    override suspend fun requestDataExport(): Result<Unit> =
+        runAuth("requestDataExport") {
+            supabase.functions.invoke("process_data_export")
+            Unit
+        }
+
     private inline fun runAuth(label: String, block: () -> Unit): Result<Unit> =
         try {
             block()

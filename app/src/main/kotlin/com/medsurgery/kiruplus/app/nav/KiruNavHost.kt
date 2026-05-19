@@ -14,6 +14,7 @@ import com.medsurgery.kiruplus.feature.auth.RegisterScreen
 import com.medsurgery.kiruplus.feature.main.MainScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
 import com.medsurgery.kiruplus.feature.onboarding.SplashScreen
+import com.medsurgery.kiruplus.feature.settings.DataExportScreen
 import com.medsurgery.kiruplus.feature.settings.SettingsScreen
 import com.medsurgery.kiruplus.feature.store.ProductDetailScreen
 
@@ -167,6 +168,7 @@ fun KiruNavHost(navController: NavHostController) {
                     }
                 },
                 onDeleteAccount = { navController.navigate(KiruRoute.AccountDeletion) },
+                onDataExport = { navController.navigate(KiruRoute.DataExport) },
                 onPrivacyPolicy = {
                     navController.navigate(
                         KiruRoute.WebView(
@@ -192,6 +194,10 @@ fun KiruNavHost(navController: NavHostController) {
                     )
                 },
             )
+        }
+
+        composable<KiruRoute.DataExport> {
+            DataExportScreen(onBack = { navController.popBackStack() })
         }
 
         composable<KiruRoute.WebView> { entry ->

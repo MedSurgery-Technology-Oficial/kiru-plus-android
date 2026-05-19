@@ -27,6 +27,14 @@ interface AuthRepository {
      * Requerido por Google Play (Account Deletion policy) y GDPR Art. 17.
      */
     suspend fun requestAccountDeletion(): Result<Unit>
+
+    /**
+     * Solicita exportación de datos personales del usuario (GDPR Art. 15 /
+     * LFPDPPP Art. 23). Llama a Edge Function `process_data_export`, que
+     * agrega los datos en un payload y lo deja en storage `gdpr-exports`.
+     * El usuario recibe por email un signed URL para descarga.
+     */
+    suspend fun requestDataExport(): Result<Unit>
 }
 
 sealed interface SessionState {
