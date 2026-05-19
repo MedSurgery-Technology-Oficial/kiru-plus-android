@@ -40,6 +40,11 @@ fun KiruNavHost(navController: NavHostController) {
                         popUpTo(KiruRoute.Splash) { inclusive = true }
                     }
                 },
+                onContinueToLogin = {
+                    navController.navigate(KiruRoute.Login) {
+                        popUpTo(KiruRoute.Splash) { inclusive = true }
+                    }
+                },
                 onContinueToHome = {
                     navController.navigate(KiruRoute.Home) {
                         popUpTo(KiruRoute.Splash) { inclusive = true }

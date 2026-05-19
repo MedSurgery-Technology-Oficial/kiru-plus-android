@@ -1,5 +1,7 @@
 package com.medsurgery.kiruplus.feature.settings
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -145,7 +148,19 @@ fun SettingsScreen(
             }
 
             // ABOUT
+            val context = LocalContext.current
             SettingsSection(title = stringResource(R.string.settings_section_about)) {
+                TextRow(
+                    title = stringResource(R.string.settings_support),
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_SENDTO).apply {
+                            data = Uri.parse("mailto:contacto@medsurgery.academy")
+                            putExtra(Intent.EXTRA_SUBJECT, "KIRU+ Android Support")
+                        }
+                        context.startActivity(Intent.createChooser(intent, null))
+                    },
+                )
+                HorizontalDivider()
                 Text(
                     text = stringResource(
                         R.string.settings_version,

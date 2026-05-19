@@ -75,8 +75,10 @@ fun MainScreen(
             when (current) {
                 MainTab.Home -> HomeScreen(
                     onOpenSettings = onOpenSettings,
-                    onOpenPaywall = onOpenPaywall,
+                    onOpenAcademy = { current = MainTab.Academy },
+                    onOpenLogbook = { current = MainTab.Logbook },
                     onOpenStore = { current = MainTab.Store },
+                    onOpenPaywall = onOpenPaywall,
                     onOpenPearls = onOpenPearls,
                     onOpenKapibaya = onOpenKapibaya,
                     onOpenKTools = onOpenKTools,

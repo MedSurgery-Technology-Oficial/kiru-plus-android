@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.medsurgery.kiruplus.R
 import kotlinx.coroutines.flow.distinctUntilChanged
 
@@ -49,6 +50,7 @@ fun MedicalDisclaimerScreen(
     onAccepted: () -> Unit,
     onPrivacyPolicy: () -> Unit,
     onTerms: () -> Unit,
+    viewModel: OnboardingViewModel = hiltViewModel(),
 ) {
     var accepted by remember { mutableStateOf(false) }
     var hasScrolledToEnd by remember { mutableStateOf(false) }
@@ -144,7 +146,7 @@ fun MedicalDisclaimerScreen(
                     onAcceptedChange = { accepted = it },
                 )
                 Button(
-                    onClick = onAccepted,
+                    onClick = { viewModel.acceptDisclaimer(onAccepted) },
                     enabled = accepted && hasScrolledToEnd,
                     modifier = Modifier.fillMaxWidth(),
                 ) {

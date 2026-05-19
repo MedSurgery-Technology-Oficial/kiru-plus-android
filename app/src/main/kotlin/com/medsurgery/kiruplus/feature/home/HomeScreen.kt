@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Chat
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -22,6 +23,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -37,6 +39,8 @@ import com.medsurgery.kiruplus.R
 @Composable
 fun HomeScreen(
     onOpenSettings: () -> Unit,
+    onOpenAcademy: () -> Unit,
+    onOpenLogbook: () -> Unit,
     onOpenStore: () -> Unit,
     onOpenPaywall: () -> Unit,
     onOpenPearls: () -> Unit,
@@ -76,12 +80,13 @@ fun HomeScreen(
             }
             item {
                 QuickActionsGrid(
-                    onAcademyClick = onOpenPearls,
-                    onLogbookClick = onOpenStore,
+                    onAcademyClick = onOpenAcademy,
+                    onLogbookClick = onOpenLogbook,
                     onStoreClick = onOpenStore,
                     onKToolsClick = onOpenKTools,
                 )
             }
+            item { KapibayaCard(onClick = onOpenKapibaya) }
         }
     }
 }
@@ -169,6 +174,44 @@ private fun QuickActionsGrid(
                 modifier = Modifier.weight(1f),
                 onClick = onKToolsClick,
             )
+        }
+    }
+}
+
+@Composable
+private fun KapibayaCard(onClick: () -> Unit) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        onClick = onClick,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+        ),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.Chat,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+            )
+            Column {
+                Text(
+                    text = stringResource(R.string.kapibaya_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                )
+                Text(
+                    text = stringResource(R.string.kapibaya_welcome_body),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f),
+                )
+            }
         }
     }
 }

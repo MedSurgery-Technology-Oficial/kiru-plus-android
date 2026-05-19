@@ -11,11 +11,8 @@ data class UserPreferences(
     val language: AppLanguage = AppLanguage.System,
     val theme: AppTheme = AppTheme.System,
     val hapticsEnabled: Boolean = true,
-    /**
-     * Crash reporting opt-in. Si `false`, Sentry NO se inicializa al startup
-     * aunque `BuildConfig.SENTRY_DSN` esté presente. Default false (privacy-first).
-     */
     val sentryEnabled: Boolean = false,
+    val disclaimerAccepted: Boolean = false,
 )
 
 enum class AppLanguage(val tag: String) {
@@ -44,6 +41,7 @@ interface UserPreferencesRepository {
     suspend fun setTheme(theme: AppTheme)
     suspend fun setHapticsEnabled(enabled: Boolean)
     suspend fun setSentryEnabled(enabled: Boolean)
+    suspend fun setDisclaimerAccepted(accepted: Boolean)
 }
 
 /**
@@ -55,4 +53,5 @@ object UserPreferencesKeys {
     const val THEME = "theme"
     const val HAPTICS = "haptics_enabled"
     const val SENTRY_ENABLED = "sentry_enabled"
+    const val DISCLAIMER_ACCEPTED = "disclaimer_accepted"
 }

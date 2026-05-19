@@ -12,31 +12,33 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.medsurgery.kiruplus.R
-import kotlinx.coroutines.delay
 
-/**
- * Splash screen — pantalla puente entre el SplashScreen API nativo y el primer destino.
- * E0: bootstrap simple (delay + decisión). En E3 leerá DataStore para saber si:
- *  - hasAcceptedMedicalDisclaimer → ir a Login
- *  - !hasAcceptedMedicalDisclaimer → ir a MedicalDisclaimer
- *  - tiene sesión activa → ir a Home
- */
 @Composable
 fun SplashScreen(
     onContinueToDisclaimer: () -> Unit,
+    onContinueToLogin: () -> Unit,
     onContinueToHome: () -> Unit,
+    viewModel: SplashViewModel = hiltViewModel(),
 ) {
-    LaunchedEffect(Unit) {
-        delay(800)
-        // TODO E3: leer DataStore (disclaimer aceptado + sesión válida) y enrutar.
-        onContinueToDisclaimer()
+    val destination by viewModel.destination.collectAsStateWithLifecycle()
+
+    LaunchedEffect(destination) {
+        when (destination) {
+            SplashViewModel.Destination.Disclaimer -> onContinueToDisclaimer()
+            SplashViewModel.Destination.Login -> onContinueToLogin()
+            SplashViewModel.Destination.Home -> onContinueToHome()
+            null -> Unit
+        }
     }
 
     Scaffold { padding ->

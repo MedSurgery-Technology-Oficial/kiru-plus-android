@@ -33,6 +33,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
         val Theme = stringPreferencesKey(UserPreferencesKeys.THEME)
         val Haptics = booleanPreferencesKey(UserPreferencesKeys.HAPTICS)
         val SentryEnabled = booleanPreferencesKey(UserPreferencesKeys.SENTRY_ENABLED)
+        val DisclaimerAccepted = booleanPreferencesKey(UserPreferencesKeys.DISCLAIMER_ACCEPTED)
     }
 
     override val preferences: Flow<UserPreferences> = dataStore.data.map { prefs ->
@@ -41,6 +42,7 @@ class UserPreferencesRepositoryImpl @Inject constructor(
             theme = AppTheme.fromName(prefs[Keys.Theme]),
             hapticsEnabled = prefs[Keys.Haptics] ?: true,
             sentryEnabled = prefs[Keys.SentryEnabled] ?: false,
+            disclaimerAccepted = prefs[Keys.DisclaimerAccepted] ?: false,
         )
     }
 
@@ -58,6 +60,10 @@ class UserPreferencesRepositoryImpl @Inject constructor(
 
     override suspend fun setSentryEnabled(enabled: Boolean) {
         dataStore.edit { it[Keys.SentryEnabled] = enabled }
+    }
+
+    override suspend fun setDisclaimerAccepted(accepted: Boolean) {
+        dataStore.edit { it[Keys.DisclaimerAccepted] = accepted }
     }
 }
 
