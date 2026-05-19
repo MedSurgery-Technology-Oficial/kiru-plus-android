@@ -1,10 +1,9 @@
 package com.medsurgery.kiruplus.feature.settings
 
-import androidx.core.os.LocaleListCompat
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.medsurgery.kiruplus.core.auth.AuthRepository
+import com.medsurgery.kiruplus.core.locale.LocaleApplier
 import com.medsurgery.kiruplus.core.prefs.AppLanguage
 import com.medsurgery.kiruplus.core.prefs.AppTheme
 import com.medsurgery.kiruplus.core.prefs.UserPreferences
@@ -19,10 +18,9 @@ import javax.inject.Inject
 /**
  * SettingsViewModel — espejo conceptual de iOS SettingsView.
  *
- * Idioma: persiste via DataStore + aplica `AppCompatDelegate.setApplicationLocales`
- * (per-app language API; nativo en Android 13+, polyfill en versiones anteriores
- * via `xml/locales_config.xml`). El cambio puede requerir restart visual de la
- * activity en algunos casos — se avisa via hint string.
+ * Idioma: persiste via DataStore + aplica via `LocaleApplier` (Android 13+
+ * usa LocaleManager nativo; <13 polyfill de AppCompat). El cambio puede
+ * requerir restart visual de la activity en algunos casos.
  *
  * Tema: persiste via DataStore; el cambio se aplica inmediato porque KiruTheme
  * está observando `preferences` flow desde la raíz de Compose.
@@ -31,6 +29,7 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     private val prefsRepository: UserPreferencesRepository,
     private val authRepository: AuthRepository,
+    private val localeApplier: LocaleApplier,
 ) : ViewModel() {
 
     val preferences: StateFlow<UserPreferences> = prefsRepository.preferences
@@ -43,7 +42,7 @@ class SettingsViewModel @Inject constructor(
     fun setLanguage(language: AppLanguage) {
         viewModelScope.launch {
             prefsRepository.setLanguage(language)
-            applyAppLocale(language)
+            localeApplier.apply(language)
         }
     }
 
@@ -64,13 +63,5 @@ class SettingsViewModel @Inject constructor(
             authRepository.signOut()
             onComplete()
         }
-    }
-
-    private fun applyAppLocale(language: AppLanguage) {
-        val locales = when (language) {
-            AppLanguage.System -> LocaleListCompat.getEmptyLocaleList()
-            else -> LocaleListCompat.forLanguageTags(language.tag)
-        }
-        AppCompatDelegate.setApplicationLocales(locales)
     }
 }
