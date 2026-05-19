@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import com.medsurgery.kiruplus.core.prefs.UserPreferencesKeys
 import com.medsurgery.kiruplus.core.prefs.kiruDataStore
+import com.revenuecat.purchases.LogLevel
+import com.revenuecat.purchases.Purchases
+import com.revenuecat.purchases.PurchasesConfiguration
 import dagger.hilt.android.HiltAndroidApp
 import io.sentry.android.core.SentryAndroid
 import kotlinx.coroutines.flow.first
@@ -16,7 +19,20 @@ class KiruApp : Application() {
     override fun onCreate() {
         super.onCreate()
         installLogging()
+        installRevenueCat()
         installCrashReportingIfOptedIn()
+    }
+
+    private fun installRevenueCat() {
+        val apiKey = BuildConfig.REVENUECAT_API_KEY
+        if (apiKey.isBlank()) {
+            Timber.w("RevenueCat API key missing; paywall unavailable in this build.")
+            return
+        }
+        if (BuildConfig.DEBUG) Purchases.logLevel = LogLevel.DEBUG
+        Purchases.configure(
+            PurchasesConfiguration.Builder(this, apiKey).build()
+        )
     }
 
     private fun installLogging() {

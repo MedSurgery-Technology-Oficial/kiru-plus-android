@@ -16,6 +16,7 @@ import com.medsurgery.kiruplus.feature.quiz.QuizPlayerScreen
 import com.medsurgery.kiruplus.feature.kapibaya.KapibayaChatScreen
 import com.medsurgery.kiruplus.feature.ktools.CalculatorScreen
 import com.medsurgery.kiruplus.feature.ktools.KToolsMenuScreen
+import com.medsurgery.kiruplus.feature.paywall.PaywallScreen
 import com.medsurgery.kiruplus.feature.logbook.NewSurgicalLogScreen
 import com.medsurgery.kiruplus.feature.main.MainScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
@@ -271,6 +272,8 @@ fun KiruNavHost(navController: NavHostController) {
             )
         }
 
-        // TODO E7+: Paywall, Store
+        composable<KiruRoute.Paywall> {
+            PaywallScreen(onDismiss = { navController.popBackStack() })
+        }
     }
 }

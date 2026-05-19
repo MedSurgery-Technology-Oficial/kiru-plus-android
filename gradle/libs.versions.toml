@@ -36,8 +36,8 @@ supabase = "3.0.2"
 ktor = "3.0.3"
 
 # RevenueCat
-revenuecat = "8.10.4"
-revenuecatUi = "8.10.4"
+revenuecat = "10.6.0"
+revenuecatUi = "10.6.0"
 
 # Networking helpers
 okhttp = "4.12.0"
