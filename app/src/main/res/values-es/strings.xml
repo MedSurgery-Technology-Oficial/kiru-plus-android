@@ -134,6 +134,11 @@
     <string name="settings_signout">Cerrar sesión</string>
     <string name="settings_version">Versión %1$s · Build %2$d</string>
 
+    <!-- Perfil -->
+    <string name="profile_error_load">No se pudo cargar tu perfil.</string>
+    <string name="profile_empty">Aún no tienes perfil.</string>
+    <string name="profile_role_specialty">%1$s · %2$s</string>
+
     <!-- Exportación de datos (RGPD Art. 15 / LFPDPPP Art. 23) -->
     <string name="data_export_title">Exportar mis datos</string>
     <string name="data_export_menu">Exportar mis datos (RGPD)</string>
