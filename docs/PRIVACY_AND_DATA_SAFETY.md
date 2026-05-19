@@ -93,13 +93,37 @@ sujeta a confirmación).
 
 ## Follow-ups requeridos antes del Play Console submit
 
-1. Validar las 3 URLs legales (privacy / terms / subscriptions) — el WebView
-   smoke E9 reportó 404 en la URL hardcoded; revisar con marketing si la URL
-   correcta es `https://medsurgery.academy/...` (sin `www.`) u otra ruta.
-2. Confirmar URL pública del flujo de Account Deletion para el Play Console.
-3. Habilitar Sentry solo después de revisar política de retención y opt-in del
+### ⚠️ BLOQUEANTE — URLs legales no existen en producción (2026-05-18)
+Confirmado por curl HEAD: las 3 URLs configuradas en `BuildConfig` (Android)
+y en `KIRUPlusApp-Info.plist` (iOS) responden **HTTP 404**:
+- `https://www.medsurgery.academy/politica-de-privacidad-kiru-pro` → 404
+- `https://www.medsurgery.academy/terminos-de-uso-y-licencia-kiru-pro` → 404
+- `https://www.medsurgery.academy/politica-de-suscripciones-kiru-pro` → 404
+
+Probadas también 20 variaciones de slugs (con/sin `www`, `/kiru/...`,
+`/legal/...`, ES/EN, etc.) — ninguna devuelve 200. El dominio raíz
+(`/` y `/kiru`) sí responde 200, lo que confirma que el host está vivo
+pero las páginas legales **no han sido publicadas** (o fueron eliminadas).
+
+**Implicación**: la misma 404 puede llegar a aparecer al revisor de Apple App
+Review (Build 17 ya submitted al iOS) y a Google Play (cuando se suba el
+Android). Es un blocker de compliance para ambas tiendas, no un bug del
+cliente.
+
+**Acción requerida — equipo marketing/legal**:
+1. Publicar las 3 páginas en `https://www.medsurgery.academy/` con los
+   slugs ya configurados, o
+2. Comunicar las nuevas URLs canónicas para actualizar BuildConfig + Info.plist
+   simultáneamente.
+
+Hasta entonces, **no cambiar las URLs sólo en Android** — desalinearía el
+binario respecto a iOS.
+
+### Otros follow-ups
+1. Confirmar URL pública del flujo de Account Deletion para el Play Console.
+2. Habilitar Sentry solo después de revisar política de retención y opt-in del
    usuario (puede vivir como flag en Settings).
-4. Si Health Apps Declaration aplica (categoría "Medical"), preparar el
+3. Si Health Apps Declaration aplica (categoría "Medical"), preparar el
    formulario adicional con CMCG endorsement y disclaimer legal.
 
 ## Bibliografía / standards aplicados
