@@ -1,20 +1,27 @@
 package com.medsurgery.kiruplus.feature.home
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -22,12 +29,14 @@ import androidx.compose.ui.unit.dp
 import com.medsurgery.kiruplus.R
 
 /**
- * Home dashboard. E0: placeholder con disclaimer banner permanente y navegación stub.
- * E5 reemplazará el placeholder por cards reales (perlas, quick actions, K-Tools).
+ * Home dashboard — versión E5: welcome card + 4 quick actions placeholder + nav buttons.
+ * El dashboard rico (Hero, Arena, Pearls, K-Tools real) llega en E6+.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     onOpenProfile: () -> Unit,
+    onOpenSettings: () -> Unit,
     onOpenPaywall: () -> Unit,
     onOpenStore: () -> Unit,
 ) {
@@ -35,6 +44,22 @@ fun HomeScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text(stringResource(R.string.app_name)) },
+                navigationIcon = {
+                    IconButton(onClick = onOpenProfile) {
+                        Icon(
+                            imageVector = Icons.Filled.AccountCircle,
+                            contentDescription = stringResource(R.string.tab_profile),
+                        )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = onOpenSettings) {
+                        Icon(
+                            imageVector = Icons.Filled.Settings,
+                            contentDescription = stringResource(R.string.home_open_settings),
+                        )
+                    }
+                },
             )
         },
     ) { padding ->
@@ -46,20 +71,21 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             item { DisclaimerBanner() }
-            item { PlaceholderCard("Tab Home", "E5 — perlas del día, accesos rápidos, K-Tools.") }
+            item { WelcomeCard() }
             item {
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = CardDefaults.cardColors(),
-                ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Text("Navegación stub", style = MaterialTheme.typography.titleMedium)
-                        TextButton(onClick = onOpenProfile) { Text(stringResource(R.string.tab_profile)) }
-                        TextButton(onClick = onOpenStore) { Text(stringResource(R.string.tab_store)) }
-                        TextButton(onClick = onOpenPaywall) { Text("Premium / Paywall (E7)") }
-                    }
-                }
+                Text(
+                    text = stringResource(R.string.home_quick_actions),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+            item {
+                QuickActionsGrid(
+                    onAcademyClick = onOpenStore, // routes placeholder hasta E2+
+                    onLogbookClick = onOpenStore,
+                    onStoreClick = onOpenStore,
+                    onKToolsClick = onOpenPaywall, // Premium gate hint
+                )
             }
         }
     }
@@ -77,21 +103,110 @@ private fun DisclaimerBanner() {
         Text(
             text = stringResource(R.string.disclaimer_short_banner),
             style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(12.dp),
         )
     }
 }
 
 @Composable
-private fun PlaceholderCard(title: String, body: String) {
+private fun WelcomeCard() {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
+        ),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(title, style = MaterialTheme.typography.titleMedium)
-            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-            Text(body, style = MaterialTheme.typography.bodyMedium)
+        Column(modifier = Modifier.padding(20.dp)) {
+            Text(
+                text = stringResource(R.string.home_welcome_title),
+                style = MaterialTheme.typography.headlineMedium,
+            )
+            Text(
+                text = stringResource(R.string.home_welcome_body),
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(top = 8.dp),
+            )
+        }
+    }
+}
+
+@Composable
+private fun QuickActionsGrid(
+    onAcademyClick: () -> Unit,
+    onLogbookClick: () -> Unit,
+    onStoreClick: () -> Unit,
+    onKToolsClick: () -> Unit,
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            QuickActionCard(
+                title = stringResource(R.string.home_card_academy_title),
+                body = stringResource(R.string.home_card_academy_body),
+                modifier = Modifier.weight(1f),
+                onClick = onAcademyClick,
+            )
+            QuickActionCard(
+                title = stringResource(R.string.home_card_logbook_title),
+                body = stringResource(R.string.home_card_logbook_body),
+                modifier = Modifier.weight(1f),
+                onClick = onLogbookClick,
+            )
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            QuickActionCard(
+                title = stringResource(R.string.home_card_store_title),
+                body = stringResource(R.string.home_card_store_body),
+                modifier = Modifier.weight(1f),
+                onClick = onStoreClick,
+            )
+            QuickActionCard(
+                title = stringResource(R.string.home_card_ktools_title),
+                body = stringResource(R.string.home_card_ktools_body),
+                modifier = Modifier.weight(1f),
+                onClick = onKToolsClick,
+            )
+        }
+    }
+}
+
+@Composable
+private fun QuickActionCard(
+    title: String,
+    body: String,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+    Card(
+        modifier = modifier.height(140.dp),
+        shape = RoundedCornerShape(16.dp),
+        onClick = onClick,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        ),
+    ) {
+        Box(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+            Column {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+                Text(
+                    text = body,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 6.dp),
+                )
+            }
         }
     }
 }

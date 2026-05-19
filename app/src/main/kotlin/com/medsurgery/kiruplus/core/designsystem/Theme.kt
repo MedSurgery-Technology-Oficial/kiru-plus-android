@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import com.medsurgery.kiruplus.core.prefs.AppTheme
 
 /**
  * Material 3 mapping desde el Brand Manual KIRU+.
@@ -62,9 +63,14 @@ private val DarkColors = darkColorScheme(
 
 @Composable
 fun KiruTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    appTheme: AppTheme = AppTheme.System,
     content: @Composable () -> Unit,
 ) {
+    val darkTheme = when (appTheme) {
+        AppTheme.System -> isSystemInDarkTheme()
+        AppTheme.Light -> false
+        AppTheme.Dark -> true
+    }
     val colors = if (darkTheme) DarkColors else LightColors
     MaterialTheme(
         colorScheme = colors,

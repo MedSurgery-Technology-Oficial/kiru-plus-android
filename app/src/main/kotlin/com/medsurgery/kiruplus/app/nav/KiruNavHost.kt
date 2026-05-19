@@ -15,6 +15,7 @@ import com.medsurgery.kiruplus.feature.home.HomeScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
 import com.medsurgery.kiruplus.feature.onboarding.SplashScreen
 import com.medsurgery.kiruplus.feature.profile.ProfileScreen
+import com.medsurgery.kiruplus.feature.settings.SettingsScreen
 
 @Composable
 fun KiruNavHost(navController: NavHostController) {
@@ -98,6 +99,7 @@ fun KiruNavHost(navController: NavHostController) {
         composable<KiruRoute.Home> {
             HomeScreen(
                 onOpenProfile = { navController.navigate(KiruRoute.Profile) },
+                onOpenSettings = { navController.navigate(KiruRoute.Settings) },
                 onOpenPaywall = { navController.navigate(KiruRoute.Paywall) },
                 onOpenStore = { navController.navigate(KiruRoute.Store) },
             )
@@ -157,6 +159,42 @@ fun KiruNavHost(navController: NavHostController) {
             )
         }
 
+        composable<KiruRoute.Settings> {
+            SettingsScreen(
+                onBack = { navController.popBackStack() },
+                onSignedOut = {
+                    navController.navigate(KiruRoute.Login) {
+                        popUpTo(KiruRoute.Home) { inclusive = true }
+                    }
+                },
+                onDeleteAccount = { navController.navigate(KiruRoute.AccountDeletion) },
+                onPrivacyPolicy = {
+                    navController.navigate(
+                        KiruRoute.WebView(
+                            title = "Privacidad",
+                            url = BuildConfig.PRIVACY_POLICY_URL,
+                        ),
+                    )
+                },
+                onTerms = {
+                    navController.navigate(
+                        KiruRoute.WebView(
+                            title = "Términos",
+                            url = BuildConfig.TERMS_URL,
+                        ),
+                    )
+                },
+                onSubscriptions = {
+                    navController.navigate(
+                        KiruRoute.WebView(
+                            title = "Suscripciones",
+                            url = BuildConfig.SUBSCRIPTIONS_POLICY_URL,
+                        ),
+                    )
+                },
+            )
+        }
+
         composable<KiruRoute.WebView> { entry ->
             val args = entry.toRoute<KiruRoute.WebView>()
             WebViewScreen(
@@ -166,6 +204,6 @@ fun KiruNavHost(navController: NavHostController) {
             )
         }
 
-        // TODO E5+: Settings, Paywall, Store
+        // TODO E7+: Paywall, Store
     }
 }
