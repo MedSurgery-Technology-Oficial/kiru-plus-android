@@ -12,7 +12,7 @@
     <color name="kiru_gold">#DAA520</color>
     <color name="kiru_green">#04CE03</color>
     <color name="kiru_red">#D2042D</color>
-    <color name="kiru_light_blue">#1A1A5E</color>
+    <color name="kiru_light_blue">#00004C</color>
 
     <!-- Aliases legacy mantenidos por compatibilidad con código que referenciaba placeholders. -->
     <color name="kiru_primary">@color/kiru_navy_blue</color>

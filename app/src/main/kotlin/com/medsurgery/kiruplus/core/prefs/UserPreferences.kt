@@ -9,7 +9,11 @@ import kotlinx.coroutines.flow.Flow
  */
 data class UserPreferences(
     val language: AppLanguage = AppLanguage.System,
-    val theme: AppTheme = AppTheme.System,
+    /**
+     * Default Dark para emparejar la app iOS (que es dark-only).
+     * El usuario sí puede cambiar a Light o System desde Settings — sólo el default cambió.
+     */
+    val theme: AppTheme = AppTheme.Dark,
     val hapticsEnabled: Boolean = true,
     val sentryEnabled: Boolean = false,
     val disclaimerAccepted: Boolean = false,
@@ -30,7 +34,8 @@ enum class AppTheme {
     System, Light, Dark;
 
     companion object {
-        fun fromName(name: String?): AppTheme = entries.firstOrNull { it.name == name } ?: System
+        /** Default Dark (sin override) para emparejar iOS dark-only. */
+        fun fromName(name: String?): AppTheme = entries.firstOrNull { it.name == name } ?: Dark
     }
 }
 

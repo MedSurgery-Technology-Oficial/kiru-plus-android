@@ -16,7 +16,7 @@ internal val KiruSlateGray = Color(0xFF1E293B)
 internal val KiruGold = Color(0xFFDAA520)
 internal val KiruGreen = Color(0xFF04CE03)
 internal val KiruRed = Color(0xFFD2042D)
-internal val KiruLightBlue = Color(0xFF1A1A5E)
+internal val KiruLightBlue = Color(0xFF00004C)
 
 // Surfaces neutras para light mode (off-white, suaves, no puro blanco glare).
 internal val LightSurface = Color(0xFFF8FAFC)        // = KiruWhite
