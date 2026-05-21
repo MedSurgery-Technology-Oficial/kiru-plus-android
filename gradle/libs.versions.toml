@@ -36,8 +36,8 @@ supabase = "3.0.2"
 ktor = "3.0.3"
 
 # RevenueCat
-revenuecat = "10.6.0"
-revenuecatUi = "10.6.0"
+revenuecat = "10.6.1"
+revenuecatUi = "10.6.1"
 
 # Networking helpers
 okhttp = "4.12.0"
@@ -53,8 +53,8 @@ timber = "5.0.1"
 junit = "4.13.2"
 junitExt = "1.2.1"
 espresso = "3.6.1"
-mockk = "1.13.13"
-turbine = "1.2.0"
+mockk = "1.14.9"
+turbine = "1.2.1"
 
 [libraries]
 # AndroidX core

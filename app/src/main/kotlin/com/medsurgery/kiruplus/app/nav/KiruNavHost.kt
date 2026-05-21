@@ -114,7 +114,6 @@ fun KiruNavHost(navController: NavHostController) {
         composable<KiruRoute.Home> {
             MainScreen(
                 onOpenSettings = { navController.navigate(KiruRoute.Settings) },
-                onOpenPaywall = { navController.navigate(KiruRoute.Paywall) },
                 onOpenAccountDeletion = { navController.navigate(KiruRoute.AccountDeletion) },
                 onOpenPrivacyPolicy = {
                     navController.navigate(
@@ -143,7 +142,6 @@ fun KiruNavHost(navController: NavHostController) {
                 onOpenProductDetail = { productId ->
                     navController.navigate(KiruRoute.ProductDetail(productId))
                 },
-                onOpenPearls = { navController.navigate(KiruRoute.Pearls) },
                 onOpenLesson = { contentId ->
                     navController.navigate(KiruRoute.LessonDetail(contentId))
                 },

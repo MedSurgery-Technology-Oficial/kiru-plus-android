@@ -2,9 +2,9 @@ package com.medsurgery.kiruplus.core.browser
 
 import android.content.ActivityNotFoundException
 import android.content.Context
-import android.net.Uri
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.net.toUri
 import com.medsurgery.kiruplus.R
 import timber.log.Timber
 
@@ -23,7 +23,7 @@ import timber.log.Timber
 object CustomTabsLauncher {
 
     fun launch(context: Context, url: String): Boolean {
-        val uri = runCatching { Uri.parse(url) }.getOrNull()
+        val uri = runCatching { url.toUri() }.getOrNull()
         if (uri == null || uri.scheme.isNullOrBlank()) {
             Timber.w("CustomTabsLauncher: URL inválida: %s", url)
             return false

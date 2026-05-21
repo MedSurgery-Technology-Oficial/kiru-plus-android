@@ -133,6 +133,10 @@
     <string name="settings_haptics">Vibración táctil</string>
     <string name="settings_signout">Cerrar sesión</string>
     <string name="settings_version">Versión %1$s · Build %2$d</string>
+    <string name="settings_support">Servicio al cliente</string>
+    <string name="settings_support_store">Soporte de la tienda MedSurgery</string>
+    <string name="settings_support_website">Sitio web de soporte</string>
+    <string name="settings_website">medsurgery.academy</string>
 
     <!-- Dr. Kapibaya chat -->
     <string name="kapibaya_title">Dr. Kapibaya</string>
@@ -152,6 +156,8 @@
     <string name="logbook_empty_body">Toca el botón + para registrar tu primer procedimiento.</string>
     <string name="logbook_unknown_procedure">Procedimiento desconocido</string>
     <string name="logbook_add">Agregar registro quirúrgico</string>
+    <string name="logbook_delete">Eliminar registro</string>
+    <string name="logbook_error_delete">No se pudo eliminar el registro. Inténtalo de nuevo.</string>
     <string name="logbook_new_title">Nuevo registro quirúrgico</string>
     <string name="logbook_field_procedure">Procedimiento</string>
     <string name="logbook_field_date">Fecha</string>
@@ -166,6 +172,25 @@
     <string name="academy_error_load">No se pudieron cargar las lecciones. Inténtalo de nuevo.</string>
     <string name="academy_empty">Aún no hay lecciones disponibles.</string>
     <string name="academy_not_found">Lección no encontrada.</string>
+    <string name="academy_tab_lessons">Lecciones</string>
+    <string name="academy_tab_quiz">Quizzes</string>
+
+    <!-- Quiz -->
+    <string name="quiz_error_load">No se pudo cargar el quiz. Inténtalo de nuevo.</string>
+    <string name="quiz_empty">No hay preguntas disponibles para este tema.</string>
+    <string name="quiz_progress">Pregunta %1$d de %2$d</string>
+    <string name="quiz_next">Siguiente</string>
+    <string name="quiz_finish">Ver resultados</string>
+    <string name="quiz_explanation_label">Explicación</string>
+    <string name="quiz_score_title">¡Quiz completo!</string>
+    <string name="quiz_score_pct">%1$d%%</string>
+    <string name="quiz_restart">Intentar de nuevo</string>
+    <string name="quiz_question_count">%1$d preguntas</string>
+
+    <!-- K-Tools -->
+    <string name="ktools_title">K-Tools</string>
+    <string name="ktools_result">Resultado</string>
+    <string name="ktools_disclaimer">⚠️ Herramienta de apoyo clínico-educativo. No sustituye el juicio del médico tratante. Los resultados deben interpretarse en contexto clínico completo.</string>
 
     <!-- Perlas clínicas -->
     <string name="pearls_title">Perlas clínicas</string>

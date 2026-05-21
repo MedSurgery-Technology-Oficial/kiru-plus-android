@@ -14,7 +14,6 @@ sealed class AuthError(
     data object RateLimited : AuthError(R.string.auth_error_rate_limited)
     data object WeakPassword : AuthError(R.string.auth_error_weak_password)
     data object InvalidEmail : AuthError(R.string.auth_error_invalid_email)
-    data object PasswordsDontMatch : AuthError(R.string.auth_error_passwords_dont_match)
     data object Network : AuthError(R.string.auth_error_network)
     data class Unknown(val original: Throwable) : AuthError(R.string.error_generic, original)
 }

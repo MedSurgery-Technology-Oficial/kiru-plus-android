@@ -1,7 +1,6 @@
 package com.medsurgery.kiruplus.feature.settings
 
 import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.core.net.toUri
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -154,7 +154,7 @@ fun SettingsScreen(
                     title = stringResource(R.string.settings_support),
                     onClick = {
                         val intent = Intent(Intent.ACTION_SENDTO).apply {
-                            data = Uri.parse("mailto:customer_service@medsurgery.academy")
+                            data = "mailto:customer_service@medsurgery.academy".toUri()
                             putExtra(Intent.EXTRA_SUBJECT, "KIRU+ Support")
                         }
                         context.startActivity(Intent.createChooser(intent, null))
@@ -165,7 +165,7 @@ fun SettingsScreen(
                     title = stringResource(R.string.settings_support_store),
                     onClick = {
                         val intent = Intent(Intent.ACTION_SENDTO).apply {
-                            data = Uri.parse("mailto:customer_service@medsurgery.store")
+                            data = "mailto:customer_service@medsurgery.store".toUri()
                             putExtra(Intent.EXTRA_SUBJECT, "MedSurgery Store Support")
                         }
                         context.startActivity(Intent.createChooser(intent, null))
@@ -176,7 +176,7 @@ fun SettingsScreen(
                     title = stringResource(R.string.settings_support_website),
                     onClick = {
                         context.startActivity(
-                            Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.SUPPORT_WEBSITE_URL))
+                            Intent(Intent.ACTION_VIEW, BuildConfig.SUPPORT_WEBSITE_URL.toUri())
                         )
                     },
                 )
@@ -185,7 +185,7 @@ fun SettingsScreen(
                     title = stringResource(R.string.settings_website),
                     onClick = {
                         context.startActivity(
-                            Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.WEBSITE_URL))
+                            Intent(Intent.ACTION_VIEW, BuildConfig.WEBSITE_URL.toUri())
                         )
                     },
                 )

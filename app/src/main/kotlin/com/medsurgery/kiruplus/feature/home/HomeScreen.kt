@@ -42,8 +42,6 @@ fun HomeScreen(
     onOpenAcademy: () -> Unit,
     onOpenLogbook: () -> Unit,
     onOpenStore: () -> Unit,
-    onOpenPaywall: () -> Unit,
-    onOpenPearls: () -> Unit,
     onOpenKapibaya: () -> Unit,
     onOpenKTools: () -> Unit,
 ) {

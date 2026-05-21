@@ -40,6 +40,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.medsurgery.kiruplus.R
+import java.util.Locale
 import kotlin.math.exp
 
 // ─── Dispatcher ──────────────────────────────────────────────────────────────
@@ -911,7 +912,7 @@ private fun RipasaCalculator(onBack: () -> Unit) {
         item { CriterionRow("Leucocitosis", 1, elevatedWBC) { elevatedWBC = it } }
         item { CriterionRow("Examen de orina negativo", 1, negUrine) { negUrine = it } }
         item { HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp)) }
-        item { ResultCard(String.format("%.1f pts — RIPASA", score), interp, level) }
+        item { ResultCard(String.format(Locale.US, "%.1f pts — RIPASA", score), interp, level) }
         item { DisclaimerRow() }
     }
 }

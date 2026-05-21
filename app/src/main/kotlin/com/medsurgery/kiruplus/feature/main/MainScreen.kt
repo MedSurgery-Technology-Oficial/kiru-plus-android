@@ -33,13 +33,11 @@ import com.medsurgery.kiruplus.feature.store.StoreScreen
 @Composable
 fun MainScreen(
     onOpenSettings: () -> Unit,
-    onOpenPaywall: () -> Unit,
     onOpenAccountDeletion: () -> Unit,
     onOpenPrivacyPolicy: () -> Unit,
     onOpenTerms: () -> Unit,
     onOpenSubscriptions: () -> Unit,
     onOpenProductDetail: (String) -> Unit,
-    onOpenPearls: () -> Unit,
     onOpenLesson: (String) -> Unit,
     onOpenQuiz: (String) -> Unit,
     onOpenNewSurgicalLog: () -> Unit,
@@ -78,8 +76,6 @@ fun MainScreen(
                     onOpenAcademy = { current = MainTab.Academy },
                     onOpenLogbook = { current = MainTab.Logbook },
                     onOpenStore = { current = MainTab.Store },
-                    onOpenPaywall = onOpenPaywall,
-                    onOpenPearls = onOpenPearls,
                     onOpenKapibaya = onOpenKapibaya,
                     onOpenKTools = onOpenKTools,
                 )

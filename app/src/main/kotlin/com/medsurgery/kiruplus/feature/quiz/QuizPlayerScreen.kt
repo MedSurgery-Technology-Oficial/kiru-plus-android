@@ -151,7 +151,7 @@ private fun QuestionPage(
 
         Spacer(Modifier.height(8.dp))
 
-        AnimatedContent(targetState = question.id, label = "options") {
+        AnimatedContent(targetState = question.id, label = "options") { _ ->
             Column(
                 modifier = Modifier.padding(horizontal = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),

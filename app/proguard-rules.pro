@@ -22,11 +22,11 @@
 -dontwarn io.ktor.**
 
 # --- RevenueCat -----------------------------------------------------------
--keep class com.revenuecat.purchases.** { *; }
--keep class com.revenuecat.purchases.kmp.** { *; }
+# El SDK incluye `consumer-rules.pro` en su AAR — no necesitamos keep rules manuales.
+# https://www.revenuecat.com/docs/getting-started/installation/android
 
 # --- Sentry ---------------------------------------------------------------
--keep class io.sentry.** { *; }
+# El SDK incluye `consumer-rules.pro` en su AAR — no necesitamos keep rules manuales.
 
 # --- Hilt / Dagger --------------------------------------------------------
 -keep class dagger.hilt.android.internal.managers.** { *; }
@@ -43,7 +43,7 @@
 -dontwarn okio.**
 
 # --- Compose --------------------------------------------------------------
--keep class androidx.compose.** { *; }
+# Compose ya trae sus propias consumer-rules; R8 maneja la mayoría automáticamente.
 
 # --- Coil (image loading) -------------------------------------------------
 # Coil ya trae sus propias reglas con consumer-rules.pro, pero suprimimos
