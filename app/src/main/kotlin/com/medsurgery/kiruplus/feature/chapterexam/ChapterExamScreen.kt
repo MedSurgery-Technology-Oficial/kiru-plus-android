@@ -35,6 +35,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
@@ -44,14 +46,34 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.medsurgery.kiruplus.R
 
-@OptIn(ExperimentalMaterial3Api::class)
+/** Stateful entry point — connects to Hilt ViewModel. */
 @Composable
 fun ChapterExamScreen(
     onBack: () -> Unit,
     viewModel: ChapterExamViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    ChapterExamContent(
+        state = state,
+        onSelectOption = viewModel::selectOption,
+        onNext = viewModel::nextQuestion,
+        onRestart = viewModel::restart,
+        onRetry = viewModel::load,
+        onBack = onBack,
+    )
+}
 
+/** Stateless content — testable without Hilt. */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun ChapterExamContent(
+    state: ChapterExamUiState,
+    onSelectOption: (Int) -> Unit,
+    onNext: () -> Unit,
+    onRestart: () -> Unit,
+    onRetry: () -> Unit,
+    onBack: () -> Unit,
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -78,32 +100,30 @@ fun ChapterExamScreen(
                 .padding(padding),
         ) {
             when {
-                state.isLoading -> Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center,
-                ) { CircularProgressIndicator() }
-
-                state.error != null -> ChapterExamErrorState(
-                    onRetry = viewModel::load,
-                )
-
+                state.isLoading -> ChapterExamLoadingState()
+                state.error != null -> ChapterExamErrorState(onRetry = onRetry)
                 state.isEmpty -> ChapterExamEmptyState(onBack = onBack)
-
                 state.isCompleted -> ChapterExamScoreScreen(
                     correct = state.correctCount,
                     total = state.totalQuestions,
                     scorePct = state.scorePct,
-                    onRestart = viewModel::restart,
+                    onRestart = onRestart,
                     onBack = onBack,
                 )
-
                 state.currentQuestion != null -> ChapterExamQuestionPage(
                     state = state,
-                    onSelectOption = viewModel::selectOption,
-                    onNext = viewModel::nextQuestion,
+                    onSelectOption = onSelectOption,
+                    onNext = onNext,
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun ChapterExamLoadingState() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
     }
 }
 
@@ -122,17 +142,20 @@ private fun ChapterExamQuestionPage(
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
     ) {
+        val progressDesc = stringResource(
+            R.string.chapter_exam_progress,
+            state.currentIndex + 1,
+            state.totalQuestions,
+        )
         LinearProgressIndicator(
             progress = { progress },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clearAndSetSemantics { contentDescription = progressDesc },
         )
 
         Text(
-            text = stringResource(
-                R.string.chapter_exam_progress,
-                state.currentIndex + 1,
-                state.totalQuestions,
-            ),
+            text = progressDesc,
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(horizontal = 24.dp, vertical = 12.dp),
@@ -275,6 +298,7 @@ private fun ChapterExamScoreScreen(
     onRestart: () -> Unit,
     onBack: () -> Unit,
 ) {
+    val scoreDesc = stringResource(R.string.chapter_exam_score, correct, total, scorePct)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -298,14 +322,12 @@ private fun ChapterExamScoreScreen(
         }
 
         Text(
-            text = stringResource(R.string.chapter_exam_score, correct, total, scorePct),
+            text = scoreDesc,
             style = MaterialTheme.typography.displaySmall,
             fontWeight = FontWeight.ExtraBold,
             color = scoreColor,
             textAlign = TextAlign.Center,
-            modifier = Modifier.semantics {
-                stateDescription = "$scorePct%"
-            },
+            modifier = Modifier.semantics { contentDescription = scoreDesc },
         )
 
         Spacer(Modifier.height(40.dp))

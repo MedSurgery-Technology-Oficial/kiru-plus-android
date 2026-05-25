@@ -86,6 +86,8 @@
     <string name="action_back">Atrás</string>
     <string name="action_retry">Reintentar</string>
     <string name="action_close">Cerrar</string>
+    <string name="library_block_expand">Expandir bloque</string>
+    <string name="library_block_collapse">Contraer bloque</string>
     <string name="state_loading">Cargando…</string>
     <string name="state_offline">Sin conexión a internet</string>
     <string name="error_generic">Algo salió mal. Inténtalo de nuevo.</string>
