@@ -41,6 +41,7 @@ sealed interface KiruRoute {
 
     @Serializable data object Library : KiruRoute
     @Serializable data class LibraryModuleDetail(val moduleId: String) : KiruRoute
+    @Serializable data class ChapterExam(val examId: String) : KiruRoute
 
     @Serializable data object AccountDeletion : KiruRoute
     @Serializable data object DataExport : KiruRoute

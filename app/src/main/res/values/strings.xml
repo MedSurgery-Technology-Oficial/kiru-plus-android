@@ -218,6 +218,23 @@
     <string name="library_chapter_available">Available</string>
     <string name="library_chapter_locked">Locked</string>
     <string name="library_open_module">Open module</string>
+    <!-- Chapter Exam (Quiz por capítulo) -->
+    <string name="chapter_exam_title">Chapter Quiz</string>
+    <string name="chapter_exam_progress">Question %1$d of %2$d</string>
+    <string name="chapter_exam_start">Start quiz</string>
+    <string name="chapter_exam_next">Next</string>
+    <string name="chapter_exam_see_results">See results</string>
+    <string name="chapter_exam_rationale_label">Explanation</string>
+    <string name="chapter_exam_correct">Correct</string>
+    <string name="chapter_exam_incorrect">Incorrect</string>
+    <string name="chapter_exam_score_title">Quiz complete</string>
+    <string name="chapter_exam_score">%1$d / %2$d correct · %3$d%%</string>
+    <string name="chapter_exam_restart">Retry exam</string>
+    <string name="chapter_exam_back_to_library">Back to library</string>
+    <string name="chapter_exam_error_load">Couldn\'t load quiz. Please try again.</string>
+    <string name="chapter_exam_empty">No quiz found for this chapter.</string>
+    <string name="chapter_exam_not_found">chapter_exam_not_found</string>
+
     <!-- Home library card -->
     <string name="home_card_library_title">Library</string>
     <string name="home_card_library_body">Study modules and surgical curriculum.</string>

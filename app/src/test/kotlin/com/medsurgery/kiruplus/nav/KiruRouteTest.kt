@@ -132,4 +132,20 @@ class KiruRouteTest {
         val list: KiruRoute = KiruRoute.Library
         assertNotEquals(detail, list)
     }
+
+    @Test
+    fun `ChapterExam carries examId`() {
+        val route = KiruRoute.ChapterExam("Chapter-042")
+        assertEquals("Chapter-042", route.examId)
+    }
+
+    @Test
+    fun `ChapterExam routes with same id are equal`() {
+        assertEquals(KiruRoute.ChapterExam("Chapter-001"), KiruRoute.ChapterExam("Chapter-001"))
+    }
+
+    @Test
+    fun `ChapterExam routes with different ids are not equal`() {
+        assertNotEquals(KiruRoute.ChapterExam("Chapter-001"), KiruRoute.ChapterExam("Chapter-002"))
+    }
 }
