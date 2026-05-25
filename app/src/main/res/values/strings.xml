@@ -204,6 +204,25 @@
     <string name="ktools_result">Resultado</string>
     <string name="ktools_disclaimer">⚠️ Herramienta de apoyo clínico-educativo. No sustituye el juicio del médico tratante. Los resultados deben interpretarse en contexto clínico completo.</string>
 
+    <!-- Library (Biblioteca) -->
+    <string name="library_title">Library</string>
+    <string name="library_tab_modules">Study Modules</string>
+    <string name="library_tab_curriculum">Curriculum</string>
+    <string name="library_modules_count">%1$d clinical modules</string>
+    <string name="library_curriculum_count">%1$d blocks · %2$d chapters</string>
+    <string name="library_empty_title">No content available</string>
+    <string name="library_empty_body">Library content could not be loaded from local assets.</string>
+    <string name="library_error_load">Couldn\'t load library. Please try again.</string>
+    <string name="library_module_points_count">%1$d topics</string>
+    <string name="library_curriculum_block">Block %1$d</string>
+    <string name="library_chapter_available">Available</string>
+    <string name="library_chapter_locked">Locked</string>
+    <string name="library_open_module">Open module</string>
+    <!-- Home library card -->
+    <string name="home_card_library_title">Library</string>
+    <string name="home_card_library_body">Study modules and surgical curriculum.</string>
+    <string name="home_open_library">Open Library</string>
+
     <!-- Data export (GDPR Art. 15 / LFPDPPP Art. 23) -->
     <string name="data_export_title">Export my data</string>
     <string name="data_export_menu">Export my data (GDPR)</string>

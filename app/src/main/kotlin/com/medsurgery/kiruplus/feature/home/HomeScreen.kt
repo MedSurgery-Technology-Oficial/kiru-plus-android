@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Chat
+import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -44,6 +45,7 @@ fun HomeScreen(
     onOpenStore: () -> Unit,
     onOpenKapibaya: () -> Unit,
     onOpenKTools: () -> Unit,
+    onOpenLibrary: () -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -84,6 +86,7 @@ fun HomeScreen(
                     onKToolsClick = onOpenKTools,
                 )
             }
+            item { LibraryCard(onClick = onOpenLibrary) }
             item { KapibayaCard(onClick = onOpenKapibaya) }
         }
     }
@@ -172,6 +175,44 @@ private fun QuickActionsGrid(
                 modifier = Modifier.weight(1f),
                 onClick = onKToolsClick,
             )
+        }
+    }
+}
+
+@Composable
+private fun LibraryCard(onClick: () -> Unit) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        onClick = onClick,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+        ),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            Icon(
+                imageVector = Icons.Default.MenuBook,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+            )
+            Column {
+                Text(
+                    text = stringResource(R.string.home_card_library_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
+                Text(
+                    text = stringResource(R.string.home_card_library_body),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.8f),
+                )
+            }
         }
     }
 }

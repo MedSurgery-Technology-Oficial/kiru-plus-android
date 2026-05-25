@@ -1,0 +1,773 @@
+{
+  "schemaVersion": 1,
+  "blocks": [
+    {
+      "id": "B01",
+      "blockNumber": 1,
+      "title": "Bloque I: Fundamentos y Formación del Cirujano",
+      "units": [
+        {
+          "id": "B01-U01",
+          "unitNumber": 1,
+          "title": "Unidad 1",
+          "chapters": [
+            {
+              "id": "B01-U01-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 1. Historia de la cirugía general en México y en el mundo",
+              "status": "available"
+            },
+            {
+              "id": "B01-U01-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 2. El modelo integral de competencias del cirujano general: formación, entrenamiento, juicio y desarrollo profesional",
+              "status": "available"
+            },
+            {
+              "id": "B01-U01-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 3. Competencias cognitivas, juicio clínico, aprendizaje continuo y evidencia",
+              "status": "available"
+            },
+            {
+              "id": "B01-U01-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 4. El cirujano íntegro: liderazgo, comunicación y seguridad como fundamentos del acto quirúrgico",
+              "status": "available"
+            },
+            {
+              "id": "B01-U01-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 5. Cirugía abierta y cirugía laparoscópica: fundamentos, técnica y juicio clínico",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "id": "B01-U02",
+          "unitNumber": 2,
+          "title": "Unidad 2",
+          "chapters": [
+            {
+              "id": "B01-U02-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 6. Cirugía ambulatoria, electiva y de urgencia: modalidades, selección del paciente y protocolos de recuperación mejorada",
+              "status": "available"
+            },
+            {
+              "id": "B01-U02-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 7. Cirugía robótica, presente y futuro: formación del cirujano y andragogía del siglo XXI",
+              "status": "available"
+            },
+            {
+              "id": "B01-U02-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 8. Cirugía segura: reduciendo el error humano",
+              "status": "available"
+            },
+            {
+              "id": "B01-U02-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 9. Seguridad del paciente y de los profesionales de la salud",
+              "status": "available"
+            },
+            {
+              "id": "B01-U02-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 10. Enfermedad mental en el preoperatorio y el postoperatorio",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "id": "B01-U03",
+          "unitNumber": 3,
+          "title": "Unidad 3",
+          "chapters": [
+            {
+              "id": "B01-U03-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 11. Expediente clínico y expediente electrónico",
+              "status": "available"
+            },
+            {
+              "id": "B01-U03-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 12. Bioética quirúrgica: autonomía, dignidad y humanismo en la práctica",
+              "status": "available"
+            },
+            {
+              "id": "B01-U03-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 13. Metodología de investigación y cirugía basada en la evidencia",
+              "status": "available"
+            },
+            {
+              "id": "B01-U03-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 14. Docencia, investigación, evidencia y mejora continua en cirugía",
+              "status": "available"
+            },
+            {
+              "id": "B01-U03-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 15. El profesional en cirugía general",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "id": "B01-U04",
+          "unitNumber": 4,
+          "title": "Unidad 4",
+          "chapters": [
+            {
+              "id": "B01-U04-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 16. Responsabilidad profesional del cirujano",
+              "status": "available"
+            },
+            {
+              "id": "B01-U04-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 17. El protocolo de investigación: Todo proyecto de investigación comienza donde nace la inquietud clínica",
+              "status": "available"
+            },
+            {
+              "id": "B01-U04-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 18. Principios de la epidemiología médica y sus principales medidas",
+              "status": "available"
+            },
+            {
+              "id": "B01-U04-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 19. Embriología y anatomía quirúrgica del hígado y de la vía biliar",
+              "status": "available"
+            },
+            {
+              "id": "B01-U04-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 20. Fisiología del hígado y de la vía biliar para el cirujano general",
+              "status": "available"
+            }
+          ]
+        },
+        {
+          "id": "B01-U05",
+          "unitNumber": 5,
+          "title": "Unidad 5",
+          "chapters": [
+            {
+              "id": "B01-U05-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 21. Ictericia y síndrome ictérico: diagnóstico y relevancia quirúrgica",
+              "status": "coming_soon"
+            },
+            {
+              "id": "B01-U05-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 22. Colangitis y colecistitis agudas: Guías de Tokio 2018 (TG18) y medicina basada en la evidencia",
+              "status": "coming_soon"
+            },
+            {
+              "id": "B01-U05-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 23. Estrategias anatómicas para: reducir complicaciones en cirugía laparoscópica",
+              "status": "coming_soon"
+            },
+            {
+              "id": "B01-U05-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 24. Control vascular anatómico en: escenarios de hemorragia masiva",
+              "status": "coming_soon"
+            },
+            {
+              "id": "B01-U05-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 25. Estrategia de cierre de la pared abdominal y de prevención de la hernia incisional",
+              "status": "coming_soon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B02",
+      "blockNumber": 2,
+      "title": "Bloque II: Técnica Quirúrgica y Cirugía Abierta",
+      "units": [
+        {
+          "id": "B02-U01",
+          "unitNumber": 1,
+          "title": "Unidad 1",
+          "chapters": [
+            {
+              "id": "B02-U01-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 26. Anatomía quirúrgica del páncreas: relaciones y consideraciones importantes",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U01-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 27. Sangrado postoperatorio: clasificación, diagnóstico y control de daños",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U01-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 28. Anestesia local y regional:  técnicas, fármacos y aplicaciones quirúrgicas",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U01-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 29. Vigilancia epidemiológica: infección de sitio quirúrgico (ISQ)",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U01-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 30. Complicaciones postquirúrgicas: el desafío del cuidado crítico",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B02-U02",
+          "unitNumber": 2,
+          "title": "Unidad 2",
+          "chapters": [
+            {
+              "id": "B02-U02-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 31. Fases metabólicas de la respuesta al trauma: del choque inicial a la recuperación anabólica",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U02-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 32. Respuesta metabólica por aparatos y sistemas: cómo el trauma reprograma al cuerpo entero",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U02-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 33. Líquidos y trastornos hidroelectrolíticos en cirugía: del balance en pizarra al paciente en la cama",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U02-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 34. Síndrome de realimentación: el espectro de síntomas clínicos es amplio",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U02-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 35. La herida quirúrgica: generalidades del manejo, la sutura y la cicatrización",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B02-U03",
+          "unitNumber": 3,
+          "title": "Unidad 3",
+          "chapters": [
+            {
+              "id": "B02-U03-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 36. Mallas protésicas en cirugía general: historia, biología de la integración, clasificación y uso clínico",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U03-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 37. Técnicas de sutura convencional: fundamentos, patrones, materiales y seguridad en el cierre",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U03-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 38. Cirugía abierta y laparoscópica",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U03-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 39. Dispositivos de energía para hemostasia y disección: energía eléctrica, monopolar y bipolar",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U03-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 40. Drenajes en cirugía general: sistemas de oclusión y de presión negativa",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B02-U04",
+          "unitNumber": 4,
+          "title": "Unidad 4",
+          "chapters": [
+            {
+              "id": "B02-U04-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 41. Microbiología quirúrgica: resistencia bacteriana",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U04-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 42. Papel del anestesiólogo en la prevención de la infección del sitio quirúrgico",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U04-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 43. Diagnóstico temprano de la infección del sitio quirúrgico",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U04-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 44. Sepsis y choque séptico en el adulto y en el niño: campaña de supervivencia a la sepsis 2021",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U04-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 45. Obstrucción del intestino delgado por adherencias (ASBO): guías de la WSES — Bologna 2017",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B02-U05",
+          "unitNumber": 5,
+          "title": "Unidad 5",
+          "chapters": [
+            {
+              "id": "B02-U05-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 46. Obstrucción del intestino delgado por adherencias (ASBO): guías de la WSES — Bologna 2017",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U05-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 47. Aspectos fundamentales del manejo de tejidos",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U05-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 48. Infecciones de tejidos blandos: celulitis, hidradenitis supurativa (HS), paroniquia y felón",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U05-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 49. Fasciitis necrosante (FN)",
+              "status": "pending"
+            },
+            {
+              "id": "B02-U05-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 50. Infecciones intraabdominales y peritonitis primaria, secundaria y terciaria: diagnóstico, control del foco y tratamiento antimicrobiano",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B03",
+      "blockNumber": 3,
+      "title": "Bloque III: Cirugía de Urgencias y Trauma",
+      "units": [
+        {
+          "id": "B03-U01",
+          "unitNumber": 1,
+          "title": "Unidad 1",
+          "chapters": [
+            {
+              "id": "B03-U01-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 51. Isquemia mesentérica aguda e intestinal: diagnóstico temprano, toma de decisiones y manejo quirúrgico, con medicina basada en evidencia de las  guías de la WSES.",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U01-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 52. Cirugía de trauma: para el cirujano general",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U01-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 53. Abdomen agudo quirúrgico y no quirúrgico",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U01-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 54. Apendicitis aguda: diagnóstico y tratamientos basados en la evidencia — guías de la WSES 2020",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U01-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 55. Úlcera péptica perforada y sangrante: manejo quirúrgico basado en la evidencia y en las guías de la WSES",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B03-U02",
+          "unitNumber": 2,
+          "title": "Unidad 2",
+          "chapters": [
+            {
+              "id": "B03-U02-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 56. Diverticulosis y clasificación de la enfermedad diverticular: guías de la ASCRS",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U02-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 57. Trauma abdominal mediante abordaje por vía laparoscópica",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U02-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 58. Abdomen hostil: definición, diagnóstico y tratamiento basados en evidencia",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U02-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 59. Anatomía quirúrgica de la pared abdominal y la región inguinal",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U02-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 60. Anatomía quirúrgica del esófago",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B03-U03",
+          "unitNumber": 3,
+          "title": "Unidad 3",
+          "chapters": [
+            {
+              "id": "B03-U03-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 61. Fisiología de la deglución: patologías esofágicas",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U03-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 62. Enfermedad por reflujo gastroesofágico (ERGE)",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U03-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 63. Anatomía y fisiología del intestino",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U03-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 64. Cirugía bariátrica para el cirujano general",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U03-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 65. Anatomía quirúrgica del colon y del recto",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B03-U04",
+          "unitNumber": 4,
+          "title": "Unidad 4",
+          "chapters": [
+            {
+              "id": "B03-U04-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 66. Anatomía quirúrgica del recto y del ano: pruebas para el estudio de su función",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U04-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 67. Fisiología del colon, el recto y el ano",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U04-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 68. Anatomía quirúrgica del cuello",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U04-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 69. Fisiología y patología tiroidea y paratiroidea",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U04-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 70. Hiperparatiroidismo secundario y terciario",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B03-U05",
+          "unitNumber": 5,
+          "title": "Unidad 5",
+          "chapters": [
+            {
+              "id": "B03-U05-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 71. umores neuroendocrinos no funcionales del páncreas",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U05-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 72. Oncología quirúrgica y patología mamaria integral",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U05-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 73. Anatomía quirúrgica del tórax y del mediastino",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U05-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 74. Fisiopatología de las enfermedades vasculares",
+              "status": "pending"
+            },
+            {
+              "id": "B03-U05-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 75. Cirugía de trasplantes: principios básicos, historia, legislación y normas",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B04",
+      "blockNumber": 4,
+      "title": "Bloque IV: Cirugía Especializada y Desarrollo Profesional",
+      "units": [
+        {
+          "id": "B04-U01",
+          "unitNumber": 1,
+          "title": "Unidad 1",
+          "chapters": [
+            {
+              "id": "B04-U01-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 76. Cirugía pediátrica para el cirujano general",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U01-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 77. Defectos congénitos  de la pared abdominal",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U01-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 78. Introducción a la neurocirugía: lo indispensable para la cirugía general",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U01-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 79. Anatomía quirúrgica de la glándula suprarrenal",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U01-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 80. Anatomía quirúrgica de las fascias y del riñón",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B04-U02",
+          "unitNumber": 2,
+          "title": "Unidad 2",
+          "chapters": [
+            {
+              "id": "B04-U02-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 81. Anatomía quirúrgica del pene para el cirujano general",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U02-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 82. Variaciones anatómicas de la pelvis ósea",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U02-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 83. Anatomía quirúrgica de los órganos pélvicos",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U02-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 84. Infecciones cervicovaginales para el cirujano general",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U02-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 85. Enfermedad pélvica inflamatoria (EPI)",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B04-U03",
+          "unitNumber": 3,
+          "title": "Unidad 3",
+          "chapters": [
+            {
+              "id": "B04-U03-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 86. Torsión de tumores anexiales y su manejo quirúrgico conservador",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U03-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 87. Embarazo ectópico: una urgencia potencialmente letal",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U03-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 88. NOM-020-SSA-2025: establecimientos de salud, partería y atención integral materna y neonatal en México",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U03-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 89. Operación cesárea: indicaciones, técnica y seguridad",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U03-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 90. Triage obstétrico, código Mater y equipo de respuesta inmediata obstétrica (ERIO)",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B04-U04",
+          "unitNumber": 4,
+          "title": "Unidad 4",
+          "chapters": [
+            {
+              "id": "B04-U04-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 91. Fibromas Uterinos (Leiomiomas / Miomatosis Uterina)",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U04-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 92. Cirugía vascular periférica y accesos vasculares",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U04-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 93. Nutrición y metabolismo en el paciente quirúrgico",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U04-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 94. Cirugía geriátrica y fragilidad para el cirujano general",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U04-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 95. Manejo quirúrgico de quemaduras y lesiones térmicas",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "B04-U05",
+          "unitNumber": 5,
+          "title": "Unidad 5",
+          "chapters": [
+            {
+              "id": "B04-U05-C001",
+              "chapterNumber": 1,
+              "title": "Capitulo 96. Cirugía torácica no cardíaca para el cirujano general",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U05-C002",
+              "chapterNumber": 2,
+              "title": "Capitulo 97. Cirugía endocrina avanzada para le cirujano general",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U05-C003",
+              "chapterNumber": 3,
+              "title": "Capitulo 98. Bioestadística y evaluación crítica de la evidencia",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U05-C004",
+              "chapterNumber": 4,
+              "title": "Capitulo 99. Cáncer  y patología colorrectal para el cirujano general: tamizaje, diagnóstico, principios oncológicos y urgencias quirúrgicas basadas en la evidencia de las guías de la ASCRS.",
+              "status": "pending"
+            },
+            {
+              "id": "B04-U05-C005",
+              "chapterNumber": 5,
+              "title": "Capitulo 100. Innovación en cirugía general: simulación, inteligencia artificial, cirugía guiada por datos y futuro de la formación quirúrgica",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

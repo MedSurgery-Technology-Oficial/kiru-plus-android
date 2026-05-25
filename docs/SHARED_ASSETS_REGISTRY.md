@@ -1,6 +1,6 @@
 # Shared Assets Registry
 
-**Last updated:** 2026-05-24  
+**Last updated:** 2026-05-24 (updated with 3 clinical JSON assets)  
 **Owner:** MedSurgery Technology
 
 > Tracks any asset (image, font, JSON, audio) that was intentionally ported from iOS to Android.  
@@ -22,7 +22,9 @@
 
 | Asset | Android path | iOS source path | SHA-256 (Android copy) | Ported date | Notes |
 |-------|-------------|-----------------|------------------------|-------------|-------|
-| *(no entries yet)* | | | | | |
+| `curriculum_index_v1.json` | `app/src/main/assets/curriculum/curriculum_index_v1.json` | `Resources/DataBaseInformation/Curriculum/curriculum_index_v1.json` | `e7696d612354f04cdd7098c978ca826e0a943bb635507e9eb034e0f125e94cab` | 2026-05-24 | Copia versionada, sin symlink, sin dependencia viva del repo iOS. Contenido propio MedSurgery. 4 bloques curriculares, 27 KB. |
+| `ChapterExams.json` | `app/src/main/assets/curriculum/ChapterExams.json` | `Resources/DataBaseInformation/Curriculum/ChapterExams.json` | `ce5baa9885dfa8c9afb3bfb2a613ab13dbd2aad7850cba31ae6a9fb37dc845d3` | 2026-05-24 | Copia versionada, sin symlink, sin dependencia viva del repo iOS. Contenido propio MedSurgery. 100 exámenes de capítulo con preguntas y rationale, 616 KB. |
+| `StudyModules.json` | `app/src/main/assets/modules/StudyModules.json` | `Resources/DataBaseInformation/StudyModules.json` | `0a5a048e7ee515e99da362b463f4eb8a178f22b45deb361bccfb9c33cfa0a8a1` | 2026-05-24 | Copia versionada, sin symlink, sin dependencia viva del repo iOS. Contenido propio MedSurgery. 88 módulos clínicos perioperatorios, 599 KB. |
 
 ---
 
