@@ -35,7 +35,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -105,7 +104,7 @@ private fun ResultCard(
 ) {
     val (bg, fg) = when (level) {
         RiskLevel.LOW      -> MaterialTheme.colorScheme.tertiary to MaterialTheme.colorScheme.tertiary
-        RiskLevel.MODERATE -> Color(0xFFFF9800) to Color(0xFFFF9800)
+        RiskLevel.MODERATE -> MaterialTheme.colorScheme.secondary to MaterialTheme.colorScheme.secondary
         RiskLevel.HIGH     -> MaterialTheme.colorScheme.error to MaterialTheme.colorScheme.error
     }
     Card(

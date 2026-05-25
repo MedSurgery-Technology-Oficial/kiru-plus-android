@@ -107,6 +107,17 @@ class LibraryViewModelTest {
     }
 
     @Test
+    fun `isEmpty false when error is set even with empty lists`() = runTest {
+        val repo = makeRepo(
+            modulesResult = Result.failure(Exception("network")),
+            curriculumResult = Result.success(emptyList()),
+        )
+        val vm = LibraryViewModel(repo)
+        assertFalse("isEmpty must be false when there is an error", vm.state.value.isEmpty)
+        assertNotNull(vm.state.value.error)
+    }
+
+    @Test
     fun `selectTab updates selectedTab`() = runTest {
         val vm = LibraryViewModel(makeRepo())
         assertEquals(0, vm.state.value.selectedTab)

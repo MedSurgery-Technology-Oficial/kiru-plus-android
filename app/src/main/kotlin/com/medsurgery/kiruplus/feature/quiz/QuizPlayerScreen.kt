@@ -35,6 +35,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -201,14 +203,23 @@ private fun OptionButton(
 
     val (borderColor, containerColor) = when {
         !answered -> MaterialTheme.colorScheme.outline to Color.Transparent
-        isCorrect -> Color(0xFF2E7D32) to Color(0xFF2E7D32).copy(alpha = 0.12f)
+        isCorrect -> MaterialTheme.colorScheme.tertiary to MaterialTheme.colorScheme.tertiary.copy(alpha = 0.12f)
         isSelected -> MaterialTheme.colorScheme.error to MaterialTheme.colorScheme.error.copy(alpha = 0.12f)
         else -> MaterialTheme.colorScheme.outline.copy(alpha = 0.4f) to Color.Transparent
     }
 
+    val answerStateDesc = when {
+        !answered -> ""
+        isCorrect -> "Respuesta correcta"
+        isSelected -> "Respuesta incorrecta"
+        else -> ""
+    }
+
     OutlinedButton(
         onClick = { if (!answered) onClick() },
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .semantics { stateDescription = answerStateDesc },
         shape = RoundedCornerShape(12.dp),
         border = BorderStroke(2.dp, borderColor),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
@@ -220,7 +231,7 @@ private fun OptionButton(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
             color = when {
-                isCorrect -> Color(0xFF2E7D32)
+                isCorrect -> MaterialTheme.colorScheme.tertiary
                 isSelected && !isCorrect -> MaterialTheme.colorScheme.error
                 else -> MaterialTheme.colorScheme.onSurface
             },

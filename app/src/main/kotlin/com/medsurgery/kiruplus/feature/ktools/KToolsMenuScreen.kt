@@ -27,6 +27,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.medsurgery.kiruplus.R
 import com.medsurgery.kiruplus.domain.ktools.CalculatorCategory
@@ -65,6 +67,7 @@ fun KToolsMenuScreen(
                         text = category.labelEs,
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.semantics { heading() },
                     )
                 }
                 item(key = "group_${category.name}") {
