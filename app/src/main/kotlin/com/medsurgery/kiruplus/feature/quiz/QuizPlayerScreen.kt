@@ -151,16 +151,16 @@ private fun QuestionPage(
 
         Spacer(Modifier.height(8.dp))
 
-        AnimatedContent(targetState = question.id, label = "options") { _ ->
+        AnimatedContent(targetState = question, label = "options") { currentQuestion ->
             Column(
                 modifier = Modifier.padding(horizontal = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                question.options.forEach { option ->
+                currentQuestion.options.forEach { option ->
                     OptionButton(
                         text = option,
                         selectedAnswer = state.selectedAnswer,
-                        correctAnswer = question.correctAnswer,
+                        correctAnswer = currentQuestion.correctAnswer,
                         onClick = { onSelectAnswer(option) },
                     )
                 }

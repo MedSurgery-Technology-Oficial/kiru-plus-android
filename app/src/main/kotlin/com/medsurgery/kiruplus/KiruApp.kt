@@ -73,6 +73,13 @@ class KiruApp : Application() {
             options.tracesSampleRate = if (BuildConfig.DEBUG) 1.0 else 0.2
             options.environment = if (BuildConfig.DEBUG) "debug" else "release"
             options.release = "${BuildConfig.APPLICATION_ID}@${BuildConfig.VERSION_NAME}+${BuildConfig.VERSION_CODE}"
+            // Medical app: never send PII or user identifiers to Sentry.
+            options.isSendDefaultPii = false
+            options.maxBreadcrumbs = 50
+            options.beforeSend = io.sentry.SentryOptions.BeforeSendCallback { event, _ ->
+                event.user = null
+                event
+            }
         }
     }
 }
