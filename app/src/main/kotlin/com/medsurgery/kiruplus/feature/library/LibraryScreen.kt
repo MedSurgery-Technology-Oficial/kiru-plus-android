@@ -45,6 +45,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -56,6 +58,7 @@ import com.medsurgery.kiruplus.domain.library.CurriculumBlock
 import com.medsurgery.kiruplus.domain.library.CurriculumUnit
 import com.medsurgery.kiruplus.domain.library.LibraryModule
 
+/** Stateful entry point — connects to Hilt ViewModel. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LibraryScreen(
@@ -65,6 +68,27 @@ fun LibraryScreen(
     viewModel: LibraryViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    LibraryContent(
+        state = state,
+        onBack = onBack,
+        onOpenModule = onOpenModule,
+        onStartChapterQuiz = onStartChapterQuiz,
+        onRetry = viewModel::load,
+        onSelectTab = viewModel::selectTab,
+    )
+}
+
+/** Stateless content — testable without Hilt. */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun LibraryContent(
+    state: LibraryUiState,
+    onBack: () -> Unit,
+    onOpenModule: (String) -> Unit,
+    onStartChapterQuiz: (String) -> Unit,
+    onRetry: () -> Unit,
+    onSelectTab: (Int) -> Unit,
+) {
     val tabs = listOf(
         stringResource(R.string.library_tab_modules),
         stringResource(R.string.library_tab_curriculum),
@@ -73,7 +97,12 @@ fun LibraryScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(stringResource(R.string.library_title)) },
+                title = {
+                    Text(
+                        text = stringResource(R.string.library_title),
+                        modifier = Modifier.semantics { heading() },
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
@@ -90,7 +119,7 @@ fun LibraryScreen(
                 tabs.forEachIndexed { index, title ->
                     Tab(
                         selected = state.selectedTab == index,
-                        onClick = { viewModel.selectTab(index) },
+                        onClick = { onSelectTab(index) },
                         text = { Text(title) },
                     )
                 }
@@ -99,7 +128,7 @@ fun LibraryScreen(
             when {
                 state.isLoading -> LibraryLoadingState()
                 state.error != null && state.modules.isEmpty() && state.curriculum.isEmpty() ->
-                    LibraryErrorState(onRetry = viewModel::load)
+                    LibraryErrorState(onRetry = onRetry)
                 state.isEmpty -> LibraryEmptyState()
                 state.selectedTab == 0 -> ModulesContent(
                     modules = state.modules,
@@ -185,7 +214,9 @@ private fun ModulesContent(
                 text = stringResource(R.string.library_modules_count, modules.size),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(bottom = 4.dp),
+                modifier = Modifier
+                    .padding(bottom = 4.dp)
+                    .semantics { heading() },
             )
         }
         items(modules, key = { it.id }) { module ->
@@ -259,7 +290,9 @@ private fun CurriculumContent(
                 text = stringResource(R.string.library_curriculum_count, blocks.size, totalChapters),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(bottom = 4.dp),
+                modifier = Modifier
+                    .padding(bottom = 4.dp)
+                    .semantics { heading() },
             )
         }
         items(blocks, key = { it.id }) { block ->
@@ -307,10 +340,14 @@ private fun CurriculumBlockCard(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
+                val expandLabel = if (expanded)
+                    stringResource(R.string.library_block_collapse)
+                else
+                    stringResource(R.string.library_block_expand)
                 IconButton(onClick = { expanded = !expanded }) {
                     Icon(
                         imageVector = if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                        contentDescription = if (expanded) "Collapse" else "Expand",
+                        contentDescription = expandLabel,
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
@@ -341,7 +378,9 @@ private fun CurriculumUnitSection(
             text = unit.title,
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(vertical = 4.dp),
+            modifier = Modifier
+                .padding(vertical = 4.dp)
+                .semantics { heading() },
         )
         unit.chapters.forEach { chapter ->
             Row(
@@ -351,12 +390,14 @@ private fun CurriculumUnitSection(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
+                val chapterStatusDesc = if (chapter.isAvailable)
+                    stringResource(R.string.library_chapter_available)
+                else
+                    stringResource(R.string.library_chapter_locked)
+
                 Icon(
                     imageVector = if (chapter.isAvailable) Icons.Default.AutoStories else Icons.Default.Lock,
-                    contentDescription = if (chapter.isAvailable)
-                        stringResource(R.string.library_chapter_available)
-                    else
-                        stringResource(R.string.library_chapter_locked),
+                    contentDescription = chapterStatusDesc,
                     tint = if (chapter.isAvailable)
                         MaterialTheme.colorScheme.onSurface
                     else
