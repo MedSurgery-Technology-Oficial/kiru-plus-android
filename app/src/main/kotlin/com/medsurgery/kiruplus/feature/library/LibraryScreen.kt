@@ -51,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.medsurgery.kiruplus.R
+import com.medsurgery.kiruplus.domain.chapterexam.examIdForChapter
 import com.medsurgery.kiruplus.domain.library.CurriculumBlock
 import com.medsurgery.kiruplus.domain.library.CurriculumUnit
 import com.medsurgery.kiruplus.domain.library.LibraryModule
@@ -60,6 +61,7 @@ import com.medsurgery.kiruplus.domain.library.LibraryModule
 fun LibraryScreen(
     onBack: () -> Unit,
     onOpenModule: (String) -> Unit,
+    onStartChapterQuiz: (String) -> Unit = {},
     viewModel: LibraryViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -103,7 +105,10 @@ fun LibraryScreen(
                     modules = state.modules,
                     onOpenModule = onOpenModule,
                 )
-                else -> CurriculumContent(blocks = state.curriculum)
+                else -> CurriculumContent(
+                    blocks = state.curriculum,
+                    onStartChapterQuiz = onStartChapterQuiz,
+                )
             }
         }
     }
@@ -240,7 +245,10 @@ private fun ModuleCard(module: LibraryModule, onClick: () -> Unit) {
 }
 
 @Composable
-private fun CurriculumContent(blocks: List<CurriculumBlock>) {
+private fun CurriculumContent(
+    blocks: List<CurriculumBlock>,
+    onStartChapterQuiz: (String) -> Unit,
+) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -255,13 +263,16 @@ private fun CurriculumContent(blocks: List<CurriculumBlock>) {
             )
         }
         items(blocks, key = { it.id }) { block ->
-            CurriculumBlockCard(block = block)
+            CurriculumBlockCard(block = block, onStartChapterQuiz = onStartChapterQuiz)
         }
     }
 }
 
 @Composable
-private fun CurriculumBlockCard(block: CurriculumBlock) {
+private fun CurriculumBlockCard(
+    block: CurriculumBlock,
+    onStartChapterQuiz: (String) -> Unit,
+) {
     var expanded by rememberSaveable { mutableStateOf(false) }
 
     Card(
@@ -307,7 +318,11 @@ private fun CurriculumBlockCard(block: CurriculumBlock) {
             if (expanded) {
                 HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
                 block.units.forEach { unit ->
-                    CurriculumUnitSection(unit = unit)
+                    CurriculumUnitSection(
+                        unit = unit,
+                        blockNumber = block.blockNumber,
+                        onStartChapterQuiz = onStartChapterQuiz,
+                    )
                 }
                 Spacer(Modifier.height(8.dp))
             }
@@ -316,7 +331,11 @@ private fun CurriculumBlockCard(block: CurriculumBlock) {
 }
 
 @Composable
-private fun CurriculumUnitSection(unit: CurriculumUnit) {
+private fun CurriculumUnitSection(
+    unit: CurriculumUnit,
+    blockNumber: Int,
+    onStartChapterQuiz: (String) -> Unit,
+) {
     Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp)) {
         Text(
             text = unit.title,
@@ -353,7 +372,23 @@ private fun CurriculumUnitSection(unit: CurriculumUnit) {
                         MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f),
                 )
+                if (chapter.isAvailable) {
+                    TextButton(
+                        onClick = {
+                            onStartChapterQuiz(
+                                examIdForChapter(blockNumber, unit.unitNumber, chapter.chapterNumber),
+                            )
+                        },
+                        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp),
+                    ) {
+                        Text(
+                            text = stringResource(R.string.chapter_exam_start),
+                            style = MaterialTheme.typography.labelSmall,
+                        )
+                    }
+                }
             }
         }
     }

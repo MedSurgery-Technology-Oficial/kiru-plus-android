@@ -217,6 +217,23 @@
     <string name="library_chapter_available">Disponible</string>
     <string name="library_chapter_locked">Bloqueado</string>
     <string name="library_open_module">Abrir módulo</string>
+    <!-- Examen por capítulo -->
+    <string name="chapter_exam_title">Quiz del capítulo</string>
+    <string name="chapter_exam_progress">Pregunta %1$d de %2$d</string>
+    <string name="chapter_exam_start">Iniciar quiz</string>
+    <string name="chapter_exam_next">Siguiente</string>
+    <string name="chapter_exam_see_results">Ver resultados</string>
+    <string name="chapter_exam_rationale_label">Explicación</string>
+    <string name="chapter_exam_correct">Correcta</string>
+    <string name="chapter_exam_incorrect">Incorrecta</string>
+    <string name="chapter_exam_score_title">Quiz completado</string>
+    <string name="chapter_exam_score">%1$d / %2$d correctas · %3$d%%</string>
+    <string name="chapter_exam_restart">Repetir examen</string>
+    <string name="chapter_exam_back_to_library">Volver a la biblioteca</string>
+    <string name="chapter_exam_error_load">No se pudo cargar el quiz. Inténtalo de nuevo.</string>
+    <string name="chapter_exam_empty">No se encontró quiz para este capítulo.</string>
+    <string name="chapter_exam_not_found">chapter_exam_not_found</string>
+
     <!-- Tarjeta de inicio Biblioteca -->
     <string name="home_card_library_title">Biblioteca</string>
     <string name="home_card_library_body">Módulos de estudio y currículum quirúrgico.</string>

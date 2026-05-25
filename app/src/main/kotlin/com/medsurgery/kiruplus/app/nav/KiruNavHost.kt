@@ -16,6 +16,7 @@ import com.medsurgery.kiruplus.feature.quiz.QuizPlayerScreen
 import com.medsurgery.kiruplus.feature.kapibaya.KapibayaChatScreen
 import com.medsurgery.kiruplus.feature.ktools.CalculatorScreen
 import com.medsurgery.kiruplus.feature.ktools.KToolsMenuScreen
+import com.medsurgery.kiruplus.feature.chapterexam.ChapterExamScreen
 import com.medsurgery.kiruplus.feature.library.LibraryScreen
 import com.medsurgery.kiruplus.feature.library.ModuleDetailScreen
 import com.medsurgery.kiruplus.feature.paywall.PaywallScreen
@@ -284,11 +285,18 @@ fun KiruNavHost(navController: NavHostController) {
                 onOpenModule = { moduleId ->
                     navController.navigate(KiruRoute.LibraryModuleDetail(moduleId))
                 },
+                onStartChapterQuiz = { examId ->
+                    navController.navigate(KiruRoute.ChapterExam(examId))
+                },
             )
         }
 
         composable<KiruRoute.LibraryModuleDetail> {
             ModuleDetailScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable<KiruRoute.ChapterExam> {
+            ChapterExamScreen(onBack = { navController.popBackStack() })
         }
 
         composable<KiruRoute.Paywall> {
