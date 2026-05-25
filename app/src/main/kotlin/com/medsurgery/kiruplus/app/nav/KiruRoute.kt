@@ -39,6 +39,9 @@ sealed interface KiruRoute {
     @Serializable data object KTools : KiruRoute
     @Serializable data class KToolsCalculator(val id: String) : KiruRoute
 
+    @Serializable data object Library : KiruRoute
+    @Serializable data class LibraryModuleDetail(val moduleId: String) : KiruRoute
+
     @Serializable data object AccountDeletion : KiruRoute
     @Serializable data object DataExport : KiruRoute
 

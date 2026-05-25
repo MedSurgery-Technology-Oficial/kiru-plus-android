@@ -16,6 +16,8 @@ import com.medsurgery.kiruplus.feature.quiz.QuizPlayerScreen
 import com.medsurgery.kiruplus.feature.kapibaya.KapibayaChatScreen
 import com.medsurgery.kiruplus.feature.ktools.CalculatorScreen
 import com.medsurgery.kiruplus.feature.ktools.KToolsMenuScreen
+import com.medsurgery.kiruplus.feature.library.LibraryScreen
+import com.medsurgery.kiruplus.feature.library.ModuleDetailScreen
 import com.medsurgery.kiruplus.feature.paywall.PaywallScreen
 import com.medsurgery.kiruplus.feature.logbook.NewSurgicalLogScreen
 import com.medsurgery.kiruplus.feature.main.MainScreen
@@ -151,6 +153,7 @@ fun KiruNavHost(navController: NavHostController) {
                 onOpenNewSurgicalLog = { navController.navigate(KiruRoute.NewSurgicalLog) },
                 onOpenKapibaya = { navController.navigate(KiruRoute.KapibayaChat) },
                 onOpenKTools   = { navController.navigate(KiruRoute.KTools) },
+                onOpenLibrary  = { navController.navigate(KiruRoute.Library) },
             )
         }
 
@@ -273,6 +276,19 @@ fun KiruNavHost(navController: NavHostController) {
                 url = args.url,
                 onBack = { navController.popBackStack() },
             )
+        }
+
+        composable<KiruRoute.Library> {
+            LibraryScreen(
+                onBack = { navController.popBackStack() },
+                onOpenModule = { moduleId ->
+                    navController.navigate(KiruRoute.LibraryModuleDetail(moduleId))
+                },
+            )
+        }
+
+        composable<KiruRoute.LibraryModuleDetail> {
+            ModuleDetailScreen(onBack = { navController.popBackStack() })
         }
 
         composable<KiruRoute.Paywall> {

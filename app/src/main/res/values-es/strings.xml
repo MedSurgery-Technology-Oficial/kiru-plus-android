@@ -203,6 +203,25 @@
     <string name="profile_empty">Aún no tienes perfil.</string>
     <string name="profile_role_specialty">%1$s · %2$s</string>
 
+    <!-- Biblioteca -->
+    <string name="library_title">Biblioteca</string>
+    <string name="library_tab_modules">Módulos de estudio</string>
+    <string name="library_tab_curriculum">Currículum</string>
+    <string name="library_modules_count">%1$d módulos clínicos</string>
+    <string name="library_curriculum_count">%1$d bloques · %2$d capítulos</string>
+    <string name="library_empty_title">Sin contenido disponible</string>
+    <string name="library_empty_body">No se pudo cargar el contenido de la biblioteca desde los recursos locales.</string>
+    <string name="library_error_load">No se pudo cargar la biblioteca. Inténtalo de nuevo.</string>
+    <string name="library_module_points_count">%1$d temas</string>
+    <string name="library_curriculum_block">Bloque %1$d</string>
+    <string name="library_chapter_available">Disponible</string>
+    <string name="library_chapter_locked">Bloqueado</string>
+    <string name="library_open_module">Abrir módulo</string>
+    <!-- Tarjeta de inicio Biblioteca -->
+    <string name="home_card_library_title">Biblioteca</string>
+    <string name="home_card_library_body">Módulos de estudio y currículum quirúrgico.</string>
+    <string name="home_open_library">Abrir Biblioteca</string>
+
     <!-- Exportación de datos (RGPD Art. 15 / LFPDPPP Art. 23) -->
     <string name="data_export_title">Exportar mis datos</string>
     <string name="data_export_menu">Exportar mis datos (RGPD)</string>
