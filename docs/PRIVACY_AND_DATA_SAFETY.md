@@ -1,6 +1,6 @@
 # KIRU+ Android — Privacy & Data Safety (Google Play Console draft)
 
-Versión: 1.0 (E10) · Fecha: 2026-05-18 · Para revisión legal antes de submit.
+Versión: 1.1 (Sprint Quality) · Fecha: 2026-05-24 · Para revisión legal antes de submit.
 
 Este documento es el **draft** del formulario "Data safety" del Play Console.
 Refleja el comportamiento real del binary commit `1a36640` (post-E8.1) más los
@@ -38,8 +38,9 @@ Notas:
 - **Sentry** está deshabilitado por defecto (`io.sentry.auto-init = false`); se
   activa solo si `BuildConfig.SENTRY_DSN` no está vacío. En producción la
   decisión final de activar Sentry es del operador.
-- **RECORD_AUDIO** está declarado en el manifest pero no se solicita runtime en
-  v1.0. Reservado para Dr. Kapibaya en releases futuros.
+- **RECORD_AUDIO** fue eliminado completamente del manifest en Sprint A (commit
+  `0eef6d0`). No está declarado ni solicitado en v1.0. Voice Android (Dr.
+  Kapibaya) queda pospuesto a post-v1.0 por decisión de producto.
 
 ## Data sharing
 
@@ -48,7 +49,7 @@ Notas:
   pago entra al binary del app.
 - **Third-party SDKs en el binary**:
   - `supabase-kt` (Supabase, S.A.) — backend principal.
-  - `revenuecat-purchases` (RevenueCat) — gestión de suscripciones (E7+).
+  - `revenuecat-purchases` (RevenueCat) — gestión de suscripciones (Sprint B, bloqueado).
   - `coil` (Coil) — image loading; no envía data del usuario.
   - `sentry-android` (Sentry, S.A.) — crash reporting opt-in.
   - `okhttp` (Square) — librería HTTP base.
@@ -89,7 +90,7 @@ sujeta a confirmación).
 | `INTERNET` | ✅ | Supabase + Custom Tabs + Sentry |
 | `ACCESS_NETWORK_STATE` | ✅ | OfflineBanner en WebViewScreen (E9) |
 | `POST_NOTIFICATIONS` | ✅ | Push opcional post-v1.0 |
-| `RECORD_AUDIO` | ⏸️ | Manifest declarado, no runtime en v1.0 (reservado Kapibaya) |
+| `RECORD_AUDIO` | ❌ eliminado | Removido en Sprint A. Voice Android post-v1.0. |
 
 ## Follow-ups requeridos antes del Play Console submit
 
