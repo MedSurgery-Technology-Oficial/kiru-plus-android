@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- English fallback -->
     <string name="app_name" translatable="false">KIRU+</string>
 
@@ -203,7 +203,7 @@
     <string name="library_tab_modules">Study Modules</string>
     <string name="library_tab_curriculum">Curriculum</string>
     <!-- library_modules_count and library_module_points_count moved to plurals.xml -->
-    <string name="library_curriculum_count">%1$d blocks · %2$d chapters</string>
+    <string name="library_curriculum_count" tools:ignore="PluralsCandidate">%1$d blocks · %2$d chapters</string>
     <string name="library_empty_title">No content available</string>
     <string name="library_empty_body">Library content could not be loaded from local assets.</string>
     <string name="library_error_load">Couldn\'t load library. Please try again.</string>
@@ -221,7 +221,7 @@
     <string name="chapter_exam_correct">Correct</string>
     <string name="chapter_exam_incorrect">Incorrect</string>
     <string name="chapter_exam_score_title">Quiz complete</string>
-    <string name="chapter_exam_score">%1$d / %2$d correct · %3$d%%</string>
+    <string name="chapter_exam_score" tools:ignore="PluralsCandidate">%1$d / %2$d correct · %3$d%%</string>
     <string name="chapter_exam_restart">Retry exam</string>
     <string name="chapter_exam_back_to_library">Back to library</string>
     <string name="chapter_exam_error_load">Couldn\'t load quiz. Please try again.</string>

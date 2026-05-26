@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Español (idioma default de la app) -->
 
     <!-- Descargo médico (5 secciones, texto exacto del iOS) -->
@@ -202,7 +202,7 @@
     <string name="library_tab_modules">Módulos de estudio</string>
     <string name="library_tab_curriculum">Currículum</string>
     <!-- library_modules_count y library_module_points_count movidos a plurals.xml -->
-    <string name="library_curriculum_count">%1$d bloques · %2$d capítulos</string>
+    <string name="library_curriculum_count" tools:ignore="PluralsCandidate">%1$d bloques · %2$d capítulos</string>
     <string name="library_empty_title">Sin contenido disponible</string>
     <string name="library_empty_body">No se pudo cargar el contenido de la biblioteca desde los recursos locales.</string>
     <string name="library_error_load">No se pudo cargar la biblioteca. Inténtalo de nuevo.</string>
@@ -220,7 +220,7 @@
     <string name="chapter_exam_correct">Correcta</string>
     <string name="chapter_exam_incorrect">Incorrecta</string>
     <string name="chapter_exam_score_title">Quiz completado</string>
-    <string name="chapter_exam_score">%1$d / %2$d correctas · %3$d%%</string>
+    <string name="chapter_exam_score" tools:ignore="PluralsCandidate">%1$d / %2$d correctas · %3$d%%</string>
     <string name="chapter_exam_restart">Repetir examen</string>
     <string name="chapter_exam_back_to_library">Volver a la biblioteca</string>
     <string name="chapter_exam_error_load">No se pudo cargar el quiz. Inténtalo de nuevo.</string>
