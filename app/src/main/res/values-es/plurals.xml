@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Puntos de calculadoras K-Tools -->
+    <plurals name="ktools_points">
+        <item quantity="one">punto</item>
+        <item quantity="many">puntos</item>
+        <item quantity="other">puntos</item>
+    </plurals>
+
+    <!-- Contador de preguntas en quiz -->
+    <plurals name="quiz_question_count">
+        <item quantity="one">%1$d pregunta</item>
+        <item quantity="many">%1$d preguntas</item>
+        <item quantity="other">%1$d preguntas</item>
+    </plurals>
+
+    <!-- Contadores de biblioteca -->
+    <plurals name="library_modules_count">
+        <item quantity="one">%1$d módulo clínico</item>
+        <item quantity="many">%1$d módulos clínicos</item>
+        <item quantity="other">%1$d módulos clínicos</item>
+    </plurals>
+    <plurals name="library_module_points_count">
+        <item quantity="one">%1$d tema</item>
+        <item quantity="many">%1$d temas</item>
+        <item quantity="other">%1$d temas</item>
+    </plurals>
+</resources>

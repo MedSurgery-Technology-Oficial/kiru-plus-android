@@ -3,9 +3,6 @@
     <!-- English fallback -->
     <string name="app_name" translatable="false">KIRU+</string>
 
-    <!-- Onboarding / Splash -->
-    <string name="splash_loading">Loading…</string>
-
     <!-- Medical Disclaimer (5 sections - matches iOS exact copy) -->
     <string name="disclaimer_title">MEDICAL DISCLAIMER</string>
     <string name="disclaimer_section_1_title">1. Purpose</string>
@@ -37,7 +34,6 @@
     <string name="auth_forgot_subtitle">Enter your email and we will send you a recovery link.</string>
     <string name="auth_forgot_submit">Send recovery link</string>
     <string name="auth_forgot_success">If the email exists, you will receive a recovery link.</string>
-    <string name="auth_logout">Sign out</string>
     <string name="auth_delete_account">Delete my account</string>
     <string name="auth_login_error_generic">Could not sign in. Please try again.</string>
 
@@ -57,7 +53,6 @@
     <string name="tab_logbook">Logbook</string>
     <string name="tab_store">Store</string>
     <string name="tab_profile">Profile</string>
-    <string name="tab_placeholder_coming_soon">Coming soon</string>
 
     <!-- Store -->
     <string name="store_loading">Loading catalog…</string>
@@ -81,7 +76,6 @@
     <string name="delete_account_acknowledge">I understand my data will be permanently deleted.</string>
     <string name="delete_account_confirm">Confirm deletion</string>
     <string name="delete_account_cancel">Cancel</string>
-    <string name="delete_account_success">Deletion request submitted. Your account will be removed within 48 hours.</string>
 
     <!-- Generic UI -->
     <string name="action_back">Back</string>
@@ -89,8 +83,6 @@
     <string name="action_close">Close</string>
     <string name="library_block_expand">Expand block</string>
     <string name="library_block_collapse">Collapse block</string>
-    <string name="state_loading">Loading…</string>
-    <string name="state_offline">No internet connection</string>
     <string name="error_generic">Something went wrong. Please try again.</string>
 
     <!-- WebView -->
@@ -188,7 +180,7 @@
     <string name="quiz_score_title">Quiz complete!</string>
     <string name="quiz_score_pct">%1$d%%</string>
     <string name="quiz_restart">Try again</string>
-    <string name="quiz_question_count">%1$d questions</string>
+    <!-- quiz_question_count moved to plurals.xml -->
 
     <!-- Pearls -->
     <string name="pearls_title">Clinical pearls</string>
@@ -210,12 +202,11 @@
     <string name="library_title">Library</string>
     <string name="library_tab_modules">Study Modules</string>
     <string name="library_tab_curriculum">Curriculum</string>
-    <string name="library_modules_count">%1$d clinical modules</string>
+    <!-- library_modules_count and library_module_points_count moved to plurals.xml -->
     <string name="library_curriculum_count">%1$d blocks · %2$d chapters</string>
     <string name="library_empty_title">No content available</string>
     <string name="library_empty_body">Library content could not be loaded from local assets.</string>
     <string name="library_error_load">Couldn\'t load library. Please try again.</string>
-    <string name="library_module_points_count">%1$d topics</string>
     <string name="library_curriculum_block">Block %1$d</string>
     <string name="library_chapter_available">Available</string>
     <string name="library_chapter_locked">Locked</string>
@@ -235,12 +226,10 @@
     <string name="chapter_exam_back_to_library">Back to library</string>
     <string name="chapter_exam_error_load">Couldn\'t load quiz. Please try again.</string>
     <string name="chapter_exam_empty">No quiz found for this chapter.</string>
-    <string name="chapter_exam_not_found">chapter_exam_not_found</string>
 
     <!-- Home library card -->
     <string name="home_card_library_title">Library</string>
     <string name="home_card_library_body">Study modules and surgical curriculum.</string>
-    <string name="home_open_library">Open Library</string>
 
     <!-- Data export (GDPR Art. 15 / LFPDPPP Art. 23) -->
     <string name="data_export_title">Export my data</string>
@@ -249,4 +238,8 @@
     <string name="data_export_legal">Right to data portability — GDPR Art. 15 and LFPDPPP Art. 23. We process your request within 30 days and email you a secure download link.</string>
     <string name="data_export_request">Request export</string>
     <string name="data_export_success">Request received. We will email you the download link within 30 days.</string>
+
+    <!-- Quiz answer state (accessibility semantics) -->
+    <string name="quiz_answer_correct">Correct answer</string>
+    <string name="quiz_answer_incorrect">Incorrect answer</string>
 </resources>

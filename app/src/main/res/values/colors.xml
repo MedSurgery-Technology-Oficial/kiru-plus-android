@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- KIRU+ Brand Palette — espejo de Core/DesignSystem/KiruDesignTokens.swift -->
-    <!-- Brand Manual: única fuente de verdad para hex de marca. -->
+    <!--
+        KIRU+ brand palette is defined as Kotlin Color objects in Color.kt (design system).
+        Only colors needed by XML resources (themes, adaptive icon) live here.
+    -->
 
+    <!-- Used by splash_background and ic_launcher adaptive icon background -->
     <color name="kiru_navy_blue">#0F172A</color>
-    <color name="kiru_teal">#0D9488</color>
-    <color name="kiru_black">#191919</color>
-    <color name="kiru_white">#F8FAFC</color>
-    <color name="kiru_cyan_blue">#00BFFF</color>
-    <color name="kiru_slate_gray">#1E293B</color>
-    <color name="kiru_gold">#DAA520</color>
-    <color name="kiru_green">#04CE03</color>
-    <color name="kiru_red">#D2042D</color>
-    <color name="kiru_light_blue">#00004C</color>
 
-    <!-- Aliases legacy mantenidos por compatibilidad con código que referenciaba placeholders. -->
-    <color name="kiru_primary">@color/kiru_navy_blue</color>
-    <color name="kiru_primary_dark">@color/kiru_navy_blue</color>
-    <color name="kiru_accent">@color/kiru_cyan_blue</color>
-
-    <!-- Splash window background: navy del Brand Manual. -->
+    <!-- Splash window background and launcher icon background -->
     <color name="splash_background">@color/kiru_navy_blue</color>
 </resources>

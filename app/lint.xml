@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!--
+        Adaptive icons intentionally exist as both XML (mipmap-anydpi) and PNG bitmaps
+        (mipmap-*dpi) for backward compatibility with Android < 8.0 (API 26).
+        This is standard Android practice, not a bug.
+    -->
+    <issue id="IconXmlAndPng" severity="ignore" />
+</lint>

@@ -35,6 +35,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -63,7 +64,7 @@ fun CalculatorScreen(calculatorId: String, onBack: () -> Unit) {
 
 // ─── Shared components ────────────────────────────────────────────────────────
 
-enum class RiskLevel(val label: String) { LOW("Bajo"), MODERATE("Intermedio"), HIGH("Alto") }
+enum class RiskLevel { LOW, MODERATE, HIGH }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -144,7 +145,7 @@ private fun CriterionRow(label: String, pts: Int, checked: Boolean, onCheckedCha
             Text(text = label, style = MaterialTheme.typography.bodyMedium)
             if (pts > 0) {
                 Text(
-                    text = "+$pts ${if (pts == 1) "punto" else "puntos"}",
+                    text = "+$pts ${pluralStringResource(R.plurals.ktools_points, pts)}",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
