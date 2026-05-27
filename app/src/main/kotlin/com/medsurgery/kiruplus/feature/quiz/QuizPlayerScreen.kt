@@ -210,8 +210,8 @@ private fun OptionButton(
 
     val answerStateDesc = when {
         !answered -> ""
-        isCorrect -> "Respuesta correcta"
-        isSelected -> "Respuesta incorrecta"
+        isCorrect -> stringResource(R.string.quiz_answer_correct)
+        isSelected -> stringResource(R.string.quiz_answer_incorrect)
         else -> ""
     }
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- K-Tools calculator score points -->
+    <plurals name="ktools_points">
+        <item quantity="one">point</item>
+        <item quantity="other">points</item>
+    </plurals>
+
+    <!-- Quiz question count -->
+    <plurals name="quiz_question_count">
+        <item quantity="one">%1$d question</item>
+        <item quantity="other">%1$d questions</item>
+    </plurals>
+
+    <!-- Library counts -->
+    <plurals name="library_modules_count">
+        <item quantity="one">%1$d clinical module</item>
+        <item quantity="other">%1$d clinical modules</item>
+    </plurals>
+    <plurals name="library_module_points_count">
+        <item quantity="one">%1$d topic</item>
+        <item quantity="other">%1$d topics</item>
+    </plurals>
+</resources>

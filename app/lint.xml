@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!--
+        minSdk = 26. Legacy PNG launcher icons (ic_launcher.png, ic_launcher_round.png)
+        were removed in sprint-icons-assets-and-screenshot-readiness because they are
+        unreachable dead code — every device that runs this app supports adaptive icons
+        (API 26+). Only ic_launcher_foreground.png remains (used by the adaptive icon XML).
+
+        IconXmlAndPng: suppressed as the XML adaptive icons and their foreground PNGs
+        coexist intentionally. The foreground PNG is referenced by ic_launcher.xml via
+        @mipmap/ic_launcher_foreground and is NOT a duplicate of the adaptive icon XML.
+    -->
+    <issue id="IconXmlAndPng" severity="ignore" />
+
+    <!--
+        AndroidGradlePluginVersion + GradleDependency: intentionally deferred.
+        See docs/DEPENDENCY_UPGRADE_STRATEGY.md for the tiered upgrade plan.
+        These are warnings, not errors, and do not affect functionality.
+        Planned: Batch 1 (low-risk patch bumps) after Play Console is unblocked.
+    -->
+    <issue id="AndroidGradlePluginVersion" severity="ignore" />
+    <issue id="GradleDependency" severity="ignore" />
+</lint>

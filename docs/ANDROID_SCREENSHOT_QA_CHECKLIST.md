@@ -1,7 +1,7 @@
 # KIRU+ Android — Screenshot QA Checklist
 
-**Version:** 1.0  
-**Última actualización:** 2026-05-25  
+**Version:** 1.1  
+**Última actualización:** 2026-05-26  
 **Propósito:** Guía operativa para capturar screenshots listos para Google Play Store.  
 **Prerequisito:** cuenta Developer desbloqueada, APK release instalado, emulador/device Pixel 6+ o Samsung Galaxy S22+, idioma configurado en ES o EN según sección.
 
@@ -311,3 +311,65 @@ adb pull /sdcard/Pictures/Screenshots/
 ---
 
 *Actualizar este documento después de cada sprint que agregue o modifique pantallas.*
+
+---
+
+## Apéndice A — Setup de emulador para screenshots (bloqueado hasta imagen disponible)
+
+**Problema actual (2026-05-26):** La imagen del sistema `Google APIs` para AVD Pixel 8 Pro no está disponible en este entorno. El `connectedDebugAndroidTest` y la captura manual están bloqueados.
+
+### Cuando el emulador esté disponible — pasos para desbloquearlo
+
+```bash
+# 1. Verificar imágenes disponibles
+sdkmanager --list | grep "system-images"
+
+# 2. Instalar imagen recomendada (Pixel 8 Pro, API 35, Google APIs)
+sdkmanager "system-images;android-35;google_apis_playstore;x86_64"
+
+# 3. Crear AVD
+avdmanager create avd \
+  --name "Pixel_8_Pro_API35" \
+  --package "system-images;android-35;google_apis_playstore;x86_64" \
+  --device "pixel_8_pro"
+
+# 4. Arrancar AVD headless para screenshots automáticos
+emulator -avd Pixel_8_Pro_API35 -no-window -no-audio &
+adb wait-for-device
+
+# 5. Instalar APK release (necesita firma — ver kiru-plus-release.jks)
+adb install -r app/build/outputs/apk/release/app-release.apk
+
+# 6. Correr UI tests instrumentados
+./gradlew connectedDebugAndroidTest
+
+# 7. Captura manual vía adb
+adb shell screencap -p /sdcard/screenshot.png
+adb pull /sdcard/screenshot.png ./screenshots/
+```
+
+### Configuración de idioma para screenshots bilíngues
+```bash
+# Español
+adb shell settings put system system_locales es-MX
+
+# Inglés
+adb shell settings put system system_locales en-US
+
+# Reiniciar app para que tome el cambio
+adb shell am force-stop com.medsurgery.kiruplus
+adb shell am start -n com.medsurgery.kiruplus/.MainActivity
+```
+
+### Configuración para dark mode
+```bash
+adb shell cmd uimode night yes   # Dark
+adb shell cmd uimode night no    # Light
+```
+
+### Checklist previo a captura
+- [ ] APK release instalado (NO debug — para que no aparezca el banner de debug)
+- [ ] Usuario demo logueado (no mostrar pantallas de auth en screenshots de Play)
+- [ ] Todos los tabs cargados (navegar por cada uno antes de capturar)
+- [ ] Sin conexión a red visible en status bar (modo avión no aplica — necesita red para Supabase)
+- [ ] Hora del sistema fija a 09:41 (convención Apple/Google para screenshots de marketing)
