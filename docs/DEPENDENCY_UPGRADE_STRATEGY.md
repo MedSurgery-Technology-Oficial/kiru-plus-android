@@ -1,7 +1,7 @@
 # KIRU+ Android — Dependency Upgrade Strategy
 
-**Fecha:** 2026-05-26  
-**Estado:** documentado, pendiente de ejecución  
+**Fecha:** 2026-05-26 (creado) · actualizado 2026-05-27 (Batch 1 ejecutado parcialmente)  
+**Estado:** Batch 1 cerrado parcial (5/7 aplicados, 2 revertidos por restricciones de AGP/Kotlin). Batches 2–4 pendientes.  
 **Origen:** 54 warnings de `GradleDependency` + 6 de `AndroidGradlePluginVersion` en lintDebug  
 **Restricción:** NO ejecutar ningún upgrade hasta que Play Console esté desbloqueado y haya un ciclo de QA disponible.
 
@@ -47,16 +47,20 @@ Antes de cualquier upgrade, necesitas:
 ---
 
 ### Batch 1 — Bajo riesgo (patch bumps y deps sin API changes)
-**Hacer juntos, commit único:**
-- `appcompat`: 1.7.0 → 1.7.1
-- `kotlinxCoroutines`: 1.10.1 → 1.10.2
-- `hiltNavigationCompose`: 1.2.0 → 1.3.0
-- `datastore`: 1.1.1 → 1.2.1
-- `browser`: 1.8.0 → 1.10.0
-- `junitExt`: 1.2.1 → 1.3.0
-- `espresso`: 3.6.1 → 3.7.0
+**Estado:** Ejecutado parcialmente en sprint `android/sprint-dependency-batch1-low-risk` (2026-05-27).
 
-**Gate:** `testDebugUnitTest` + `assembleDebug`
+**Aplicados (5 de 7):**
+- `appcompat`: 1.7.0 → 1.7.1 ✅
+- `kotlinxCoroutines`: 1.10.1 → 1.10.2 ✅
+- `datastore`: 1.1.1 → 1.2.1 ✅
+- `junitExt`: 1.2.1 → 1.3.0 ✅
+- `espresso`: 3.6.1 → 3.7.0 ✅
+
+**Revertidos (bloqueados por restricciones del sprint):**
+- ~~`hiltNavigationCompose`: 1.2.0 → 1.3.0~~ ❌ 1.3.0 jala transitivamente `androidx.lifecycle.lint` más nuevo que crashea `NonNullableMutableLiveDataDetector` con `IncompatibleClassChangeError` contra el Kotlin Analysis API de Kotlin 2.1.0. Diferido hasta upgrade coordinado de Kotlin/lifecycle (Batch 2/3). Soft deprecation conocida: `hiltViewModel()` será movido a `androidx.hilt.lifecycle.viewmodel.compose` cuando se desbloquee.
+- ~~`browser`: 1.8.0 → 1.10.0~~ ❌ Tanto `1.9.0` como `1.10.0` requieren **AGP 8.9.1+ y `compileSdk` 36**. Bloqueado por la restricción de no tocar AGP. Diferido al Batch 4 (AGP 9.x).
+
+**Gate ejecutado:** `testDebugUnitTest` + `lintDebug` (0 warnings, "No issues found") + `assembleDebug` — todos PASS con la config final.
 
 ---
 
