@@ -24,6 +24,11 @@ import com.medsurgery.kiruplus.feature.logbook.NewSurgicalLogScreen
 import com.medsurgery.kiruplus.feature.main.MainScreen
 import com.medsurgery.kiruplus.feature.onboarding.MedicalDisclaimerScreen
 import com.medsurgery.kiruplus.feature.onboarding.SplashScreen
+import com.medsurgery.kiruplus.feature.cases.CaseDetailScreen
+import com.medsurgery.kiruplus.feature.cases.CasesScreen
+import com.medsurgery.kiruplus.feature.drugs.DrugDetailScreen
+import com.medsurgery.kiruplus.feature.drugs.DrugsScreen
+import com.medsurgery.kiruplus.feature.kcortex.KCortexScreen
 import com.medsurgery.kiruplus.feature.pearls.PearlDetailScreen
 import com.medsurgery.kiruplus.feature.pearls.PearlsScreen
 import com.medsurgery.kiruplus.feature.settings.DataExportScreen
@@ -155,6 +160,9 @@ fun KiruNavHost(navController: NavHostController) {
                 onOpenKapibaya = { navController.navigate(KiruRoute.KapibayaChat) },
                 onOpenKTools   = { navController.navigate(KiruRoute.KTools) },
                 onOpenLibrary  = { navController.navigate(KiruRoute.Library) },
+                onOpenDrugs    = { navController.navigate(KiruRoute.Drugs) },
+                onOpenCases    = { navController.navigate(KiruRoute.Cases) },
+                onOpenKCortex  = { navController.navigate(KiruRoute.KCortex) },
             )
         }
 
@@ -262,6 +270,32 @@ fun KiruNavHost(navController: NavHostController) {
             PearlDetailScreen(onBack = { navController.popBackStack() })
         }
 
+        composable<KiruRoute.Drugs> {
+            DrugsScreen(
+                onBack = { navController.popBackStack() },
+                onOpenDrug = { drugId ->
+                    navController.navigate(KiruRoute.DrugDetail(drugId))
+                },
+            )
+        }
+
+        composable<KiruRoute.DrugDetail> {
+            DrugDetailScreen(onBack = { navController.popBackStack() })
+        }
+
+        composable<KiruRoute.Cases> {
+            CasesScreen(
+                onBack = { navController.popBackStack() },
+                onOpenCase = { caseId ->
+                    navController.navigate(KiruRoute.CaseDetail(caseId))
+                },
+            )
+        }
+
+        composable<KiruRoute.CaseDetail> {
+            CaseDetailScreen(onBack = { navController.popBackStack() })
+        }
+
         composable<KiruRoute.LessonDetail> {
             ContentDetailScreen(onBack = { navController.popBackStack() })
         }
@@ -301,6 +335,10 @@ fun KiruNavHost(navController: NavHostController) {
 
         composable<KiruRoute.Paywall> {
             PaywallScreen(onDismiss = { navController.popBackStack() })
+        }
+
+        composable<KiruRoute.KCortex> {
+            KCortexScreen(onBack = { navController.popBackStack() })
         }
     }
 }

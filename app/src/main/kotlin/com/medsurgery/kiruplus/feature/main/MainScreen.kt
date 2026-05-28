@@ -44,6 +44,9 @@ fun MainScreen(
     onOpenKapibaya: () -> Unit,
     onOpenKTools: () -> Unit,
     onOpenLibrary: () -> Unit,
+    onOpenDrugs: () -> Unit,
+    onOpenCases: () -> Unit,
+    onOpenKCortex: () -> Unit,
 ) {
     var current by rememberSaveable { mutableStateOf(MainTab.Home) }
 
@@ -80,6 +83,9 @@ fun MainScreen(
                     onOpenKapibaya = onOpenKapibaya,
                     onOpenKTools = onOpenKTools,
                     onOpenLibrary = onOpenLibrary,
+                    onOpenDrugs = onOpenDrugs,
+                    onOpenCases = onOpenCases,
+                    onOpenKCortex = onOpenKCortex,
                 )
                 MainTab.Academy -> AcademyScreen(onOpenLesson = onOpenLesson, onOpenQuiz = onOpenQuiz)
                 MainTab.Logbook -> LogbookScreen(onAddLog = onOpenNewSurgicalLog)

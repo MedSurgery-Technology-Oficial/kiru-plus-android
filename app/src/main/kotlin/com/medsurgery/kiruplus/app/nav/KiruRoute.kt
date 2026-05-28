@@ -46,6 +46,14 @@ sealed interface KiruRoute {
     @Serializable data object AccountDeletion : KiruRoute
     @Serializable data object DataExport : KiruRoute
 
+    @Serializable data object Drugs : KiruRoute
+    @Serializable data class DrugDetail(val drugId: String) : KiruRoute
+
+    @Serializable data object Cases : KiruRoute
+    @Serializable data class CaseDetail(val caseId: String) : KiruRoute
+
+    @Serializable data object KCortex : KiruRoute
+
     @Serializable
     data class WebView(val title: String, val url: String) : KiruRoute
 }

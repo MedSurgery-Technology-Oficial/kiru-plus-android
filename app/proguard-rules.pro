@@ -16,10 +16,14 @@
     kotlinx.serialization.KSerializer serializer(...);
 }
 
+# --- Kotlinx Serialization (@Serializable annotated classes) ---------------
+-keep @kotlinx.serialization.Serializable class * { *; }
+
 # --- Supabase / Ktor -------------------------------------------------------
 -keep class io.ktor.** { *; }
 -keep class io.github.jan.supabase.** { *; }
 -dontwarn io.ktor.**
+-dontwarn io.github.jan.supabase.**
 
 # --- RevenueCat -----------------------------------------------------------
 # El SDK incluye `consumer-rules.pro` en su AAR — no necesitamos keep rules manuales.
@@ -51,6 +55,10 @@
 -dontwarn org.bouncycastle.**
 -dontwarn org.conscrypt.**
 -dontwarn org.openjsse.**
+
+# --- Coroutines -----------------------------------------------------------
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
 
 # --- AndroidX Browser (Custom Tabs) ---------------------------------------
 # CustomTabsIntent.Builder + service connection runtime — el SDK ya está
